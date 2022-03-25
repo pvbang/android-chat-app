@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "272897942547",
+    "project_id": "chat-application-f4d3d",
+    "storage_bucket": "chat-application-f4d3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272897942547:android:414c50e7cc24f9ef178be6",
+        "android_client_info": {
+          "package_name": "com.example.chatapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272897942547-12ml58ld772a3458ks4b04ujeah0703f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbMfZMmYnZU4iZYeUvLZktD3uf_hug3hQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272897942547-12ml58ld772a3458ks4b04ujeah0703f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
