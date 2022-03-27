@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_home"
+        android:title="Tin nhắn"
+        android:icon="@drawable/ic_chat" />
+
+    <item android:id="@+id/action_friends"
+        android:title="Bạn bè"
+        android:icon="@drawable/ic_friends" />
+
+    <item android:id="@+id/action_story"
+        android:title="Nhật ký"
+        android:icon="@drawable/ic_story" />
+
+    <item android:id="@+id/action_user"
+        android:title="Cá nhân"
+        android:icon="@drawable/ic_user" />
+
+</menu>

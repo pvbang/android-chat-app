@@ -14,15 +14,24 @@
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/background_input.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/background_received_message.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/background_send_message.xml" value="0.1" />
-        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_chat.xml" value="0.1" />
-        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/ic_info.xml" value="0.1385" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/ic_notifications.xml" value="0.1385" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/ic_user.xml" value="0.1385" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_chat.xml" value="0.15" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/activity_users.xml" value="0.18" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/fragment_friends.xml" value="0.22" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/fragment_main.xml" value="0.18" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/fragment_story.xml" value="0.16032492518170158" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/fragment_user.xml" value="0.2" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_received_message.xml" value="0.22" />
-        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.1" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.25" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_sent_message.xml" value="0.22" />
-        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_user.xml" value="0.22" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_user.xml" value="0.18" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25" />
       </map>
     </option>
   </component>

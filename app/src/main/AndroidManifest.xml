@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
         <activity
-            android:name=".activities.ChatActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.UsersActivity"
-            android:exported="false" />
+            android:name=".activities.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
