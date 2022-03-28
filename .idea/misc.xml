@@ -8,6 +8,7 @@
         <entry key="..\:/Android-ALL-App/chat_app_android/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1015" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable-v24/ic_launcher_official_background.xml" value="0.1015" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable-v24/ic_logo_background.xml" value="0.1015" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/backgound_chat_input.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/background_content_bottom.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/background_content_top.xml" value="0.1" />
@@ -40,7 +41,7 @@
         <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_official.xml" value="0.12" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_official_round.xml" value="0.137" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.137" />
-        <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.5" />
+        <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.12" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.1015" />
       </map>
     </option>
