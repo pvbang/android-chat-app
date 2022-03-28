@@ -67,12 +67,6 @@ public class MainFragment extends Fragment implements ConversionListener {
         listenConversations();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
-    }
-
     private void init() {
         conversations = new ArrayList<>();
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
@@ -158,22 +152,6 @@ public class MainFragment extends Fragment implements ConversionListener {
                 preferenceManager.getString(Constants.KEY_USER_ID)
         );
         documentReference.update(Constants.KEY_FCM_TOKEN, token);
-    }
-
-    private void signOut() {
-        showToast("Đăng xuất khỏi tài khoản...");
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
-                preferenceManager.getString(Constants.KEY_USER_ID)
-        );
-
-        HashMap<String, Object> updates = new HashMap<>();
-        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-        documentReference.update(updates).addOnSuccessListener(unused -> {
-            preferenceManager.clear();
-            startActivity(new Intent(getActivity().getApplicationContext(), SignInActivity.class));
-            getActivity().finish();
-        }).addOnFailureListener(e -> showToast("Không thể đăng xuất"));
     }
 
     @Override

@@ -107,6 +107,6 @@ public class FriendsFragment extends Fragment implements UserListener {
         Intent intent = new Intent(getActivity().getApplicationContext(), ChatActivity.class);
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
-        getActivity().finish();
+//        getActivity().finish();
     }
 }

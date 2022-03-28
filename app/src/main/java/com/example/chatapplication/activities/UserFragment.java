@@ -15,9 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.FragmentUserBinding;
-import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,15 +23,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class UserFragment extends Fragment {
 
     private FragmentUserBinding binding;
     private PreferenceManager preferenceManager;
-    private List<ChatMessage> conversations;
-    private RecentConversationsAdapter conversationsAdapter;
-    private FirebaseFirestore database;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,13 +48,6 @@ public class UserFragment extends Fragment {
         loadUserDetails();
         setListeners();
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
-    }
-
 
     private void setListeners() {
         binding.imageSignOut.setOnClickListener(v -> signOut());
