@@ -1,4 +1,4 @@
-package com.example.chatapplication.activities;
+package com.example.chatapplication.fragments.userfrag;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.chatapplication.activities.ProfileActivity;
+import com.example.chatapplication.activities.SignInActivity;
 import com.example.chatapplication.databinding.FragmentUserBinding;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;

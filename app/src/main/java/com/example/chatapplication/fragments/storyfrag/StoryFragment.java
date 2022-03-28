@@ -1,4 +1,4 @@
-package com.example.chatapplication.activities;
+package com.example.chatapplication.fragments.storyfrag;
 
 import android.os.Bundle;
 

@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@color/primary"
 
-    tools:context=".activities.MainFragment">
+    tools:context=".fragments.mainfrag.MainFragment">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageProfile"

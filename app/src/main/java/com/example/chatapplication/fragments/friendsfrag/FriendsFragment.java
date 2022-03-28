@@ -1,4 +1,4 @@
-package com.example.chatapplication.activities;
+package com.example.chatapplication.fragments.friendsfrag;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.adapters.UserAdapters;
 import com.example.chatapplication.databinding.FragmentFriendsBinding;
 import com.example.chatapplication.databinding.FragmentMainBinding;
