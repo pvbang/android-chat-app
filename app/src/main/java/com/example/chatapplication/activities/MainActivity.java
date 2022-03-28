@@ -1,49 +1,19 @@
 package com.example.chatapplication.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.database.CursorJoiner;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.chatapplication.R;
-import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.ActivityMainBinding;
-import com.example.chatapplication.databinding.FragmentMainBinding;
-import com.example.chatapplication.listeners.ConversionListener;
-import com.example.chatapplication.models.ChatMessage;
-import com.example.chatapplication.models.User;
-import com.example.chatapplication.utilities.Constants;
-import com.example.chatapplication.utilities.PreferenceManager;
+import com.example.chatapplication.fragments.friendsfrag.FriendsFragment;
+import com.example.chatapplication.fragments.mainfrag.MainFragment;
+import com.example.chatapplication.fragments.storyfrag.StoryFragment;
+import com.example.chatapplication.fragments.userfrag.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.makeramen.roundedimageview.RoundedImageView;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends BaseActivity  {
 

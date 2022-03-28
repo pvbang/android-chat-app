@@ -1,4 +1,4 @@
-package com.example.chatapplication.activities;
+package com.example.chatapplication.fragments.mainfrag;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.listeners.ConversionListener;
