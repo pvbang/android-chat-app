@@ -49,12 +49,6 @@ public class FriendsFragment extends Fragment implements UserListener {
         getUsers();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
-    }
-
     private void getUsers() {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
