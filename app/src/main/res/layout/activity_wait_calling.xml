@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_wait_calling"
+    tools:context=".activities.WaitCallingActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186"
+        tools:layout_editor_absoluteX="41dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/avatar_user"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:background="@drawable/background_image"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            app:riv_oval="true" />
+
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Tên người gọi"
+            android:includeFontPadding="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="Đang gọi..."
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:padding="@dimen/_25sdp"
+        tools:layout_editor_absoluteX="0dp">
+
+
+        <ImageView
+            android:id="@+id/image_flit_camrera"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bacground_normal_wait_calling"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/ic_flip_camera"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_camrera"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bacground_normal_wait_calling"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/ic_videocam"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_mic"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/bacground_normal_wait_calling"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/ic_mic"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_end_calling"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/background_reject_wait_calling"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/ic_call_end"
+            app:tint="@color/white" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

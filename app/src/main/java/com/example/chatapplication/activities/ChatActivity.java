@@ -1,9 +1,8 @@
 package com.example.chatapplication.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.chatapplication.R;
 import com.example.chatapplication.adapters.ChatAdapter;
 import com.example.chatapplication.databinding.ActivityChatBinding;
 import com.example.chatapplication.models.ChatMessage;
@@ -55,6 +53,8 @@ public class ChatActivity extends BaseActivity {
     private FirebaseFirestore database;
     private String conversionId = null;
     private Boolean isReceiverAvailable = false;
+
+    private List<User> usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +147,8 @@ public class ChatActivity extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-//                    showToast("Gửi thông báo thành công!");
+//                    showToast(preferenceManager.getString(Constants.KEY_NAME));
+//                    showToast(preferenceManager.getString(Constants.KEY_USER_ID));
                 } else {
                     showToast("Lỗi: " +response.code());
                 }
@@ -247,6 +248,21 @@ public class ChatActivity extends BaseActivity {
                 sendMessage();
             }
         });
+
+        binding.imagePhone.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), WaitCallingActivity.class);
+            intent.putExtra("type", "audio");
+            intent.putExtra("name", preferenceManager.getString(Constants.KEY_NAME));
+            intent.putExtra("image", preferenceManager.getString(Constants.KEY_IMAGE));
+            startActivity(intent);
+        });
+        binding.imageVideo.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), WaitCallingActivity.class);
+            intent.putExtra("type", "video");
+            intent.putExtra("name", preferenceManager.getString(Constants.KEY_NAME));
+            intent.putExtra("image", preferenceManager.getString(Constants.KEY_IMAGE));
+            startActivity(intent);
+        });
     }
 
     private void loadReceivedDetails() {
@@ -293,4 +309,5 @@ public class ChatActivity extends BaseActivity {
         super.onResume();
         listenAvailablilityOfReceiver();
     }
+
 }

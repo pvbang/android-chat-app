@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_wait_calling"
+    tools:context=".activities.WaitCallingActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186"
+        tools:layout_editor_absoluteX="41dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/avatar_user"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:background="@drawable/background_image"
+            android:gravity="center"
+            android:includeFontPadding="true"
+            android:textAllCaps="true"
+            app:riv_oval="true"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_30sdp" />
+
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Tên người gọi"
+            android:includeFontPadding="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_end_calling"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_70sdp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/background_reject_wait_calling"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/_13sdp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white" />
+
+    <ImageView
+        android:id="@+id/image_camrera"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_70sdp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/background_accept_wait_calling"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/_13sdp"
+        android:src="@drawable/ic_videocam"
+        app:layout_constraintStart_toEndOf="@+id/image_end_calling"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tint="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

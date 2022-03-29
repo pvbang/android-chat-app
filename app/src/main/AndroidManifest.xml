@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
         <activity
+            android:name=".activities.WaitCallingReceiverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.WaitCallingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ProfileActivity"
             android:exported="false" />
         <activity
