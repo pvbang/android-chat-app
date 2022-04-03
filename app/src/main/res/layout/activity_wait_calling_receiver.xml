@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_wait_calling"
-    tools:context=".activities.WaitCallingActivity">
+    tools:context=".activities.CallingActivity">
 
 
     <LinearLayout
@@ -20,15 +20,12 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/avatar_user"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:background="@drawable/background_image"
-            android:gravity="center"
-            android:includeFontPadding="true"
-            android:textAllCaps="true"
-            app:riv_oval="true"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_30sdp" />
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            app:riv_oval="true" />
 
         <TextView
             android:id="@+id/name_user"
@@ -41,6 +38,15 @@
             android:includeFontPadding="true"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="Ai đó đang muốn trò chuyện với bạn..."
+            android:textColor="@color/support_text"
+            android:textSize="@dimen/_13sdp" />
 
     </LinearLayout>
 
@@ -59,7 +65,7 @@
         app:tint="@color/white" />
 
     <ImageView
-        android:id="@+id/image_camrera"
+        android:id="@+id/image_accepted"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_70sdp"

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.activities.CallingActivity;
 import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.adapters.UserAdapters;
 import com.example.chatapplication.databinding.FragmentFriendsBinding;
@@ -104,4 +105,5 @@ public class FriendsFragment extends Fragment implements UserListener {
         startActivity(intent);
 //        getActivity().finish();
     }
+
 }

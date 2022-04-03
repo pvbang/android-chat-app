@@ -40,6 +40,11 @@
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_sent_message.xml" value="0.22" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/layout/item_container_user.xml" value="0.18" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25" />
+        <entry key="..\:/TheBang/chat_app_android/app/src/main/res/layout/activity_chat.xml" value="0.33" />
+        <entry key="..\:/TheBang/chat_app_android/app/src/main/res/layout/activity_wait_calling.xml" value="0.1" />
+        <entry key="..\:/TheBang/chat_app_android/app/src/main/res/layout/activity_wait_calling_receiver.xml" value="0.1" />
+        <entry key="..\:/TheBang/chat_app_android/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.11" />
+        <entry key="..\:/TheBang/chat_app_android/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.11" />
       </map>
     </option>
   </component>

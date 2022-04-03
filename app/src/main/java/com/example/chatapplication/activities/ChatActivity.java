@@ -1,6 +1,7 @@
 package com.example.chatapplication.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.adapters.ChatAdapter;
 import com.example.chatapplication.databinding.ActivityChatBinding;
+import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.network.ApiClient;
@@ -54,14 +56,13 @@ public class ChatActivity extends BaseActivity {
     private String conversionId = null;
     private Boolean isReceiverAvailable = false;
 
-    private List<User> usersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
 
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(binding.getRoot());
         setListeners();
@@ -249,18 +250,16 @@ public class ChatActivity extends BaseActivity {
             }
         });
 
-        binding.imagePhone.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), WaitCallingActivity.class);
-            intent.putExtra("type", "audio");
-            intent.putExtra("name", preferenceManager.getString(Constants.KEY_NAME));
-            intent.putExtra("image", preferenceManager.getString(Constants.KEY_IMAGE));
+        binding.imageCallAudio.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
+            intent.putExtra("type", "video");
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
             startActivity(intent);
         });
-        binding.imageVideo.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), WaitCallingActivity.class);
+        binding.imageCallVideo.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
             intent.putExtra("type", "video");
-            intent.putExtra("name", preferenceManager.getString(Constants.KEY_NAME));
-            intent.putExtra("image", preferenceManager.getString(Constants.KEY_IMAGE));
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
             startActivity(intent);
         });
     }

@@ -13,4 +13,10 @@ public interface ApiService {
             @HeaderMap HashMap<String, String> headers,
             @Body String messageBody
     );
+
+    @POST("send")
+    Call<String> sendRemoteMessage(
+            @HeaderMap HashMap<String, String> headers,
+            @Body String remoteBody
+    );
 }

@@ -12,10 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
         <activity
-            android:name=".activities.WaitCallingReceiverActivity"
+            android:name=".activities.CallingReceiverActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".activities.WaitCallingActivity"
+            android:name=".activities.CallingActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activities.ProfileActivity"

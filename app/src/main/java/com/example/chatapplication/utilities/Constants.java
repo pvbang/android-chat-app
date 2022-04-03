@@ -31,6 +31,22 @@ public class Constants {
     public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
     public static final String KEY_ = "";
 
+    public static final String REMOTE_MSG_CALLING_AUTHORIZATION = "Authorization";
+    public static final String REMOTE_MSG_CALLING_CONTENT_TYPE = "Content-Type";
+    public static final String REMOTE_MSG_CALLING_TYPE = "type";
+    public static final String REMOTE_MSG_CALLING_INVITATION = "invitation";
+    public static final String REMOTE_MSG_CALLING_MEETING_TYPE = "meetingType";
+    public static final String REMOTE_MSG_CALLING_TOKEN = "callingToken";
+    public static final String REMOTE_MSG_CALLING_DATA = "data";
+    public static final String REMOTE_MSG_CALLING_REGISTRATION_IDS = "registration_ids";
+
+    public static final String REMOTE_MSG_CALLING_INVITATION_RESPONSE = "invitationResponse";
+    public static final String REMOTE_MSG_CALLING_INVITATION_ACCEPTED = "accepted";
+    public static final String REMOTE_MSG_CALLING_INVITATION_REJECTED = "rejected";
+    public static final String REMOTE_MSG_CALLING_INVITATION_CANCELLED = "cancelled";
+
+    public static final String REMOTE_MSG_CALLING_ROOM = "callingRoom";
+
     public static HashMap<String, String> remoteMegHeaders = null;
     public static HashMap<String, String> getRemoteMsgHeaders() {
         if (remoteMegHeaders == null) {
@@ -41,6 +57,12 @@ public class Constants {
         return remoteMegHeaders;
     }
 
+    public static HashMap<String, String> getRemoteCallingHeaders() {
+        HashMap<String, String> remoteCallingHeaders = new HashMap<>();
+        remoteCallingHeaders.put(Constants.REMOTE_MSG_CALLING_AUTHORIZATION, "key=AAAAP4n8JBM:APA91bGuuEY9MrBM7Eum7jf-565QEPWEW0qwvyXK8MZaZMEermp8C_7CjGbyMFF0OKAdMKySVJRZO6EfxsVTH6cyLy9w2CwZToET2SmTkECJUZ6dSBq2hT6Ll_iqPpcq0qG4GNx9VK5T");
+        remoteCallingHeaders.put(Constants.REMOTE_MSG_CALLING_CONTENT_TYPE, "application/json");
 
+        return remoteCallingHeaders;
+    }
 
 }

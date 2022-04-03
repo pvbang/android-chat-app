@@ -15,6 +15,7 @@
     <color name="primary_dark">#142232</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
+    <color name="support_text">#DCDCDC</color>
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>

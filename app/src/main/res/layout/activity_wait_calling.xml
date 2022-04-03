@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_wait_calling"
-    tools:context=".activities.WaitCallingActivity">
+    tools:context=".activities.CallingActivity">
 
 
     <LinearLayout
@@ -20,8 +20,8 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/avatar_user"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:background="@drawable/background_image"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
@@ -45,8 +45,8 @@
             android:paddingTop="@dimen/_5sdp"
             android:gravity="center"
             android:text="Đang gọi..."
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+            android:textColor="@color/support_text"
+            android:textSize="@dimen/_13sdp" />
     </LinearLayout>
 
     <LinearLayout

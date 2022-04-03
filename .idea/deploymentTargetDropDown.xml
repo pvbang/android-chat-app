@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
-    <targetSelectedWithDropDown>
+    <runningDeviceTargetSelectedWithDropDown>
       <Target>
-        <type value="QUICK_BOOT_TARGET" />
+        <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\ilyou\.android\avd\Pixel_4_XL_API_30.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="adb-16da7556-9QXofX._adb-tls-connect._tcp" />
           </Key>
         </deviceKey>
       </Target>
-    </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-03-26T09:47:01.146342300Z" />
+    </runningDeviceTargetSelectedWithDropDown>
+    <timeTargetWasSelectedWithDropDown value="2022-04-03T14:58:23.976067600Z" />
+    <multipleDevicesSelectedInDropDown value="true" />
+    <runningDeviceTargetsSelectedWithDialog>
+      <Target>
+        <type value="RUNNING_DEVICE_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="SERIAL_NUMBER" />
+            <value value="c054bcb" />
+          </Key>
+        </deviceKey>
+      </Target>
+      <Target>
+        <type value="RUNNING_DEVICE_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="SERIAL_NUMBER" />
+            <value value="adb-16da7556-9QXofX._adb-tls-connect._tcp" />
+          </Key>
+        </deviceKey>
+      </Target>
+    </runningDeviceTargetsSelectedWithDialog>
   </component>
 </project>

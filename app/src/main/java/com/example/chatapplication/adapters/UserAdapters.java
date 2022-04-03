@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapplication.databinding.ActivityChatBinding;
 import com.example.chatapplication.databinding.ItemContainerUserBinding;
 import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.User;
@@ -47,6 +49,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
 
     class UserViewHolder extends RecyclerView.ViewHolder {
         ItemContainerUserBinding binding;
+        ActivityChatBinding chatBinding;
 
         UserViewHolder(ItemContainerUserBinding itemContainerUserBinding) {
             super(itemContainerUserBinding.getRoot());
@@ -58,6 +61,7 @@ public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHold
             binding.textEmail.setText(user.email);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
+
         }
     }
 
