@@ -19,7 +19,7 @@
         android:layout_marginLeft="@dimen/_16sdp"
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
-        android:tint="@color/white"
+        android:tint="@color/black_secondary"
         android:src="@drawable/ic_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,7 @@
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_add"
-        android:tint="@color/white"
+        android:tint="@color/black_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tìm bạn bè"
-        android:textColor="@color/white"
+        android:textColor="@color/black_secondary"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageSearch"
@@ -64,7 +64,8 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:padding="@dimen/_20sdp"
+            android:paddingLeft="@dimen/_7sdp"
+            android:paddingTop="@dimen/_3sdp"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 

@@ -128,7 +128,6 @@ public class CallingActivity extends AppCompatActivity {
                     if (type.equals(Constants.REMOTE_MSG_CALLING_INVITATION)) {
                         showToast("Người nhận đang đỗ chuông...");
                     } else if (type.equals(Constants.REMOTE_MSG_CALLING_INVITATION_RESPONSE)) {
-                        showToast("Cancelled");
                         finish();
                     }
                 } else {
@@ -175,12 +174,17 @@ public class CallingActivity extends AppCompatActivity {
                 if (type.equals(Constants.REMOTE_MSG_CALLING_INVITATION_ACCEPTED)) {
                     try {
                         URL serverURL = new URL("https://meet.jit.si");
-                        JitsiMeetConferenceOptions conferenceOptions = new JitsiMeetConferenceOptions.Builder()
-                                .setServerURL(serverURL)
-                                .setWelcomePageEnabled(false)
-                                .setRoom(callingRoom)
-                                .build();
-                        JitsiMeetActivity.launch(CallingActivity.this, conferenceOptions);
+
+                        JitsiMeetConferenceOptions.Builder builder = new JitsiMeetConferenceOptions.Builder();
+                        builder.setServerURL(serverURL);
+                        builder.setWelcomePageEnabled(false);
+                        builder.setRoom(callingRoom);
+
+                        if (callingType.equals("audio")) {
+                            builder.setVideoMuted(true);
+                        }
+
+                        JitsiMeetActivity.launch(CallingActivity.this, builder.build());
                         finish();
 
                     } catch (Exception exception) {

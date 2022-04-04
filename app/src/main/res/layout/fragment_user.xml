@@ -18,7 +18,7 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginLeft="@dimen/_16sdp"
         android:padding="@dimen/_6sdp"
-        android:tint="@color/white"
+        android:tint="@color/black_secondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cá nhân"
-        android:textColor="@color/white"
+        android:textColor="@color/black_secondary"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageBack"
@@ -43,7 +43,7 @@
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_logout"
-        android:tint="@color/white"
+        android:tint="@color/black_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:padding="@dimen/_8sdp">
+            android:paddingLeft="@dimen/_7sdp"
+            android:paddingTop="@dimen/_3sdp">
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imageProfile"

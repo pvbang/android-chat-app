@@ -40,6 +40,7 @@ public class CallingReceiverActivity extends AppCompatActivity {
 
     private ActivityWaitCallingReceiverBinding binding;
     private PreferenceManager preferenceManager;
+    private String callingType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +49,13 @@ public class CallingReceiverActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
+        callingType = getIntent().getStringExtra("type");
 
         binding.nameUser.setText(getIntent().getStringExtra(Constants.KEY_NAME));
-        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(preferenceManager.getString(Constants.KEY_IMAGE)));
+        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(getIntent().getStringExtra("image")));
+        if (callingType.equals("audio")) {
+            binding.imageAccepted.setImageResource(R.drawable.ic_phone);
+        }
 
         binding.imageAccepted.setOnClickListener(view -> sendInvitationResponse(Constants.REMOTE_MSG_CALLING_INVITATION_ACCEPTED, getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_TOKEN)));
         binding.imageEndCalling.setOnClickListener(view -> sendInvitationResponse(Constants.REMOTE_MSG_CALLING_INVITATION_REJECTED, getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_TOKEN)));
@@ -102,12 +107,17 @@ public class CallingReceiverActivity extends AppCompatActivity {
                     if (type.equals(Constants.REMOTE_MSG_CALLING_INVITATION_ACCEPTED)) {
                         try {
                             URL serverURL = new URL("https://meet.jit.si");
-                            JitsiMeetConferenceOptions conferenceOptions = new JitsiMeetConferenceOptions.Builder()
-                                    .setServerURL(serverURL)
-                                    .setWelcomePageEnabled(false)
-                                    .setRoom(getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_ROOM))
-                                    .build();
-                            JitsiMeetActivity.launch(CallingReceiverActivity.this, conferenceOptions);
+
+                            JitsiMeetConferenceOptions.Builder builder = new JitsiMeetConferenceOptions.Builder();
+                            builder.setServerURL(serverURL);
+                            builder.setWelcomePageEnabled(false);
+                            builder.setRoom(getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_ROOM));
+
+                            if (callingType.equals("audio")) {
+                                builder.setVideoMuted(true);
+                            }
+
+                            JitsiMeetActivity.launch(CallingReceiverActivity.this, builder.build());
                             finish();
 
                         } catch (Exception exception) {

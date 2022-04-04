@@ -2,9 +2,12 @@ package com.example.chatapplication.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityMainBinding;
