@@ -180,9 +180,9 @@ public class CallingActivity extends AppCompatActivity {
                         builder.setWelcomePageEnabled(false);
                         builder.setRoom(callingRoom);
 
-                        if (callingType.equals("audio")) {
-                            builder.setVideoMuted(true);
-                        }
+//                        if (callingType.equals("audio")) {
+//                            builder.setVideoMuted(true);
+//                        }
 
                         JitsiMeetActivity.launch(CallingActivity.this, builder.build());
                         finish();
