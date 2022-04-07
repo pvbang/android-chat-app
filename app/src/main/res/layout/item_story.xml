@@ -51,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/deltaRelative"
         android:layout_marginTop="@dimen/_11sdp"
-        android:textSize="@dimen/_15sdp" />
+        android:textSize="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_10sdp"/>
 
     <ImageView
         android:id="@+id/imageUpload"
