@@ -62,6 +62,7 @@ public class StoryPost extends AppCompatActivity implements View.OnClickListener
         thinking.setText("Tạo bài viết");
         post.setText("Đăng");
 
+        //Hello There
 
         //On CLick;
         post.setOnClickListener(this::onClick);
