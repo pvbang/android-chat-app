@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:text="Chào mừng bạn trở lại!"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
 
@@ -32,9 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="Hãy đăng nhập để tiếp tục"
-            android:textColor="@color/secondary_text"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"/>
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/_12ssp"/>
 
         <EditText
             android:id="@+id/inputEmail"
@@ -48,7 +47,7 @@
             android:inputType="textEmailAddress"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
@@ -63,7 +62,7 @@
             android:inputType="textPassword"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <FrameLayout
@@ -94,9 +93,9 @@
             android:id="@+id/textCreateNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:text="Tạo tài khoản"
-            android:textColor="@color/primary"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"/>
 

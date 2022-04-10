@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
+    android:background="@color/color_main"
 
     tools:context=".fragments.mainfrag.MainFragment">
 
@@ -32,7 +32,7 @@
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_groups"
-        android:tint="@color/black_secondary"
+        android:tint="@color/color_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_secondary"
+        android:textColor="@color/color_main_text"
         android:textSize="@dimen/_15ssp"
         android:textStyle="bold"
         android:text="Tên người dùng"

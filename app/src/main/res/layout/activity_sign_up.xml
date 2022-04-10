@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             android:text="Tạo tài khoản"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
 
@@ -63,7 +63,7 @@
             android:inputType="textEmailAddress"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
@@ -78,7 +78,7 @@
             android:inputType="textEmailAddress"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
@@ -93,7 +93,7 @@
             android:inputType="textPassword"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <EditText
@@ -108,7 +108,7 @@
             android:inputType="textPassword"
             android:paddingEnd="@dimen/_16sdp"
             android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
         <FrameLayout
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:text="Đăng nhập"
-            android:textColor="@color/primary"
+            android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"/>
     </LinearLayout>

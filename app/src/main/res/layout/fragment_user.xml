@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
+    android:background="@color/color_main"
 
     tools:context=".fragments.friendsfrag.FriendsFragment">
 
@@ -26,8 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cá nhân"
-        android:textColor="@color/black_secondary"
-        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/color_main_text"
+        android:textSize="@dimen/_15ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageBack"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_logout"
-        android:tint="@color/black_secondary"
+        android:tint="@color/color_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

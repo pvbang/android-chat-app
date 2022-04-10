@@ -16,7 +16,7 @@
         android:paddingTop="@dimen/_6ssp"
         android:paddingBottom="@dimen/_6ssp"
         app:layout_constraintWidth_max="wrap"
-        android:textColor="@color/black_secondary"
+        android:textColor="@color/color_main_text"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
