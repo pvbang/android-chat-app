@@ -5,10 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
-
-import com.example.chatapplication.R;
-import com.example.chatapplication.databinding.ActivitySignInBinding;
 import com.example.chatapplication.databinding.ActivitySplashBinding;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -25,7 +21,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-//        preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
 
         new Handler().postDelayed(() -> {
             if (!preferenceManager.getBoolean(Constants.KEY_IS_SPLASH)) {
@@ -38,13 +33,10 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), SignInActivity.class));
                     finish();
                 }
+            } else {
+                preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
             }
         }, 1000);
-
-//        new Handler().postDelayed(() -> {
-//            preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
-//            finish();
-//        }, 1001);
 
     }
 }

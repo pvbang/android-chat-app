@@ -5,19 +5,15 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySignInBinding;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -31,9 +27,6 @@ public class SignInActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-        new Handler().postDelayed(() -> {
-            preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
-        }, 1300);
 
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
