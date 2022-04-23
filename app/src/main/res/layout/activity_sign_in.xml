@@ -89,15 +89,30 @@
                 android:visibility="invisible"/>
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/textCreateNewAccount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:text="Tạo tài khoản"
-            android:textColor="@color/color_main"
-            android:textSize="@dimen/_13ssp"
-            android:textStyle="bold"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa có tài khoản? "
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_22sdp"/>
+
+            <TextView
+                android:id="@+id/textCreateNewAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_22sdp"
+                android:text="Đăng ký ngay!"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
