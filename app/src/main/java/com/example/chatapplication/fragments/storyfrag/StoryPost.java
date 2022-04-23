@@ -35,8 +35,8 @@ import java.util.HashMap;
 
 public class StoryPost extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imageBackStory, imageUser;
-    private TextView thinking, post, username;
+    private ImageView imageBackStory;
+    private TextView thinking, post;
     private EditText writeYourThinking;
     private PreferenceManager preferenceManager;
     private String postDate, postTimeRan, postTimeOff, postRandomName, uid;
@@ -55,12 +55,10 @@ public class StoryPost extends AppCompatActivity implements View.OnClickListener
         thinking = (TextView) findViewById(R.id.thinking);
         post = (TextView) findViewById(R.id.post);
         writeYourThinking = (EditText) findViewById(R.id.writeYourThinking);
-        imageUser = (ImageView) findViewById(R.id.imageUser);
-        username = (TextView) findViewById(R.id.username);
 
         //Set Text;
         thinking.setText("Tạo bài viết");
-        post.setText("Đăng");
+        post.setText("Đăng ");
 
         //Hello There
 
@@ -73,7 +71,6 @@ public class StoryPost extends AppCompatActivity implements View.OnClickListener
         userRef = FirebaseDatabase.getInstance("https://chat-application-f4d3d-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users");
         postRef = FirebaseDatabase.getInstance("https://chat-application-f4d3d-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Posts");
 
-        loadInfo();
         storeToFirebase();
 
     }
@@ -92,12 +89,6 @@ public class StoryPost extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    public void loadInfo(){
-        username.setText(preferenceManager.getString(Constants.KEY_NAME));
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        imageUser.setImageBitmap(bitmap);
-    }
 
     public void storeToFirebase(){
         Calendar calendarDate = Calendar.getInstance();

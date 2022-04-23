@@ -2,5 +2,6 @@
     <string name="app_name">UBs Chat</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="thinking">Viết suy nghĩ của bạn...</string>
+    <string name="thinking">Hãy viết suy nghĩ của bạn...</string>
+    <string name="account">Chưa có tài khoản? Đăng ký ngay</string>
 </resources>

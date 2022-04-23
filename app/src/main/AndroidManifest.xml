@@ -14,7 +14,8 @@
 
         <activity
             android:name=".fragments.storyfrag.StoryPost"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".activities.CallingReceiverActivity"
             android:exported="false"
