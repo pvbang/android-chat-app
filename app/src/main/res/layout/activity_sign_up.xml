@@ -38,6 +38,7 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/background_image"
+                android:src="@drawable/no_image_profile"
                 android:scaleType="centerCrop"
                 app:riv_oval="true"/>
 
@@ -46,9 +47,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textStyle="bold"
                 android:text="Chọn ảnh"
-                android:textColor="@color/secondary_text"
-                android:textSize="@dimen/_10ssp"/>
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/_12ssp"/>
         </FrameLayout>
 
         <EditText

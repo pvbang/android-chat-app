@@ -87,10 +87,6 @@ public class MainFragment extends Fragment implements ConversionListener {
         binding.imageProfile.setImageBitmap(bitmap);
     }
 
-    private void showToast(String message) {
-        Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
     private void listenConversations() {
         database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
                 .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID)).addSnapshotListener(eventListener);
@@ -110,6 +106,7 @@ public class MainFragment extends Fragment implements ConversionListener {
                     ChatMessage chatMessage = new ChatMessage();
                     chatMessage.senderId = senderId;
                     chatMessage.receivedId = receiverId;
+
                     if (preferenceManager.getString(Constants.KEY_USER_ID).equals(senderId)) {
                         chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
                         chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_RECEIVER_NAME);
@@ -119,15 +116,29 @@ public class MainFragment extends Fragment implements ConversionListener {
                         chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_SENDER_NAME);
                         chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     }
-                    chatMessage.messafe = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
-                    chatMessage.dateObject= documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+
+//                    if (documentChange.getDocument().getString(Constants.KEY_LAST_SENDER).equals("you")) {
+//                        chatMessage.messafe = "Ban: " + documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+//                    } else {
+                        chatMessage.messafe = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+//                    }
+
+                    chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+
                     conversations.add(chatMessage);
                 } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
                     for (int i=0; i<conversations.size(); i++) {
                         String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                         String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                         if (conversations.get(i).senderId.equals(senderId) && conversations.get(i).receivedId.equals(receiverId)) {
-                            conversations.get(i).messafe = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+
+                            if (conversations.get(i).senderId.equals(senderId)) {
+                                conversations.get(i).read = "Bạn: ";
+                            } else {
+                                conversations.get(i).read = "";
+                            }
+
+                            conversations.get(i).messafe = conversations.get(i).read + documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
                             conversations.get(i).dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                             break;
                         }

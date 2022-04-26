@@ -14,10 +14,12 @@
         android:id="@+id/viewBackground"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_6sdp"
         android:background="@drawable/background_content_top"
         app:layout_constraintBottom_toTopOf="@id/layoutSend"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-37dp" />
 
     <View
         android:layout_width="match_parent"
@@ -31,7 +33,7 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
         android:tint="@color/color_main_text"
@@ -44,7 +46,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_info"
         android:tint="@color/color_main_text"
@@ -57,7 +59,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_videocam"
         android:tint="@color/color_main_text"
@@ -71,7 +73,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_6sdp"
         android:src="@drawable/ic_phone"
         android:tint="@color/color_main_text"
@@ -81,7 +83,7 @@
 
     <TextView
         android:id="@+id/textName"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:ellipsize="end"
         android:gravity="start"
@@ -92,7 +94,7 @@
         android:text="Tên người nhận"
         android:layout_marginLeft="@dimen/_11sdp"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@+id/imageCallAudio"
+        app:layout_constraintEnd_toStartOf="@+id/textAvailablility"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack"
         />
@@ -102,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/primary"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         app:layout_constraintTop_toBottomOf="@id/imageBack"/>
 
 
@@ -130,13 +132,16 @@
         app:layout_constraintStart_toStartOf="@id/viewBackground"
         app:layout_constraintTop_toTopOf="@id/viewBackground"/>
 
+
+
+
     <FrameLayout
         android:id="@+id/layoutSend"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_12ssp"
-        android:layout_marginRight="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_13sdp"
+        android:layout_marginBottom="@dimen/_6ssp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:background="@drawable/backgound_chat_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -146,7 +151,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_4sdp"
             android:layout_marginLeft="@dimen/_4sdp"
-            android:padding="@dimen/_8sdp"
+            android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_send"
             android:tint="@color/color_main"/>
 
@@ -156,35 +161,47 @@
         android:id="@+id/inputMessage"
         android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginLeft="@dimen/_13sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:layout_marginRight="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_12ssp"
+        android:layout_marginBottom="@dimen/_6ssp"
         android:background="@drawable/backgound_chat_input"
         android:hint="Tin nhắn"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="text"
         android:paddingStart="@dimen/_16sdp"
-        android:paddingEnd="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_35sdp"
         android:textColor="@color/color_main"
         android:textColorHint="@color/secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/layoutSend"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
+    </EditText>
+
+    <ImageView
         android:id="@+id/textAvailablility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#008000"
-        android:padding="@dimen/_2sdp"
-        android:text="Đang trực tuyến"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
+        android:layout_width="@dimen/_7sdp"
+        android:layout_height="@dimen/_7sdp"
+        android:src="@drawable/ic_active"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/viewSupporter"/>
+        android:layout_margin="@dimen/_7sdp"
+        app:layout_constraintBottom_toBottomOf="@id/textName"
+        app:layout_constraintStart_toEndOf="@id/textName"
+        app:layout_constraintTop_toTopOf="@id/textName"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/_21sdp"
+        android:layout_height="@dimen/_21sdp"
+        app:srcCompat="@drawable/ic_image"
+        android:layout_marginRight="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@id/inputMessage"
+        app:layout_constraintTop_toTopOf="@id/inputMessage"
+        app:layout_constraintBottom_toBottomOf="@id/inputMessage"
+        app:tint="@color/color_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

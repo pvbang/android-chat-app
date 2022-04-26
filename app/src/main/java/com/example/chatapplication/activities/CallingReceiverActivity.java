@@ -49,13 +49,13 @@ public class CallingReceiverActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-        callingType = getIntent().getStringExtra("type");
+        callingType = getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_MEETING_TYPE);
 
         binding.nameUser.setText(getIntent().getStringExtra(Constants.KEY_NAME));
-//        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(getIntent().getStringExtra("image")));
-//        if (callingType.equals("audio")) {
-//            binding.imageAccepted.setImageResource(R.drawable.ic_phone);
-//        }
+        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(getIntent().getStringExtra(Constants.KEY_SENDER_IMAGE)));
+        if (callingType.equals("audio")) {
+            binding.imageAccepted.setImageResource(R.drawable.ic_phone);
+        }
 
         binding.imageAccepted.setOnClickListener(view -> sendInvitationResponse(Constants.REMOTE_MSG_CALLING_INVITATION_ACCEPTED, getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_TOKEN)));
         binding.imageEndCalling.setOnClickListener(view -> sendInvitationResponse(Constants.REMOTE_MSG_CALLING_INVITATION_REJECTED, getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_TOKEN)));
@@ -113,10 +113,9 @@ public class CallingReceiverActivity extends AppCompatActivity {
                             builder.setWelcomePageEnabled(false);
                             builder.setRoom(getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_ROOM));
 
-
-//                            if (callingType.equals("audio")) {
-//                                builder.setVideoMuted(true);
-//                            }
+                            if (callingType.equals("audio")) {
+                                builder.setVideoMuted(true);
+                            }
 
                             JitsiMeetActivity.launch(CallingReceiverActivity.this, builder.build());
                             finish();

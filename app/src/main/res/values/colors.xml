@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#00E30B</color>
     <color name="red">#FF0000</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="normal">#434343</color>
 
     <color name="color_main">#28A7F1</color>

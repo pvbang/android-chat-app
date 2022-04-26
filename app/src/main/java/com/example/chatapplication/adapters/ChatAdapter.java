@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapplication.databinding.ItemContainerReceivedMessageBinding;
+import com.example.chatapplication.databinding.ItemContainerSentImageBinding;
 import com.example.chatapplication.databinding.ItemContainerSentMessageBinding;
 import com.example.chatapplication.models.ChatMessage;
 
@@ -20,6 +21,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final String senderId;
 
     public static final int VIEW_TYPE_SENT = 1;
+    public static final int VIEW_TYPE_SENT_IMAGE = 3;
     public static final int VIEW_TYPE_RECEIVED = 2;
 
     public void setReceivierProfileImage(Bitmap bitmap) {
@@ -39,6 +41,10 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return new SentMessageViewHolder(
                     ItemContainerSentMessageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
             );
+        } else if(viewType == VIEW_TYPE_SENT_IMAGE) {
+            return new SentImageViewHolder(
+                    ItemContainerSentImageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
+            );
         } else {
             return new ReceivedMessageViewHolder(
                     ItemContainerReceivedMessageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
@@ -51,6 +57,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position) == VIEW_TYPE_SENT) {
             ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
+        } else if(getItemViewType(position) == VIEW_TYPE_SENT_IMAGE) {
+            ((SentImageViewHolder) holder).setData(chatMessages.get(position), receivierProfileImage);
         } else {
             ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position), receivierProfileImage);
         }
@@ -64,7 +72,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public int getItemViewType(int position) {
         if (chatMessages.get(position).senderId.equals(senderId)) {
-            return VIEW_TYPE_SENT;
+            if (chatMessages.get(position).image.equals("1")) {
+                return VIEW_TYPE_SENT_IMAGE;
+            } else {
+                return VIEW_TYPE_SENT;
+            }
         } else {
             return VIEW_TYPE_RECEIVED;
         }
@@ -80,6 +92,20 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         void setData(ChatMessage chatMessage) {
             binding.textMessage.setText(chatMessage.messafe);
+            binding.textDateTime.setText(chatMessage.dataTime);
+        }
+    }
+
+    static class SentImageViewHolder extends RecyclerView.ViewHolder {
+        private final ItemContainerSentImageBinding binding;
+
+        SentImageViewHolder(ItemContainerSentImageBinding itemContainerSentImageBinding) {
+            super(itemContainerSentImageBinding.getRoot());
+            binding = itemContainerSentImageBinding;
+        }
+
+        void setData(ChatMessage chatMessage, Bitmap receivierProfileImage) {
+            binding.textMessage.setImageBitmap(receivierProfileImage);
             binding.textDateTime.setText(chatMessage.dataTime);
         }
     }
