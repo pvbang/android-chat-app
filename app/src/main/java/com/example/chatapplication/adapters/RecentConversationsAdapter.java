@@ -68,7 +68,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
             binding.textName.setText(chatMessage.conversionName);
             binding.textRecentMessage.setText(chatMessage.messafe +" · "+ getReadableDateTime(chatMessage.dateObject));
 
-            if (false) {
+            if (chatMessage.senderId == chatMessage.conversionId) {
                 binding.textName.setTypeface(null, Typeface.BOLD);
                 binding.textRecentMessage.setTextColor(Color.rgb(40,167,241));
             }

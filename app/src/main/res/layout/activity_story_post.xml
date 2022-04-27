@@ -10,7 +10,7 @@
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="@dimen/_40ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +21,7 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_12ssp"
+        android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
         app:tint="@color/color_main_text"
@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/writeYourThinking"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_520sdp"
         android:background="@null"
         android:gravity="top|start"
         android:hint="@string/thinking"

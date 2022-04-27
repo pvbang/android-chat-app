@@ -13,6 +13,7 @@
         android:src="@drawable/splash_logo"
         android:background="@drawable/background_image_chat"
         app:layout_constraintWidth_max="wrap"
+        app:layout_constraintHeight_min="@dimen/_25sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8"/>

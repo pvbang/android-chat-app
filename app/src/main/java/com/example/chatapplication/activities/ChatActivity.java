@@ -67,7 +67,6 @@ public class ChatActivity extends BaseActivity {
     private Boolean isReceiverAvailable = false;
 
     private String encodedImage;
-    public String SENT_IMAGE = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,7 +146,7 @@ public class ChatActivity extends BaseActivity {
 
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         if (conversionId != null) {
-            updateCOnversion(binding.inputMessage.getText().toString());
+            updateCOnversion("Tin nhắn dạng hình ảnh...");
         } else {
             HashMap<String, Object> conversion = new HashMap<>();
             conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
@@ -288,7 +287,6 @@ public class ChatActivity extends BaseActivity {
                     chatMessage.dataTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
 
-                    chatMessage.image = SENT_IMAGE;
                     chatMessage.encodedImage = encodedImage;
 
                     chatMessages.add(chatMessage);
@@ -324,17 +322,14 @@ public class ChatActivity extends BaseActivity {
         binding.imageBack.setOnClickListener(v -> onBackPressed());
         binding.layoutSend.setOnClickListener(v -> {
             if (!binding.inputMessage.getText().toString().isEmpty()) {
-                SENT_IMAGE = "1";
                 sendMessage();
             }
         });
 
         binding.imageView.setOnClickListener(v -> {
-            SENT_IMAGE = "0";
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             pickImage.launch(intent);
-
         });
 
         binding.imageCallAudio.setOnClickListener(v -> {

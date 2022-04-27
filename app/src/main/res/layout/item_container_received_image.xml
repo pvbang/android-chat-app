@@ -24,13 +24,11 @@
         android:layout_marginLeft="@dimen/_8sdp"
         android:src="@drawable/splash_logo"
         android:background="@drawable/background_image_chat"
-        android:paddingStart="@dimen/_10ssp"
-        android:paddingEnd="@dimen/_10ssp"
-        android:paddingTop="@dimen/_6ssp"
-        android:paddingBottom="@dimen/_6ssp"
         app:layout_constraintWidth_max="wrap"
+        app:layout_constraintHeight_min="@dimen/_25sdp"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
         app:layout_constraintWidth_percent="0.75"/>
 
     <TextView

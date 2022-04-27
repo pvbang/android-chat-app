@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatapplication.databinding.ItemContainerReceivedImageBinding;
 import com.example.chatapplication.databinding.ItemContainerReceivedMessageBinding;
 import com.example.chatapplication.databinding.ItemContainerSentImageBinding;
 import com.example.chatapplication.databinding.ItemContainerSentMessageBinding;
@@ -25,8 +26,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final String senderId;
 
     public static final int VIEW_TYPE_SENT = 1;
-    public static final int VIEW_TYPE_SENT_IMAGE = 3;
     public static final int VIEW_TYPE_RECEIVED = 2;
+    public static final int VIEW_TYPE_SENT_IMAGE = 3;
+    public static final int VIEW_TYPE_RECEIVED_IMAGE = 4;
 
     public void setReceivierProfileImage(Bitmap bitmap) {
         receivierProfileImage = bitmap;
@@ -45,9 +47,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             return new SentMessageViewHolder(
                     ItemContainerSentMessageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
             );
-        } else if(viewType == VIEW_TYPE_SENT_IMAGE) {
+        } else if (viewType == VIEW_TYPE_SENT_IMAGE) {
             return new SentImageViewHolder(
                     ItemContainerSentImageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
+            );
+        } else if (viewType == VIEW_TYPE_RECEIVED_IMAGE) {
+            return new ReceivedImageViewHolder(
+                    ItemContainerReceivedImageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
             );
         } else {
             return new ReceivedMessageViewHolder(
@@ -63,6 +69,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
         } else if (getItemViewType(position) == VIEW_TYPE_SENT_IMAGE) {
             ((SentImageViewHolder) holder).setData(chatMessages.get(position));
+        } else if (getItemViewType(position) == VIEW_TYPE_RECEIVED_IMAGE) {
+            ((ReceivedImageViewHolder) holder).setData(chatMessages.get(position), receivierProfileImage);
         } else {
             ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position), receivierProfileImage);
         }
@@ -82,7 +90,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 return VIEW_TYPE_SENT;
             }
         } else {
-            return VIEW_TYPE_RECEIVED;
+            if (chatMessages.get(position).messafe.contains("/9j/")) {
+                return VIEW_TYPE_RECEIVED_IMAGE;
+//                return VIEW_TYPE_RECEIVED;
+            } else {
+                return VIEW_TYPE_RECEIVED;
+            }
         }
 
     }
@@ -140,6 +153,25 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         void setData(ChatMessage chatMessage, Bitmap receivierProfileImage) {
             binding.textMessage.setText(chatMessage.messafe);
+            binding.textDateTime.setText(chatMessage.dataTime);
+            if (receivierProfileImage != null) {
+                binding.imageProfile.setImageBitmap(receivierProfileImage);
+            }
+
+        }
+    }
+
+    static class ReceivedImageViewHolder extends RecyclerView.ViewHolder {
+
+        private final ItemContainerReceivedImageBinding binding;
+
+        ReceivedImageViewHolder(ItemContainerReceivedImageBinding itemContainerReceivedImageBinding) {
+            super(itemContainerReceivedImageBinding.getRoot());
+            binding = itemContainerReceivedImageBinding;
+        }
+
+        void setData(ChatMessage chatMessage, Bitmap receivierProfileImage) {
+            binding.textMessage.setImageBitmap(getBitmapFromEncodedString(chatMessage.messafe));
             binding.textDateTime.setText(chatMessage.dataTime);
             if (receivierProfileImage != null) {
                 binding.imageProfile.setImageBitmap(receivierProfileImage);
