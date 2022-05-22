@@ -1,25 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:animateLayoutChanges="true"
+    android:background="@color/color_main"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.storyfrag.StoryFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/storyRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        app:tint="@color/white"
-        android:backgroundTint="@color/color_main"
-        android:src="@drawable/ic_add"
-        android:layout_marginBottom="@dimen/_16sdp"
-        android:layout_marginRight="@dimen/_16sdp"/>
+        android:text="Nhật ký"
+        android:textColor="@color/color_main_text"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:padding="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:padding="@dimen/_10ssp"
+        android:background="@drawable/background_content_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/storyRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            app:tint="@color/white"
+            android:backgroundTint="@color/color_main"
+            android:src="@drawable/ic_add"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

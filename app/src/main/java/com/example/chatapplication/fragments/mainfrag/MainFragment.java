@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -37,7 +38,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainFragment extends Fragment implements ConversionListener {
+public class MainFragment extends Fragment implements ConversionListener, SwipeRefreshLayout.OnRefreshListener {
 
     private FragmentMainBinding binding;
     private PreferenceManager preferenceManager;
@@ -61,10 +62,14 @@ public class MainFragment extends Fragment implements ConversionListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         preferenceManager = new PreferenceManager(getActivity().getApplicationContext());
+
+        binding.container.setOnRefreshListener(this::onRefresh);
+        binding.container.setColorSchemeColors(getResources().getColor(R.color.color_main));
+        binding.container.setRefreshing(true);
+
         init();
         loadUserDetails();
         getToken();
-        setListeners();
         listenConversations();
     }
 
@@ -73,11 +78,6 @@ public class MainFragment extends Fragment implements ConversionListener {
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
-    }
-
-    private void setListeners() {
-//        binding.imageSearch.setOnClickListener(v -> signOut());
-//        binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent(getActivity().getApplicationContext(), UsersActivity.class)));
     }
 
     private void loadUserDetails() {
@@ -117,11 +117,15 @@ public class MainFragment extends Fragment implements ConversionListener {
                         chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     }
 
-//                    if (documentChange.getDocument().getString(Constants.KEY_LAST_SENDER).equals("you")) {
-//                        chatMessage.messafe = "Ban: " + documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
-//                    } else {
+                    if (preferenceManager.getString(Constants.KEY_USER_ID).equals(documentChange.getDocument().getString(Constants.KEY_LAST_USER))) {
+                        chatMessage.messafe = "Bạn: " +documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                    } else {
                         chatMessage.messafe = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
-//                    }
+                        if (documentChange.getDocument().getString(Constants.KEY_LAST_READ).equals("0")) {
+                            chatMessage.read = "ok";
+                        }
+                        chatMessage.conversations = documentChange.getDocument().getString(Constants.KEY_COLLECTION_CONVERSATIONS);
+                    }
 
                     chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
 
@@ -132,13 +136,15 @@ public class MainFragment extends Fragment implements ConversionListener {
                         String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
                         if (conversations.get(i).senderId.equals(senderId) && conversations.get(i).receivedId.equals(receiverId)) {
 
-                            if (conversations.get(i).senderId.equals(senderId)) {
-                                conversations.get(i).read = "Bạn: ";
+                            if (preferenceManager.getString(Constants.KEY_USER_ID).equals(documentChange.getDocument().getString(Constants.KEY_LAST_USER))) {
+                                conversations.get(i).messafe = "Bạn: " +documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
                             } else {
-                                conversations.get(i).read = "";
+                                conversations.get(i).messafe = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                                if (documentChange.getDocument().getString(Constants.KEY_LAST_READ).equals("0")) {
+                                    conversations.get(i).read = "ok";
+                                }
+                                conversations.get(i).conversations = documentChange.getDocument().getString(Constants.KEY_COLLECTION_CONVERSATIONS);
                             }
-
-                            conversations.get(i).messafe = conversations.get(i).read + documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
                             conversations.get(i).dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                             break;
                         }
@@ -150,6 +156,7 @@ public class MainFragment extends Fragment implements ConversionListener {
             binding.conversationRecyclerView.smoothScrollToPosition(0);
             binding.conversationRecyclerView.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.GONE);
+            binding.container.setRefreshing(false);
         }
     };
 
@@ -173,4 +180,11 @@ public class MainFragment extends Fragment implements ConversionListener {
         startActivity(intent);
     }
 
+    @Override
+    public void onRefresh() {
+        init();
+        loadUserDetails();
+        getToken();
+        listenConversations();
+    }
 }

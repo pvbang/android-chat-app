@@ -1,26 +1,23 @@
 package com.example.chatapplication.activities;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.chatapplication.R;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.example.chatapplication.adapters.ChatAdapter;
 import com.example.chatapplication.databinding.ActivityChatBinding;
-import com.example.chatapplication.fragments.mainfrag.MainFragment;
-import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.network.ApiClient;
@@ -76,6 +73,7 @@ public class ChatActivity extends BaseActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         setContentView(binding.getRoot());
+
         setListeners();
         loadReceivedDetails();
         init();
@@ -88,6 +86,7 @@ public class ChatActivity extends BaseActivity {
         chatAdapter = new ChatAdapter(chatMessages, getBitmapFromEncodedString(receivedUser.image), preferenceManager.getString(Constants.KEY_USER_ID));
         binding.chatRecyclerView.setAdapter(chatAdapter);
         database = FirebaseFirestore.getInstance();
+
     }
 
     private void sendMessage() {
@@ -99,7 +98,7 @@ public class ChatActivity extends BaseActivity {
 
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         if (conversionId != null) {
-            updateCOnversion(binding.inputMessage.getText().toString());
+            updateCOnversion(binding.inputMessage.getText().toString(), preferenceManager.getString(Constants.KEY_USER_ID));
         } else {
             HashMap<String, Object> conversion = new HashMap<>();
             conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
@@ -109,9 +108,24 @@ public class ChatActivity extends BaseActivity {
             conversion.put(Constants.KEY_RECEIVER_NAME, receivedUser.name);
             conversion.put(Constants.KEY_RECEIVER_IMAGE, receivedUser.image);
             conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+            conversion.put(Constants.KEY_LAST_USER, preferenceManager.getString(Constants.KEY_USER_ID));
+            conversion.put(Constants.KEY_COLLECTION_CONVERSATIONS, "");
+            conversion.put(Constants.KEY_LAST_READ, "0");
             conversion.put(Constants.KEY_TIMESTAMP, new Date());
 
             addConversion(conversion);
+
+            Handler h = new Handler() ;
+            h.postDelayed(() -> {
+                updateConversationID();
+            }, 1000);
+
+            if(conversionId == null) {
+                h.postDelayed(() -> {
+                    updateConversationID();
+                }, 2000);
+            }
+
         }
         if (!isReceiverAvailable) {
             try {
@@ -134,7 +148,6 @@ public class ChatActivity extends BaseActivity {
             }
         }
         binding.inputMessage.setText(null);
-
     }
 
     private void sendImageMessage() {
@@ -146,7 +159,7 @@ public class ChatActivity extends BaseActivity {
 
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         if (conversionId != null) {
-            updateCOnversion("Tin nhắn dạng hình ảnh...");
+            updateCOnversion("Tin nhắn dạng hình ảnh...", preferenceManager.getString(Constants.KEY_USER_ID));
         } else {
             HashMap<String, Object> conversion = new HashMap<>();
             conversion.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
@@ -155,10 +168,24 @@ public class ChatActivity extends BaseActivity {
             conversion.put(Constants.KEY_RECEIVER_ID, receivedUser.id);
             conversion.put(Constants.KEY_RECEIVER_NAME, receivedUser.name);
             conversion.put(Constants.KEY_RECEIVER_IMAGE, receivedUser.image);
-            conversion.put(Constants.KEY_LAST_MESSAGE, "Tin nhắn dạng hình ảnh...");
+            conversion.put(Constants.KEY_LAST_MESSAGE, "Đã gửi một hình ảnh...");
+            conversion.put(Constants.KEY_LAST_USER, preferenceManager.getString(Constants.KEY_USER_ID));
+            conversion.put(Constants.KEY_COLLECTION_CONVERSATIONS, "");
+            conversion.put(Constants.KEY_LAST_READ, "0");
             conversion.put(Constants.KEY_TIMESTAMP, new Date());
 
             addConversion(conversion);
+
+            Handler h = new Handler() ;
+            h.postDelayed(() -> {
+                updateConversationID();
+            }, 1000);
+
+            if(conversionId == null) {
+                h.postDelayed(() -> {
+                    updateConversationID();
+                }, 2000);
+            }
         }
         binding.inputMessage.setText(null);
 
@@ -187,7 +214,7 @@ public class ChatActivity extends BaseActivity {
     );
 
     private String encodeImage(Bitmap bitmap) {
-        int previewWidth = 150;
+        int previewWidth = 700;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitMap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -361,9 +388,9 @@ public class ChatActivity extends BaseActivity {
         database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).add(conversion).addOnSuccessListener(documentReference -> conversionId = documentReference.getId());
     }
 
-    private void updateCOnversion(String message) {
+    private void updateCOnversion(String message, String user) {
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
-        documentReference.update(Constants.KEY_LAST_MESSAGE, message, Constants.KEY_TIMESTAMP, new Date());
+        documentReference.update(Constants.KEY_LAST_MESSAGE, message, Constants.KEY_TIMESTAMP, new Date(), Constants.KEY_LAST_USER, user, Constants.KEY_LAST_READ, "0", Constants.KEY_COLLECTION_CONVERSATIONS, conversionId);
     }
 
     private void checkForConversion() {
@@ -386,6 +413,13 @@ public class ChatActivity extends BaseActivity {
             conversionId = documentSnapshot.getId();
         }
     };
+
+    public void updateConversationID() {
+        if (conversionId != null) {
+            DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
+            documentReference.update(Constants.KEY_COLLECTION_CONVERSATIONS, conversionId);
+        }
+    }
 
     @Override
     protected void onResume() {

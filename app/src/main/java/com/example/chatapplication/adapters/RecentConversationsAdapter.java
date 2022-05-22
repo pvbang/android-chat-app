@@ -20,6 +20,8 @@ import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
 
     private final List<ChatMessage> chatMessages;
     private final ConversionListener conversionListener;
+    private FirebaseFirestore database;
 
     public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
         this.chatMessages = chatMessages;
@@ -64,11 +67,13 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
         }
 
         void setData(ChatMessage chatMessage) {
+            database = FirebaseFirestore.getInstance();
+
             binding.imageProfile.setImageBitmap(getConversionImage(chatMessage.conversionImage));
             binding.textName.setText(chatMessage.conversionName);
             binding.textRecentMessage.setText(chatMessage.messafe +" · "+ getReadableDateTime(chatMessage.dateObject));
 
-            if (chatMessage.senderId == chatMessage.conversionId) {
+            if (chatMessage.read != null) {
                 binding.textName.setTypeface(null, Typeface.BOLD);
                 binding.textRecentMessage.setTextColor(Color.rgb(40,167,241));
             }
@@ -78,6 +83,11 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
                 user.id = chatMessage.conversionId;
                 user.name = chatMessage.conversionName;
                 user.image = chatMessage.conversionImage;
+
+                if (chatMessage.conversations != null) {
+                    updateConversion(chatMessage.conversations);
+                }
+
                 conversionListener.onConversionClicked(user);
             });
 
@@ -91,6 +101,11 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
     private Bitmap getConversionImage(String encodeImage) {
         byte[] bytes = Base64.decode(encodeImage, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    private void updateConversion(String conversionId) {
+        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
+        documentReference.update(Constants.KEY_LAST_READ, "1");
     }
 
 }

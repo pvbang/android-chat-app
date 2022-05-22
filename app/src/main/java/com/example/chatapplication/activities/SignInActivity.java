@@ -34,7 +34,6 @@ public class SignInActivity extends AppCompatActivity {
 
         setListeners();
 
-        preferenceManager = new PreferenceManager(getApplicationContext());
         if (preferenceManager.getBoolean(Constants.KEY_IS_SPLASH)) {
             new Handler().postDelayed(() -> {
                 preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);

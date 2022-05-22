@@ -21,7 +21,7 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_6ssp"
+        android:layout_marginTop="@dimen/_5ssp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
         app:tint="@color/color_main_text"
@@ -36,6 +36,8 @@
         app:layout_constraintLeft_toRightOf="@+id/imageBackStory"
         app:layout_constraintTop_toTopOf="@+id/imageBackStory"
         android:textSize="@dimen/_16ssp"
+        android:layout_marginLeft="@dimen/_11sdp"
+        android:text="Đăng bài đê"
         android:textColor="@color/color_main_text"
         android:fontFamily="sans-serif-medium" />
 

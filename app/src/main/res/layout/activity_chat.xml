@@ -93,11 +93,23 @@
         android:textStyle="bold"
         android:text="Tên người nhận"
         android:layout_marginLeft="@dimen/_11sdp"
-        app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@+id/textAvailablility"
+        app:layout_constraintBottom_toTopOf="@id/textAvailablility"
+        app:layout_constraintEnd_toStartOf="@+id/textAvailablilitye"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack"
         />
+
+    <TextView
+        android:id="@+id/textAvailablility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="Đang hoạt động"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="#D9FFD3"
+        app:layout_constraintTop_toBottomOf="@id/textName"
+        app:layout_constraintStart_toStartOf="@id/textName"
+        app:layout_constraintBottom_toBottomOf="@id/imageBack"/>
 
     <View
         android:id="@+id/viewSupporter"
@@ -180,7 +192,7 @@
     </EditText>
 
     <ImageView
-        android:id="@+id/textAvailablility"
+        android:id="@+id/textAvailablilitye"
         android:layout_width="@dimen/_7sdp"
         android:layout_height="@dimen/_7sdp"
         android:src="@drawable/ic_active"

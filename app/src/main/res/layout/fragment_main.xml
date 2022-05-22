@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toStartOf="@id/imageGroups"
       />
 
-    <FrameLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -77,6 +77,6 @@
             android:layout_height="@dimen/_25sdp"
             android:layout_gravity="center"/>
 
-    </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

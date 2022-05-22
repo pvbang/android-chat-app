@@ -33,22 +33,34 @@
         android:maxLines="1"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/_13ssp"
-        app:layout_constraintBottom_toTopOf="@id/viewSupporter"
+        app:layout_constraintBottom_toBottomOf="@id/viewSupporter"
+        app:layout_constraintTop_toTopOf="@id/viewSupporter"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
+        app:layout_constraintEnd_toStartOf="@id/imageCallAudio"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallVideo"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_11sdp"
+        android:layout_marginRight="@dimen/_11sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_6sdp"
+        android:src="@drawable/ic_outline_videocam"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/textEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/secondary_text"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
-        app:layout_constraintStart_toEndOf="@id/imageProfile"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallAudio"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_8sdp"
+        android:src="@drawable/ic_outline_phone"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageCallVideo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

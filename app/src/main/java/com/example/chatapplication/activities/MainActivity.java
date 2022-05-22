@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity  {
     UserFragment userFragment = new UserFragment();
 
     private PreferenceManager preferenceManager;
-    private int REQUEST_CODE_BATTERY_OPTIMIZATIONS = 1;
+//    private int REQUEST_CODE_BATTERY_OPTIMIZATIONS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity  {
         bottomNavigationView = findViewById(R.id.bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, mainFragment).commit();
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.action_home:
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, mainFragment).commit();
                     return true;
@@ -76,39 +76,39 @@ public class MainActivity extends BaseActivity  {
             }, 1000);
         }
 
-        checkForBatteryOptimizations();
+//        checkForBatteryOptimizations();
 
     }
-
-    private void checkForBatteryOptimizations() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-            if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Cảnh báo");
-                builder.setMessage("Tắt tối ưu hóa pin trong ứng dụng để không làm gián đoạn các dịch vụ nền đang chạy.");
-                builder.setPositiveButton("Tắt", (dialog, which) -> {
-                    Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-                    activityResultLaunch.launch(intent);
-                });
-                builder.setNegativeButton("Không tắt", (dialogInterface, i) -> dialogInterface.dismiss());
-                builder.create().show();
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_BATTERY_OPTIMIZATIONS) {
-            checkForBatteryOptimizations();
-        }
-    }
-
-    ActivityResultLauncher<Intent> activityResultLaunch = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-        if (result.getResultCode() == REQUEST_CODE_BATTERY_OPTIMIZATIONS) {
-            checkForBatteryOptimizations();
-        }
-    });
+//
+//    private void checkForBatteryOptimizations() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+//            if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                builder.setTitle("Cảnh báo");
+//                builder.setMessage("Tắt tối ưu hóa pin trong ứng dụng để không làm gián đoạn các dịch vụ nền đang chạy.");
+//                builder.setPositiveButton("Tắt", (dialog, which) -> {
+//                    Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+//                    activityResultLaunch.launch(intent);
+//                });
+//                builder.setNegativeButton("Không tắt", (dialogInterface, i) -> dialogInterface.dismiss());
+//                builder.create().show();
+//            }
+//        }
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_CODE_BATTERY_OPTIMIZATIONS) {
+//            checkForBatteryOptimizations();
+//        }
+//    }
+//
+//    ActivityResultLauncher<Intent> activityResultLaunch = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+//        if (result.getResultCode() == REQUEST_CODE_BATTERY_OPTIMIZATIONS) {
+//            checkForBatteryOptimizations();
+//        }
+//    });
 
 }

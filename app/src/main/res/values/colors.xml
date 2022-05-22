@@ -18,10 +18,8 @@
 
     <color name="bg_splash">#EBF8FF</color>
 
-<!--    <color name="primary">#1C2E46</color>-->
     <color name="black_secondary">#212121</color>
     <color name="primary">#FFFFFF</color>
-<!--    <color name="primary_dark">#142232</color>-->
     <color name="primary_dark">#F3F3F3</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
