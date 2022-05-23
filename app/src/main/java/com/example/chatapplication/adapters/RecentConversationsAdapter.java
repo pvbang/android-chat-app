@@ -14,7 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.databinding.ItemContainerRecentConversionBinding;
+import com.example.chatapplication.fragments.mainfrag.MainFragment;
 import com.example.chatapplication.listeners.ConversionListener;
 import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.User;
@@ -60,6 +62,7 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
 
     class ConversionViewHolder extends RecyclerView.ViewHolder {
         ItemContainerRecentConversionBinding binding;
+        private FragmentMainBinding bindingMainFragment;
 
         ConversionViewHolder(ItemContainerRecentConversionBinding itemContainerRecentConversionBinding) {
             super(itemContainerRecentConversionBinding.getRoot());

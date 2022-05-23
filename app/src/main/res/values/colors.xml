@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white2">#D4EEFF</color>
     <color name="green">#00E30B</color>
     <color name="red">#FF0000</color>
     <color name="yellow">#FFEB3B</color>
@@ -23,7 +24,7 @@
     <color name="primary_dark">#F3F3F3</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
-    <color name="support_text">#DCDCDC</color>
+    <color name="support_text">#EAEAEA</color>
     <color name="input_background">#ECECEC</color>
     <color name="icon_background">#F4F4F4</color>
     <color name="error">#B00020</color>

@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
-
+        <activity
+            android:name=".activities.InfoChatActivity"
+            android:exported="false" />
         <activity
             android:name=".fragments.storyfrag.StoryPost"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.CallingReceiverActivity"
             android:exported="false"
@@ -43,17 +45,18 @@
             android:name=".activities.SignInActivity"
             android:exported="false"
             android:theme="@style/Themesplash.ChatApplication"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Themesplash.ChatApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".firebase.MessagingService"
             android:exported="false">

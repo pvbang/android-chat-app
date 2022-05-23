@@ -92,7 +92,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         } else {
             if (chatMessages.get(position).messafe.contains("/9j/")) {
                 return VIEW_TYPE_RECEIVED_IMAGE;
-//                return VIEW_TYPE_RECEIVED;
             } else {
                 return VIEW_TYPE_RECEIVED;
             }

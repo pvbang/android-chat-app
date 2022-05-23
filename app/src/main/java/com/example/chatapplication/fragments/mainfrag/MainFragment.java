@@ -43,7 +43,7 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
     private FragmentMainBinding binding;
     private PreferenceManager preferenceManager;
     private List<ChatMessage> conversations;
-    private RecentConversationsAdapter conversationsAdapter;
+    public RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
 
     @Override
@@ -157,6 +157,8 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             binding.conversationRecyclerView.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.GONE);
             binding.container.setRefreshing(false);
+        } else {
+            conversationsAdapter.notifyDataSetChanged();
         }
     };
 

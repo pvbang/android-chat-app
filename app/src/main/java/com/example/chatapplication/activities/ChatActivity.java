@@ -283,8 +283,10 @@ public class ChatActivity extends BaseActivity {
             }
             if (isReceiverAvailable) {
                 binding.textAvailablility.setVisibility(View.VISIBLE);
+                binding.imageOnline.setVisibility(View.VISIBLE);
             } else {
                 binding.textAvailablility.setVisibility(View.GONE);
+                binding.imageOnline.setVisibility(View.GONE);
             }
         });
     }
@@ -346,7 +348,13 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void setListeners() {
-        binding.imageBack.setOnClickListener(v -> onBackPressed());
+        binding.imageBack.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            onBackPressed();
+        });
         binding.layoutSend.setOnClickListener(v -> {
             if (!binding.inputMessage.getText().toString().isEmpty()) {
                 sendMessage();
@@ -373,11 +381,41 @@ public class ChatActivity extends BaseActivity {
             intent.putExtra("image", getIntent().getStringExtra(Constants.KEY_IMAGE));
             startActivity(intent);
         });
+
+        binding.imageInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
+            startActivity(intent);
+        });
+
+        binding.imageProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
+            startActivity(intent);
+        });
+
+        binding.textName.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
+            startActivity(intent);
+        });
+
+        binding.textAvailablility.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
+            startActivity(intent);
+        });
+
     }
 
     private void loadReceivedDetails() {
         receivedUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
         binding.textName.setText(receivedUser.name);
+        binding.imageProfile.setImageBitmap(getBitmapFromEncodedString(receivedUser.image));
     }
 
     private String getReadableDateTime(Date date) {

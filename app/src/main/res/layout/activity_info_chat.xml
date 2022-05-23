@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.InfoChatActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBack"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/ic_back"
+        android:tint="@color/color_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageMore"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_5sdp"
+        app:showAsAction="always"
+        android:src="@drawable/ic_more"
+        android:tint="@color/color_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageBackground2"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_110sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="100dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/no_image_profile"
+            android:scaleType="centerCrop"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageBackground2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black_secondary"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        android:text="Đấng Sáng Tạo"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallAudio"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_6sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_phone"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toStartOf="@+id/imageCallVideo"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallVideo"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_4sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_videocam"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_4sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_user"
+        android:tint="@color/color_main"
+        app:layout_constraintStart_toEndOf="@id/imageCallVideo"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
+        android:id="@+id/textCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageCallAudio"
+        app:layout_constraintStart_toStartOf="@id/imageCallAudio"
+        app:layout_constraintEnd_toEndOf="@id/imageCallAudio"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Gọi thoại"/>
+
+    <TextView
+        android:id="@+id/textVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageCallVideo"
+        app:layout_constraintStart_toStartOf="@id/imageCallVideo"
+        app:layout_constraintEnd_toEndOf="@id/imageCallVideo"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Gọi video"/>
+
+    <TextView
+        android:id="@+id/textProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageProfile"
+        app:layout_constraintStart_toStartOf="@id/imageProfile"
+        app:layout_constraintEnd_toEndOf="@id/imageProfile"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Trang cá nhân"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

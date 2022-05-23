@@ -32,7 +32,7 @@
         android:id="@+id/imageBack"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
@@ -64,8 +64,9 @@
         android:src="@drawable/ic_videocam"
         android:tint="@color/color_main_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageInfo"/>
+
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageCallAudio"
@@ -81,21 +82,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageCallVideo"/>
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_6sdp"
+        android:background="@drawable/background_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@id/imageBack"
+        app:layout_constraintTop_toTopOf="@id/imageBack"
+        app:layout_constraintBottom_toBottomOf="@id/imageBack"
+        app:riv_oval="true" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageOnline"
+        android:layout_width="@dimen/_9sdp"
+        android:layout_height="@dimen/_9sdp"
+        android:visibility="gone"
+        android:padding="@dimen/_1sdp"
+        android:background="@drawable/background_image_main"
+        android:src="@drawable/ic_active"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+        app:layout_constraintEnd_toEndOf="@+id/imageProfile"
+        app:riv_oval="true" />
+
     <TextView
         android:id="@+id/textName"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
         android:textColor="@color/color_main_text"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
         android:text="Tên người nhận"
-        android:layout_marginLeft="@dimen/_11sdp"
+        android:layout_marginLeft="@dimen/_7sdp"
         app:layout_constraintBottom_toTopOf="@id/textAvailablility"
         app:layout_constraintEnd_toStartOf="@+id/textAvailablilitye"
-        app:layout_constraintStart_toEndOf="@id/imageBack"
+        app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toTopOf="@id/imageBack"
         />
 
@@ -105,8 +130,8 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:text="Đang hoạt động"
-        android:textSize="@dimen/_10sdp"
-        android:textColor="#D9FFD3"
+        android:textSize="@dimen/_9sdp"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/textName"
         app:layout_constraintStart_toStartOf="@id/textName"
         app:layout_constraintBottom_toBottomOf="@id/imageBack"/>
@@ -115,8 +140,8 @@
         android:id="@+id/viewSupporter"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/primary"
-        android:layout_marginTop="@dimen/_6ssp"
+        android:background="@color/color_main"
+        android:layout_marginTop="@dimen/_5ssp"
         app:layout_constraintTop_toBottomOf="@id/imageBack"/>
 
     <androidx.recyclerview.widget.RecyclerView

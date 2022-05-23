@@ -15,7 +15,7 @@
         app:cardElevation="0dp">
 
         <ImageView
-            android:id="@+id/image1"
+            android:id="@+id/imageBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/background_icon"
@@ -43,7 +43,7 @@
         app:cardCornerRadius="100dp">
 
         <ImageView
-            android:id="@+id/image2"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/no_image_profile"
