@@ -46,7 +46,7 @@
         android:layout_marginRight="@dimen/_11sdp"
         android:layout_marginTop="@dimen/_6ssp"
         android:padding="@dimen/_6sdp"
-        android:src="@drawable/ic_outline_videocam"
+        android:src="@drawable/ic_videocam"
         android:tint="@color/color_main"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

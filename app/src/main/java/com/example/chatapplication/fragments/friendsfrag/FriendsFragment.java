@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import android.view.LayoutInflater;
@@ -18,9 +19,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class FriendsFragment extends Fragment {
 
     private FragmentFriendsBinding binding;
-    PreferenceManager preferenceManager;
+    private PreferenceManager preferenceManager;
     private FriendFragmentAdapter friendFragmentAdapter;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,16 +39,14 @@ public class FriendsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         preferenceManager = new PreferenceManager(getActivity().getApplicationContext());
 
-        friendFragmentAdapter = new FriendFragmentAdapter(this);
+        friendFragmentAdapter = new FriendFragmentAdapter(this.getActivity());
         binding.viewPager.setAdapter(friendFragmentAdapter);
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
-            switch (position) {
-                case 0:
-                    tab.setText("Bạn bè");
-                    break;
-                case 1:
-                    tab.setText("Nhóm");
-                    break;
+            if (position == 0) {
+                tab.setText("Bạn bè");
+            }
+            if (position == 1) {
+                tab.setText("Nhóm");
             }
         }).attach();
 

@@ -31,7 +31,7 @@
             android:id="@+id/layoutImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp">
+            android:layout_marginTop="@dimen/_15sdp">
             
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imageProfile"
@@ -49,7 +49,12 @@
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:text="Chọn ảnh"
-                android:textColor="@color/yellow"
+                android:paddingBottom="@dimen/_2sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:background="@drawable/background_icon"
+                android:textColor="@color/black_secondary"
                 android:textSize="@dimen/_12ssp"/>
         </FrameLayout>
 

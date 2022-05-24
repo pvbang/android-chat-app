@@ -17,6 +17,7 @@ import com.example.chatapplication.activities.CallingReceiverActivity;
 import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
+import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -47,7 +48,7 @@ public class MessagingService extends FirebaseMessagingService {
                 intent.putExtra(Constants.KEY_EMAIL, message.getData().get(Constants.KEY_EMAIL));
 
                 intent.putExtra(Constants.REMOTE_MSG_CALLING_TOKEN, message.getData().get(Constants.REMOTE_MSG_CALLING_TOKEN));
-                intent.putExtra(Constants.REMOTE_MSG_CALLING_TOKEN, message.getData().get(Constants.REMOTE_MSG_CALLING_TOKEN));
+//                intent.putExtra(Constants.REMOTE_MSG_CALLING_TOKEN, message.getData().get(Constants.REMOTE_MSG_CALLING_TOKEN));
 
                 intent.putExtra(Constants.REMOTE_MSG_CALLING_ROOM, message.getData().get(Constants.REMOTE_MSG_CALLING_ROOM));
 

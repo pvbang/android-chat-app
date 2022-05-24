@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.activities.SignInActivity;
 import com.example.chatapplication.databinding.FragmentUserBinding;
+import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentReference;
@@ -30,6 +31,7 @@ public class UserFragment extends Fragment {
 
     private FragmentUserBinding binding;
     private PreferenceManager preferenceManager;
+    private User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,13 +49,22 @@ public class UserFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         preferenceManager = new PreferenceManager(getActivity().getApplicationContext());
+
+        user = new User();
+        user.image = preferenceManager.getString(Constants.KEY_IMAGE);
+        user.name = preferenceManager.getString(Constants.KEY_NAME);
+
         loadUserDetails();
         setListeners();
     }
 
     private void setListeners() {
         binding.imageSignOut.setOnClickListener(v -> signOut());
-        binding.userProfile.setOnClickListener(v -> startActivity(new Intent(getActivity().getApplicationContext(), ProfileActivity.class)));
+        binding.userProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
     }
 
     private void loadUserDetails() {

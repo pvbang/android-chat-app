@@ -371,14 +371,12 @@ public class ChatActivity extends BaseActivity {
             Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
             intent.putExtra("type", "audio");
             intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            intent.putExtra("image", getIntent().getStringExtra(Constants.KEY_IMAGE));
             startActivity(intent);
         });
         binding.imageCallVideo.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
             intent.putExtra("type", "video");
             intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            intent.putExtra("image", getIntent().getStringExtra(Constants.KEY_IMAGE));
             startActivity(intent);
         });
 

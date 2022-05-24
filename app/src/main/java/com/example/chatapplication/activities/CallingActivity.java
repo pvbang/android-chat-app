@@ -42,6 +42,7 @@ public class CallingActivity extends AppCompatActivity {
     private User user;
 
     private PreferenceManager preferenceManager;
+
     private String inviterToken = null;
     private String callingType = null;
 
@@ -102,6 +103,7 @@ public class CallingActivity extends AppCompatActivity {
             data.put(Constants.REMOTE_MSG_CALLING_MEETING_TYPE, callingType);
             data.put(Constants.KEY_NAME, preferenceManager.getString(Constants.KEY_NAME));
             data.put(Constants.KEY_EMAIL, preferenceManager.getString(Constants.KEY_EMAIL));
+
             data.put(Constants.REMOTE_MSG_CALLING_TOKEN, inviterToken);
 
             callingRoom = preferenceManager.getString(Constants.KEY_USER_ID)+ "_" + UUID.randomUUID().toString().substring(0, 5);

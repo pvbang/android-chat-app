@@ -81,8 +81,8 @@
         <Button
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:paddingStart="@dimen/_30sdp"
             android:paddingEnd="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp"
@@ -96,8 +96,8 @@
     <Button
         android:id="@+id/btn_message"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_30sdp"
