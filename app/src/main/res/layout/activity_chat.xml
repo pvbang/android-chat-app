@@ -98,7 +98,7 @@
         android:id="@+id/imageOnline"
         android:layout_width="@dimen/_9sdp"
         android:layout_height="@dimen/_9sdp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:padding="0.4dp"
         android:background="@drawable/background_image_main"
         android:src="@drawable/ic_active"

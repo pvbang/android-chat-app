@@ -6,14 +6,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.databinding.ItemContainerRecentConversionBinding;
 import com.example.chatapplication.fragments.mainfrag.MainFragment;
@@ -22,13 +26,18 @@ import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversionViewHolder>{
@@ -81,6 +90,20 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
                 binding.textRecentMessage.setTextColor(Color.rgb(40,167,241));
             }
 
+            database.collection(Constants.KEY_COLLECTION_USERS).document(chatMessage.conversionId).addSnapshotListener((value, error) -> {
+                if (value != null) {
+                    if (value.getLong(Constants.KEY_AVAILABLILITY) != null) {
+                        int availability = Objects.requireNonNull(value.getLong(Constants.KEY_AVAILABLILITY)).intValue();
+
+                        if (availability == 0) {
+                            binding.imageOnline.setVisibility(View.GONE);
+                        } else {
+                            binding.imageOnline.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+
             binding.getRoot().setOnClickListener(v -> {
                 User user = new User();
                 user.id = chatMessage.conversionId;
@@ -93,7 +116,6 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
 
                 conversionListener.onConversionClicked(user);
             });
-
         }
     }
 

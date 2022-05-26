@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.example.chatapplication.R;
@@ -39,6 +40,11 @@ public class ProfileActivity extends AppCompatActivity {
     private void setData() {
         binding.image.setImageBitmap(getBitmapFromEncodedString(user.image));
         binding.name.setText(user.name);
+
+        if (getIntent().getStringExtra("you").equals("1")) {
+            binding.btnAdd.setVisibility(View.GONE);
+            binding.btnMessage.setVisibility(View.GONE);
+        }
     }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {

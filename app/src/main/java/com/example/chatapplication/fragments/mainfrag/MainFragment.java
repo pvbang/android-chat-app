@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
+import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.listeners.ConversionListener;
@@ -71,6 +72,7 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         loadUserDetails();
         getToken();
         listenConversations();
+        setListener();
     }
 
     private void init() {
@@ -78,6 +80,20 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
+    }
+
+    private void setListener() {
+        binding.imageProfile.setOnClickListener(v -> {
+            User user = new User();
+            user.image = preferenceManager.getString(Constants.KEY_IMAGE);
+            user.name = preferenceManager.getString(Constants.KEY_NAME);
+
+            Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
+            intent.putExtra("user", user);
+            intent.putExtra("you", "1");
+            startActivity(intent);
+
+        });
     }
 
     private void loadUserDetails() {

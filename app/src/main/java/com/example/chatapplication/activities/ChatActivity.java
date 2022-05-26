@@ -277,7 +277,6 @@ public class ChatActivity extends BaseActivity {
                 if (receivedUser.image == null) {
                     receivedUser.image = value.getString(Constants.KEY_IMAGE);
                     chatAdapter.setReceivierProfileImage(getBitmapFromEncodedString(receivedUser.image));
-//                    chatAdapter.setChatImage(getBitmapFromEncodedString(encodedImage));
                     chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
                 }
             }
@@ -350,10 +349,9 @@ public class ChatActivity extends BaseActivity {
     private void setListeners() {
         binding.imageBack.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            onBackPressed();
         });
         binding.layoutSend.setOnClickListener(v -> {
             if (!binding.inputMessage.getText().toString().isEmpty()) {

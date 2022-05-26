@@ -63,6 +63,7 @@ public class UserFragment extends Fragment {
         binding.userProfile.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);
+            intent.putExtra("you", "1");
             startActivity(intent);
         });
     }

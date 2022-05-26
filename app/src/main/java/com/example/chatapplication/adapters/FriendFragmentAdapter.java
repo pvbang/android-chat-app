@@ -13,11 +13,6 @@ import com.example.chatapplication.fragments.friendsfrag.GroupFriendsFragment;
 
 public class FriendFragmentAdapter extends FragmentStateAdapter {
 
-//    public FriendFragmentAdapter(Fragment fragment) {
-//        super(fragment);
-//    }
-
-
     public FriendFragmentAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }

@@ -48,7 +48,6 @@ public class MessagingService extends FirebaseMessagingService {
                 intent.putExtra(Constants.KEY_EMAIL, message.getData().get(Constants.KEY_EMAIL));
 
                 intent.putExtra(Constants.REMOTE_MSG_CALLING_TOKEN, message.getData().get(Constants.REMOTE_MSG_CALLING_TOKEN));
-//                intent.putExtra(Constants.REMOTE_MSG_CALLING_TOKEN, message.getData().get(Constants.REMOTE_MSG_CALLING_TOKEN));
 
                 intent.putExtra(Constants.REMOTE_MSG_CALLING_ROOM, message.getData().get(Constants.REMOTE_MSG_CALLING_ROOM));
 

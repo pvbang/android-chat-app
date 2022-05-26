@@ -15,6 +15,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:riv_oval="true"/>
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageOnline"
+        android:layout_width="@dimen/_11sdp"
+        android:layout_height="@dimen/_11sdp"
+        android:visibility="gone"
+        android:padding="0.4dp"
+        android:background="@drawable/background_image_mainn"
+        android:src="@drawable/ic_active"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+        app:layout_constraintEnd_toEndOf="@+id/imageProfile"
+        app:riv_oval="true" />
+
     <View
         android:id="@+id/viewSupporter"
         android:layout_width="1dp"

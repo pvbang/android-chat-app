@@ -55,6 +55,7 @@ public class InfoChatActivity extends AppCompatActivity {
         binding.imageProfile.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);
+            intent.putExtra("you", "0");
             startActivity(intent);
         });
     }

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,10 @@ import com.example.chatapplication.databinding.ActivityChatBinding;
 import com.example.chatapplication.databinding.ItemContainerUserBinding;
 import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.User;
+import com.example.chatapplication.utilities.Constants;
 
 import java.util.List;
+import java.util.Objects;
 
 public class UserAdapters extends RecyclerView.Adapter<UserAdapters.UserViewHolder>{
 
