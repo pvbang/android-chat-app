@@ -15,7 +15,6 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_6sdp"
         android:background="@drawable/background_icon"
         android:scaleType="centerCrop"
@@ -27,7 +26,7 @@
         android:id="@+id/imageGroups"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/background_icon"
         android:padding="@dimen/_6sdp"
@@ -36,18 +35,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageSearch"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/background_icon"
+        android:padding="@dimen/_6sdp"
+        android:src="@drawable/ic_search"
+        android:tint="@color/color_main"
+        app:layout_constraintEnd_toStartOf="@id/imageGroups"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_main_text"
-        android:textSize="@dimen/_15ssp"
+        android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
-        android:text="Tên người dùng"
+        android:layout_marginStart="@dimen/_19sdp"
+        android:text="Tin nhắn"
         app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
         app:layout_constraintTop_toTopOf="@id/imageProfile"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
-        app:layout_constraintEnd_toStartOf="@id/imageGroups"
       />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -67,15 +79,9 @@
             android:orientation="vertical"
             android:overScrollMode="never"
             android:paddingLeft="@dimen/_7sdp"
-            android:paddingTop="@dimen/_3sdp"
+            android:paddingTop="@dimen/_5sdp"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

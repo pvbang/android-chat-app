@@ -12,6 +12,7 @@
     <color name="red">#FF0000</color>
     <color name="yellow">#FFEB3B</color>
     <color name="normal">#434343</color>
+    <color name="background">#32000000</color>
 
     <color name="color_main">#28A7F1</color>
     <color name="color_main_secondary">#71BBE4</color>

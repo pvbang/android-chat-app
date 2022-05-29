@@ -16,19 +16,30 @@
         android:layout_height="wrap_content"
         android:text="Nhật ký"
         android:textColor="@color/color_main_text"
-        android:textSize="@dimen/_15ssp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:padding="@dimen/_6sdp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/imageSearch"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageSearch"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="6dp"
+        android:padding="@dimen/_6sdp"
+        android:src="@drawable/ic_search"
+        android:tint="@color/color_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:padding="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_9sdp"
+
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv">
@@ -36,7 +47,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/storyRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10ssp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

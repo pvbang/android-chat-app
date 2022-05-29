@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -14,11 +15,13 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.activities.ProfileActivity;
+import com.example.chatapplication.activities.SearchActivity;
 import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.listeners.ConversionListener;
@@ -92,12 +95,20 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             intent.putExtra("user", user);
             intent.putExtra("you", "1");
             startActivity(intent);
+        });
 
+        binding.imageSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
+        });
+
+        binding.imageGroups.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
         });
     }
 
     private void loadUserDetails() {
-        binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         binding.imageProfile.setImageBitmap(bitmap);
@@ -171,7 +182,6 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             conversationsAdapter.notifyDataSetChanged();
             binding.conversationRecyclerView.smoothScrollToPosition(0);
             binding.conversationRecyclerView.setVisibility(View.VISIBLE);
-            binding.progressBar.setVisibility(View.GONE);
             binding.container.setRefreshing(false);
         } else {
             conversationsAdapter.notifyDataSetChanged();

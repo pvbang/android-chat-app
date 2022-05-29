@@ -1,5 +1,8 @@
 package com.example.chatapplication.fragments.friendsfrag;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +14,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.chatapplication.activities.ChatActivity;
+import com.example.chatapplication.activities.SearchActivity;
 import com.example.chatapplication.adapters.FriendFragmentAdapter;
 import com.example.chatapplication.databinding.FragmentFriendsBinding;
+import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -39,6 +46,16 @@ public class FriendsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         preferenceManager = new PreferenceManager(getActivity().getApplicationContext());
 
+        setListener();
+
+    }
+
+    private void setListener() {
+        binding.imageAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), SearchActivity.class);
+            startActivity(intent);
+        });
+
         friendFragmentAdapter = new FriendFragmentAdapter(this.getActivity());
         binding.viewPager.setAdapter(friendFragmentAdapter);
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
@@ -49,7 +66,6 @@ public class FriendsFragment extends Fragment {
                 tab.setText("Nhóm");
             }
         }).attach();
-
     }
 
 }

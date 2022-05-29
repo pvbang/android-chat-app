@@ -23,21 +23,12 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-
-//        if (!preferenceManager.getBoolean(Constants.KEY_IS_SPLASH)) {
-            new Handler().postDelayed(() -> {
-                if (preferenceManager.getBoolean(Constants.KEY_IS_SIGN_IN)) {
-//                    preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, true);
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                } else {
-//                    preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, true);
-                    startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-                    finish();
-                }
-            }, 1000);
-//        } else {
-//            preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
-//        }
+        new Handler().postDelayed(() -> {
+            if (preferenceManager.getBoolean(Constants.KEY_IS_SIGN_IN)) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            } else {
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+            }
+        }, 1000);
     }
 }

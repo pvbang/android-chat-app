@@ -1,5 +1,6 @@
 package com.example.chatapplication.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,13 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.chatapplication.adapters.ChatAdapter;
@@ -406,7 +411,31 @@ public class ChatActivity extends BaseActivity {
             startActivity(intent);
         });
 
+        binding.imageVoice.setOnClickListener(v -> {
+            speak(v);
+        });
+
     }
+
+    private void speak(View v) {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "vi_VN");
+        intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 5);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Đọc đoạn tin nhắn bạn muốn gửi đi...");
+        someActivityResultLauncher.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    binding.inputMessage.setText(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0));
+                }
+            }
+        });
 
     private void loadReceivedDetails() {
         receivedUser = (User) getIntent().getSerializableExtra(Constants.KEY_USER);

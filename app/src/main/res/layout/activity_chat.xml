@@ -172,11 +172,10 @@
 
     <FrameLayout
         android:id="@+id/layoutSend"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_marginEnd="@dimen/_13sdp"
         android:layout_marginBottom="@dimen/_6ssp"
-        android:layout_marginRight="@dimen/_10sdp"
         android:background="@drawable/backgound_chat_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -185,21 +184,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_4sdp"
-            android:layout_marginLeft="@dimen/_4sdp"
             android:padding="@dimen/_6sdp"
             android:src="@drawable/ic_send"
             android:tint="@color/color_main"/>
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        app:srcCompat="@drawable/ic_image"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginLeft="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/inputMessage"
+        app:layout_constraintTop_toTopOf="@id/inputMessage"
+        app:tint="@color/color_main" />
+
     <EditText
         android:id="@+id/inputMessage"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_13sdp"
-        android:layout_marginLeft="@dimen/_13sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginRight="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_6ssp"
         android:background="@drawable/backgound_chat_input"
         android:hint="Tin nhắn"
@@ -212,7 +220,7 @@
         android:textColorHint="@color/secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/layoutSend"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@id/imageView">
 
     </EditText>
 
@@ -229,10 +237,10 @@
         />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageVoice"
         android:layout_width="@dimen/_21sdp"
         android:layout_height="@dimen/_21sdp"
-        app:srcCompat="@drawable/ic_image"
+        app:srcCompat="@drawable/ic_voice"
         android:layout_marginRight="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="@id/inputMessage"
         app:layout_constraintTop_toTopOf="@id/inputMessage"

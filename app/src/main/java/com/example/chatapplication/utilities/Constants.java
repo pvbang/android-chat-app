@@ -9,6 +9,7 @@ public class Constants {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PREFERENCE_NAME = "chatAPPPreference";
     public static final String KEY_IS_SIGN_IN = "isSignIn";
+    public static final String KEY_IS_SIGN_INN = "isSignInn";
     public static final String KEY_USER_ID = "userID";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_FCM_TOKEN = "fcmToken";
@@ -31,7 +32,6 @@ public class Constants {
     public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
     public static final String REMOTE_MSG_DATA = "data";
     public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
-    public static final String KEY_IS_SPLASH = "true";
 
     public static final String REMOTE_MSG_CALLING_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CALLING_CONTENT_TYPE = "Content-Type";
@@ -48,8 +48,6 @@ public class Constants {
     public static final String REMOTE_MSG_CALLING_INVITATION_CANCELLED = "cancelled";
 
     public static final String REMOTE_MSG_CALLING_ROOM = "callingRoom";
-
-    public static final String KEY_LAST_SENDER = "lastSender";
 
     public static HashMap<String, String> remoteMegHeaders = null;
     public static HashMap<String, String> getRemoteMsgHeaders() {

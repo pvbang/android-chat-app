@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class FirstFriendsFragment extends Fragment implements UserListener, SwipeRefreshLayout.OnRefreshListener {
@@ -79,6 +81,8 @@ public class FirstFriendsFragment extends Fragment implements UserListener, Swip
                     usersList.add(user);
                 }
                 if (usersList.size() > 0) {
+                    Collections.sort(usersList, (user, t1) -> user.getName().compareToIgnoreCase(t1.getName()));
+
                     UserAdapters userAdapters = new UserAdapters(usersList, this);
                     binding.usersRecyclerView.setAdapter(userAdapters);
                     binding.usersRecyclerView.setVisibility(View.VISIBLE);

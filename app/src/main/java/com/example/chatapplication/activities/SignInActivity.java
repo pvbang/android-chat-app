@@ -33,12 +33,6 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setListeners();
-
-        if (preferenceManager.getBoolean(Constants.KEY_IS_SPLASH)) {
-            new Handler().postDelayed(() -> {
-                preferenceManager.putBoolean(Constants.KEY_IS_SPLASH, false);
-            }, 1000);
-        }
     }
 
     private void setListeners() {

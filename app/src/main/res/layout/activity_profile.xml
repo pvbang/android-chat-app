@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/imageBackground1"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="270dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardElevation="0dp">
@@ -18,7 +18,7 @@
             android:id="@+id/imageBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_logo_background"
+            android:src="@drawable/background_profile"
             android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
@@ -92,10 +92,20 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_6ssp"
+        android:layout_marginTop="@dimen/_30ssp"
         android:padding="@dimen/_5sdp"
         android:src="@drawable/ic_back"
-        android:tint="@color/color_main"
+        android:background="@drawable/background_back"
+        android:tint="@color/color_main_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBackgroundStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_23sdp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/background_statusbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
