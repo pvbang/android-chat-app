@@ -53,6 +53,7 @@ public class UserFragment extends Fragment {
         user = new User();
         user.image = preferenceManager.getString(Constants.KEY_IMAGE);
         user.name = preferenceManager.getString(Constants.KEY_NAME);
+        user.email = preferenceManager.getString(Constants.KEY_EMAIL);
 
         loadUserDetails();
         setListeners();

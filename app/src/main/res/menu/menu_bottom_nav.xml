@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_chat" />
 
     <item android:id="@+id/action_friends"
-        android:title="Bạn bè"
+        android:title="Danh bạ"
         android:icon="@drawable/ic_contacts" />
 
     <item android:id="@+id/action_story"

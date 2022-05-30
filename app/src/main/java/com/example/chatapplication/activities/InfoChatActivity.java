@@ -23,11 +23,13 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityInfoChatBinding;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class InfoChatActivity extends AppCompatActivity {
 
     private ActivityInfoChatBinding binding;
     private User user;
+    private String myID, myName, myImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,9 @@ public class InfoChatActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         user = (User) getIntent().getSerializableExtra("user");
+        myID = getIntent().getStringExtra("myID");
+        myName = getIntent().getStringExtra("myName");
+        myImage = getIntent().getStringExtra("myImage");
 
         setListenner();
         setData();
@@ -71,6 +76,9 @@ public class InfoChatActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);
             intent.putExtra("you", "0");
+            intent.putExtra("myID", myID);
+            intent.putExtra("myName", myName);
+            intent.putExtra("myImage", myImage);
             startActivity(intent);
         });
 
@@ -89,6 +97,7 @@ public class InfoChatActivity extends AppCompatActivity {
             popupMenu.show();
         });
     }
+
 
     private void setData() {
         binding.image.setImageBitmap(getBitmapFromEncodedString(user.image));

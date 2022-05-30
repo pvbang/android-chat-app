@@ -9,7 +9,6 @@ public class Constants {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PREFERENCE_NAME = "chatAPPPreference";
     public static final String KEY_IS_SIGN_IN = "isSignIn";
-    public static final String KEY_IS_SIGN_INN = "isSignInn";
     public static final String KEY_USER_ID = "userID";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_FCM_TOKEN = "fcmToken";
@@ -32,6 +31,10 @@ public class Constants {
     public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
     public static final String REMOTE_MSG_DATA = "data";
     public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
+
+    public static final String KEY_COLLECTION_FRIENDS = "friends";
+    public static final String KEY_COLLECTION_WAIT_FRIENDS = "wait_friends";
+    public static final String KEY_COLLECTION_REQUEST_FRIENDS = "request_friends";
 
     public static final String REMOTE_MSG_CALLING_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CALLING_CONTENT_TYPE = "Content-Type";

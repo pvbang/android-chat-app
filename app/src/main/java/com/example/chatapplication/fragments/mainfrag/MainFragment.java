@@ -90,6 +90,7 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             User user = new User();
             user.image = preferenceManager.getString(Constants.KEY_IMAGE);
             user.name = preferenceManager.getString(Constants.KEY_NAME);
+            user.email = preferenceManager.getString(Constants.KEY_EMAIL);
 
             Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);

@@ -46,7 +46,7 @@ public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchVi
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
-        if (usersList.get(position).getName().equals("##################################")) {
+        if (usersList.get(position).id.equals("###########!!~~")) {
             holder.setText();
         } else {
             holder.setSearchData(usersList.get(position));
@@ -99,10 +99,13 @@ public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchVi
         }
 
         void setSearchData(User user) {
+            binding.textName.setVisibility(View.VISIBLE);
+            binding.imageProfile.setVisibility(View.VISIBLE);
+            binding.textSuggested.setVisibility(View.GONE);
+
             binding.textName.setText(user.name);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
-
         }
 
         void setText() {

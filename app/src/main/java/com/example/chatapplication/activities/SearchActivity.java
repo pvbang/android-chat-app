@@ -124,11 +124,11 @@ public class SearchActivity extends AppCompatActivity implements UserListener, S
                 List<User> usersList = new ArrayList<>();
 
                 User userr = new User();
-                userr.name = "##################################";
-                userr.email = "##################################";
-                userr.image = "##################################";
-                userr.token = "##################################";
-                userr.id = "##################################";
+                userr.name = "###########!!~~";
+                userr.email = "###########!!~~";
+                userr.image = "###########!!~~";
+                userr.token = "###########!!~~";
+                userr.id = "###########!!~~";
                 usersList.add(userr);
 
                 for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {

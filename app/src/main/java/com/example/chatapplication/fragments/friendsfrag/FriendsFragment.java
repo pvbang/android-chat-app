@@ -65,6 +65,9 @@ public class FriendsFragment extends Fragment {
             if (position == 1) {
                 tab.setText("Nhóm");
             }
+            if (position == 2) {
+                tab.setText("Lời mời");
+            }
         }).attach();
     }
 

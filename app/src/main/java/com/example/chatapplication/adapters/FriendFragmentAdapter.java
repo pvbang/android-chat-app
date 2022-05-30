@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.chatapplication.fragments.friendsfrag.FirstFriendsFragment;
 import com.example.chatapplication.fragments.friendsfrag.FriendsFragment;
 import com.example.chatapplication.fragments.friendsfrag.GroupFriendsFragment;
+import com.example.chatapplication.fragments.friendsfrag.RequestFriendsFragment;
 
 public class FriendFragmentAdapter extends FragmentStateAdapter {
 
@@ -22,12 +23,14 @@ public class FriendFragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         if (position == 1) {
             return new GroupFriendsFragment();
+        } if (position == 2) {
+            return new RequestFriendsFragment();
         }
         return new FirstFriendsFragment();
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.example.chatapplication.R;
 import com.example.chatapplication.adapters.ChatAdapter;
 import com.example.chatapplication.databinding.ActivityChatBinding;
 import com.example.chatapplication.models.ChatMessage;
@@ -35,6 +36,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
@@ -384,37 +386,35 @@ public class ChatActivity extends BaseActivity {
         });
 
         binding.imageInfo.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            startActivity(intent);
+            intentInfoChatActivity();
         });
 
         binding.imageProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            startActivity(intent);
+            intentInfoChatActivity();
         });
 
         binding.textName.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            startActivity(intent);
+            intentInfoChatActivity();
         });
 
         binding.textAvailablility.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
-            startActivity(intent);
+            intentInfoChatActivity();
         });
 
         binding.imageVoice.setOnClickListener(v -> {
             speak(v);
         });
 
+    }
+
+    private void intentInfoChatActivity() {
+        Intent intent = new Intent(getApplicationContext(), InfoChatActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("user", (User) getIntent().getSerializableExtra(Constants.KEY_USER));
+        intent.putExtra("myID", preferenceManager.getString(Constants.KEY_USER_ID));
+        intent.putExtra("myName", preferenceManager.getString(Constants.KEY_NAME));
+        intent.putExtra("myImage", preferenceManager.getString(Constants.KEY_IMAGE));
+        startActivity(intent);
     }
 
     private void speak(View v) {
