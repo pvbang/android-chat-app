@@ -142,18 +142,21 @@
         android:background="@drawable/background_button"
         android:text="Nhắn tin"/>
 
+
+
+
     <Button
-        android:id="@+id/btn_message_friend"
+        android:id="@+id/btn_message_delete_add"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_33sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:paddingStart="@dimen/_30sdp"
         android:paddingEnd="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_30sdp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete_add"
         android:textSize="@dimen/_9sdp"
         android:background="@drawable/background_button"
         android:text="Nhắn tin"/>
@@ -169,10 +172,82 @@
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_message"
+        app:layout_constraintStart_toEndOf="@id/btn_message_delete_add"
         android:textSize="@dimen/_9sdp"
-        android:textColor="@color/color_main_text"
-        android:background="@drawable/background_button_outside"
+        android:textColor="@color/color_main"
+        android:background="@drawable/background_button_sign_transparent"
         android:text="Hủy kết bạn"/>
+
+
+
+    <Button
+        android:id="@+id/btn_message_delete_request"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete_request"
+        android:textSize="@dimen/_9sdp"
+        android:background="@drawable/background_button"
+        android:text="Nhắn tin"/>
+
+    <Button
+        android:id="@+id/btn_delete_request"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingStart="@dimen/_24sdp"
+        android:paddingEnd="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_message_delete_request"
+        android:textSize="@dimen/_9sdp"
+        android:textColor="@color/color_main"
+        android:background="@drawable/background_button_sign_transparent"
+        android:text="Hủy lời mời"/>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn_message_accept_request"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_accept_request"
+        android:textSize="@dimen/_9sdp"
+        android:background="@drawable/background_button"
+        android:text="Nhắn tin"/>
+
+    <Button
+        android:id="@+id/btn_accept_request"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingStart="@dimen/_24sdp"
+        android:paddingEnd="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_message_accept_request"
+        android:textSize="@dimen/_9sdp"
+        android:textColor="@color/color_main"
+        android:background="@drawable/background_button_sign_transparent"
+        android:text="Chấp nhận lời mời"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

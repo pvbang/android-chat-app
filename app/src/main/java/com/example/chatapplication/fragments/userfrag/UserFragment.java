@@ -65,6 +65,9 @@ public class UserFragment extends Fragment {
             Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);
             intent.putExtra("you", "1");
+            intent.putExtra("myID", "myID");
+            intent.putExtra("myName", "myName");
+            intent.putExtra("myImage", "myImage");
             startActivity(intent);
         });
     }
