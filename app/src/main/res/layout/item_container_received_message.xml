@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_8sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:padding="@dimen/_4sdp">
+    android:paddingBottom="@dimen/_3sdp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageProfile"

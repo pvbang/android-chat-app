@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.activities.SearchActivity;
 import com.example.chatapplication.adapters.FriendFragmentAdapter;
@@ -22,6 +23,8 @@ import com.example.chatapplication.databinding.FragmentFriendsBinding;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class FriendsFragment extends Fragment {
 
@@ -67,6 +70,20 @@ public class FriendsFragment extends Fragment {
             }
             if (position == 2) {
                 tab.setText("Lời mời");
+                FirebaseFirestore database = FirebaseFirestore.getInstance();
+                database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID)).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).get().addOnCompleteListener(task1 -> {
+                    int countRequests = 0;
+                    if (task1.isSuccessful() && !task1.getResult().isEmpty()) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : task1.getResult()) {
+                            countRequests++;
+                        }
+                        if (countRequests != 0) {
+                            tab.getOrCreateBadge().setNumber(countRequests);
+                        }
+                    } else {
+                        tab.removeBadge();
+                    }
+                });
             }
         }).attach();
     }

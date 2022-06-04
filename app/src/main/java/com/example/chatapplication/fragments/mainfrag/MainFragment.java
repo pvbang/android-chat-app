@@ -34,6 +34,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -76,6 +77,7 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         getToken();
         listenConversations();
         setListener();
+//        getFriendStatus();
     }
 
     private void init() {
@@ -95,6 +97,9 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
             intent.putExtra("user", user);
             intent.putExtra("you", "1");
+            intent.putExtra("myID", "myID");
+            intent.putExtra("myName", "myName");
+            intent.putExtra("myImage", "myImage");
             startActivity(intent);
         });
 
@@ -107,6 +112,10 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             Intent intent = new Intent(getActivity().getApplicationContext(), SearchActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(binding.getRoot().getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     private void loadUserDetails() {

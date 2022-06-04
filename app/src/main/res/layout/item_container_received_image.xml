@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_8sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_4sdp">
+    android:paddingBottom="@dimen/_3sdp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageProfile"
@@ -18,7 +18,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cartImage"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/_220sdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginLeft="@dimen/_8sdp"
@@ -34,7 +34,6 @@
             android:layout_height="match_parent"
             android:src="@drawable/splash_logo"
             android:background="@drawable/background_image_chat"
-            app:layout_constraintWidth_max="wrap"
             android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>

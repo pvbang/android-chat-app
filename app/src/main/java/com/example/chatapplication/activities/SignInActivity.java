@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private ActivitySignInBinding binding;
     private PreferenceManager preferenceManager;
+    private int seePass = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,17 @@ public class SignInActivity extends AppCompatActivity {
                 signIn();
             }
         });
+
+        binding.seePassword.setOnClickListener(v -> {
+            if (seePass == 0) {
+                binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                seePass = 1;
+            } else {
+                binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                seePass = 0;
+            }
+        });
+
     }
 
     private void signIn() {
@@ -60,6 +74,7 @@ public class SignInActivity extends AppCompatActivity {
                        preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                        preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                        preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
+                       preferenceManager.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
 
                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

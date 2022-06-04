@@ -83,11 +83,13 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
 
             binding.imageProfile.setImageBitmap(getConversionImage(chatMessage.conversionImage));
             binding.textName.setText(chatMessage.conversionName);
-            binding.textRecentMessage.setText(chatMessage.messafe +" · "+ getReadableDateTime(chatMessage.dateObject));
+            binding.textRecentMessage.setText(chatMessage.messafe);
+            binding.textDateTime.setText(" · " +getReadableDateTime(chatMessage.dateObject));
 
             if (chatMessage.read != null) {
                 binding.textName.setTypeface(null, Typeface.BOLD);
                 binding.textRecentMessage.setTextColor(Color.rgb(40,167,241));
+                binding.textDateTime.setTextColor(Color.rgb(40,167,241));
             }
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(chatMessage.conversionId).addSnapshotListener((value, error) -> {

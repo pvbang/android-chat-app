@@ -50,20 +50,41 @@
             android:textColor="@color/color_main"
             android:textSize="@dimen/_13ssp"/>
 
-        <EditText
-            android:id="@+id/inputPassword"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:hint="Mật khẩu"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingEnd="@dimen/_16sdp"
-            android:paddingStart="@dimen/_16sdp"
-            android:textColor="@color/color_main"
-            android:textSize="@dimen/_13ssp"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/background_input"
+                android:hint="Mật khẩu"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:paddingEnd="@dimen/_16sdp"
+                android:paddingStart="@dimen/_16sdp"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/seePassword"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_eye"
+                android:tint="@color/color_main"
+                app:layout_constraintTop_toTopOf="@id/inputPassword"
+                app:layout_constraintBottom_toBottomOf="@id/inputPassword"
+                app:layout_constraintEnd_toEndOf="@id/inputPassword"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <FrameLayout
             android:id="@+id/layoutImage"

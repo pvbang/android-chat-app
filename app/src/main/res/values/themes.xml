@@ -3,5 +3,11 @@
         <item name="colorPrimary">@color/color_main</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/color_main</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="badgeStyle">@style/CustomBadge</item>
     </style>
+
+    <style name="CustomBadge" parent="@style/Widget.MaterialComponents.Badge">
+        <item name="backgroundColor">@color/color_main</item>
+    </style>
+
 </resources>

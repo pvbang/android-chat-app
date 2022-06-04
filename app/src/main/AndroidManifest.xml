@@ -11,14 +11,19 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApplication">
-
-        <activity android:name=".activities.SearchActivity" android:exported="true" >
+        <activity
+            android:name=".activities.ChangeInfoUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".activities.InfoChatActivity"
@@ -54,8 +59,7 @@
             android:name=".activities.SignInActivity"
             android:exported="false"
             android:theme="@style/Themesplash.ChatApplication"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"
@@ -63,6 +67,7 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

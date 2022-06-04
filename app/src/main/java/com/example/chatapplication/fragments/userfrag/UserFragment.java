@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.chatapplication.activities.ChangeInfoUserActivity;
 import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.activities.SignInActivity;
 import com.example.chatapplication.databinding.FragmentUserBinding;
@@ -70,6 +71,12 @@ public class UserFragment extends Fragment {
             intent.putExtra("myImage", "myImage");
             startActivity(intent);
         });
+
+        binding.changeInfoUser.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), ChangeInfoUserActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+        });
     }
 
     private void loadUserDetails() {
@@ -93,10 +100,11 @@ public class UserFragment extends Fragment {
         HashMap<String, Object> updates = new HashMap<>();
         updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
         documentReference.update(updates).addOnSuccessListener(unused -> {
+
             preferenceManager.clear();
             startActivity(new Intent(getActivity().getApplicationContext(), SignInActivity.class));
             getActivity().finish();
-        }).addOnFailureListener(e -> showToast("Không thể đăng xuất"));
+        }).addOnFailureListener(e -> showToast("Đăng xuất thất bại, hãy xóa dữ liệu ứng dụng và thử lại!"));
     }
 
 }

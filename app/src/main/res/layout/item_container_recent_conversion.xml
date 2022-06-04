@@ -43,6 +43,7 @@
         android:layout_marginEnd="@dimen/_12sdp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="Tên nè"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
@@ -54,13 +55,29 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="oke luon ne oke luon ne oke luon ne oke luon ne"
+        app:layout_constraintWidth_max="@dimen/_180sdp"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        />
+
+    <TextView
+        android:id="@+id/textDateTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text=". 17:23"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
+        app:layout_constraintStart_toEndOf="@id/textRecentMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

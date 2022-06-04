@@ -118,8 +118,8 @@
         android:textStyle="bold"
         android:text="Tên người nhận"
         android:layout_marginLeft="@dimen/_7sdp"
+        app:layout_constraintWidth_max="@dimen/_110sdp"
         app:layout_constraintBottom_toTopOf="@id/textAvailablility"
-        app:layout_constraintEnd_toStartOf="@+id/textAvailablilitye"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
         app:layout_constraintTop_toTopOf="@id/imageBack"
         />
@@ -143,6 +143,8 @@
         android:background="@color/color_main"
         android:layout_marginTop="@dimen/_5ssp"
         app:layout_constraintTop_toBottomOf="@id/imageBack"/>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
@@ -225,18 +227,6 @@
     </EditText>
 
     <ImageView
-        android:id="@+id/textAvailablilitye"
-        android:layout_width="@dimen/_7sdp"
-        android:layout_height="@dimen/_7sdp"
-        android:src="@drawable/ic_active"
-        android:visibility="gone"
-        android:layout_margin="@dimen/_7sdp"
-        app:layout_constraintBottom_toBottomOf="@id/textName"
-        app:layout_constraintStart_toEndOf="@id/textName"
-        app:layout_constraintTop_toTopOf="@id/textName"
-        />
-
-    <ImageView
         android:id="@+id/imageVoice"
         android:layout_width="@dimen/_21sdp"
         android:layout_height="@dimen/_21sdp"
@@ -246,5 +236,63 @@
         app:layout_constraintTop_toTopOf="@id/inputMessage"
         app:layout_constraintBottom_toBottomOf="@id/inputMessage"
         app:tint="@color/color_main" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBackgroundFriendStatus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:visibility="gone"
+        android:background="#1D000000"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/friend_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kết bạn"
+        android:textColor="@color/color_main"
+        android:textSize="@dimen/_12sdp"
+        android:drawableLeft="@drawable/ic_add_user"
+        android:drawableTint="@color/color_main"
+        android:visibility="gone"
+        android:drawablePadding="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintBottom_toBottomOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/friend_wait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đã gửi lời mời kết bạn"
+        android:textColor="@color/color_main"
+        android:textSize="@dimen/_12sdp"
+        android:visibility="gone"
+        android:drawableLeft="@drawable/ic_add_user"
+        android:drawableTint="@color/color_main"
+        android:drawablePadding="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintBottom_toBottomOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/friend_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đang chờ bạn chấp nhận lời mời"
+        android:textColor="@color/color_main"
+        android:textSize="@dimen/_12sdp"
+        android:visibility="gone"
+        android:drawableLeft="@drawable/ic_add_user"
+        android:drawableTint="@color/color_main"
+        android:drawablePadding="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintBottom_toBottomOf="@id/imageBackgroundFriendStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

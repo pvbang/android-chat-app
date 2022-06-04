@@ -39,63 +39,87 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:padding="@dimen/_10ssp"
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageSignOut">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/userProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:paddingLeft="@dimen/_7sdp"
-            android:paddingTop="@dimen/_3sdp">
+            android:paddingLeft="@dimen/_17sdp"
+            android:paddingTop="@dimen/_13sdp">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/background_image"
-                android:scaleType="centerCrop"
-                app:layout_constraintStart_toStartOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/userProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_oval="true"/>
+                app:layout_constraintStart_toStartOf="parent">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/background_image"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_oval="true"/>
 
-            <View
-                android:id="@+id/viewSupporter"
-                android:layout_width="1dp"
-                android:layout_height="1dp"
-                app:layout_constraintBottom_toBottomOf="@id/imageProfile"
-                app:layout_constraintStart_toEndOf="@id/imageProfile"
-                app:layout_constraintTop_toTopOf="@id/imageProfile"/>
+                <View
+                    android:id="@+id/viewSupporter"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+                    app:layout_constraintStart_toEndOf="@id/imageProfile"
+                    app:layout_constraintTop_toTopOf="@id/imageProfile"/>
+
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toTopOf="@id/viewSupporter"
+                    app:layout_constraintStart_toEndOf="@id/imageProfile"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Xem trang cá nhân"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintTop_toBottomOf="@id/viewSupporter"
+                    app:layout_constraintStart_toEndOf="@id/imageProfile"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
-                android:id="@+id/textName"
+                android:id="@+id/change_info_user"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toTopOf="@id/viewSupporter"
-                app:layout_constraintStart_toEndOf="@id/imageProfile"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Xem trang cá nhân"
-                android:textColor="@color/secondary_text"
+                android:text="Chỉnh sửa thông tin cá nhân"
+                android:textColor="@color/color_main"
                 android:textSize="@dimen/_11ssp"
-                app:layout_constraintTop_toBottomOf="@id/viewSupporter"
-                app:layout_constraintStart_toEndOf="@id/imageProfile"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:drawableLeft="@drawable/ic_change_info_user"
+                android:drawableTint="@color/color_main"
+                android:drawablePadding="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/userProfile"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

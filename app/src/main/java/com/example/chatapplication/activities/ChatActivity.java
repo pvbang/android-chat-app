@@ -85,6 +85,76 @@ public class ChatActivity extends BaseActivity {
         loadReceivedDetails();
         init();
         listenMessages();
+        getFriendStatus();
+    }
+
+    private void getFriendStatus() {
+        User user = (User) getIntent().getSerializableExtra(Constants.KEY_USER);
+        String myID = preferenceManager.getString(Constants.KEY_USER_ID);
+        String myName = preferenceManager.getString(Constants.KEY_NAME);
+        String myImage = preferenceManager.getString(Constants.KEY_IMAGE);
+
+        database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task1 -> {
+            if (task1.isSuccessful() && !task1.getResult().isEmpty()) {
+                binding.imageBackgroundFriendStatus.setVisibility(View.GONE);
+                binding.friendAdd.setVisibility(View.GONE);
+                binding.friendRequest.setVisibility(View.GONE);
+                binding.friendWait.setVisibility(View.GONE);
+            } else {
+                database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task2 -> {
+                    if (task2.isSuccessful() && !task2.getResult().isEmpty()) {
+                        binding.imageBackgroundFriendStatus.setVisibility(View.VISIBLE);
+                        binding.friendAdd.setVisibility(View.GONE);
+                        binding.friendRequest.setVisibility(View.GONE);
+                        binding.friendWait.setVisibility(View.VISIBLE);
+                    } else {
+                        database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task3 -> {
+                            if (task3.isSuccessful() && !task3.getResult().isEmpty()) {
+                                binding.imageBackgroundFriendStatus.setVisibility(View.VISIBLE);
+                                binding.friendRequest.setVisibility(View.VISIBLE);
+                                binding.friendAdd.setVisibility(View.GONE);
+                                binding.friendWait.setVisibility(View.GONE);
+                            } else {
+                                binding.imageBackgroundFriendStatus.setVisibility(View.VISIBLE);
+                                binding.friendAdd.setVisibility(View.VISIBLE);
+                                binding.friendWait.setVisibility(View.GONE);
+                                binding.friendRequest.setVisibility(View.GONE);
+
+                                binding.friendAdd.setOnClickListener(v -> {
+                                    HashMap<String, Object> userFriend = new HashMap<>();
+                                    userFriend.put(Constants.KEY_USER_ID, user.id);
+                                    userFriend.put(Constants.KEY_NAME, user.name);
+                                    userFriend.put(Constants.KEY_IMAGE, user.image);
+
+                                    database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).add(userFriend).addOnSuccessListener(documentReference -> {
+
+                                    }).addOnFailureListener(exception -> {
+                                        showToast(exception.getMessage());
+                                    });
+
+                                    HashMap<String, Object> myUser = new HashMap<>();
+                                    myUser.put(Constants.KEY_USER_ID, myID);
+                                    myUser.put(Constants.KEY_NAME, myName);
+                                    myUser.put(Constants.KEY_IMAGE, myImage);
+
+                                    database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {
+                                        showToast("Đã gửi lời mời kết bạn đến " +user.name);
+                                    }).addOnFailureListener(exception -> {
+                                        showToast(exception.getMessage());
+                                    });
+
+                                    binding.imageBackgroundFriendStatus.setVisibility(View.VISIBLE);
+                                    binding.friendAdd.setVisibility(View.GONE);
+                                    binding.friendRequest.setVisibility(View.GONE);
+                                    binding.friendWait.setVisibility(View.VISIBLE);
+
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     private void init() {
@@ -221,7 +291,7 @@ public class ChatActivity extends BaseActivity {
     );
 
     private String encodeImage(Bitmap bitmap) {
-        int previewWidth = 700;
+        int previewWidth = 1000;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitMap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

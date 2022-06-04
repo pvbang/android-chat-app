@@ -31,12 +31,15 @@ public class ProfileActivity extends AppCompatActivity {
     private User user;
     private String myID, myName, myImage;
     private FirebaseFirestore database;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        preferenceManager = new PreferenceManager(getApplicationContext());
 
         database = FirebaseFirestore.getInstance();
 
@@ -177,6 +180,12 @@ public class ProfileActivity extends AppCompatActivity {
             }).addOnFailureListener(exception -> {
                 showToast(exception.getMessage());
             });
+
+//            if (!preferenceManager.getString(Constants.NUMBLE_NOTIFICATION_REQUEST).isEmpty()) {
+//                int number = Integer.parseInt(preferenceManager.getString(Constants.NUMBLE_NOTIFICATION_REQUEST));
+//                number++;
+//                preferenceManager.putString(Constants.NUMBLE_NOTIFICATION_REQUEST, ""+ number);
+//            }
 
             binding.btnAdd.setVisibility(View.GONE);
             binding.btnMessage.setVisibility(View.GONE);
@@ -340,8 +349,31 @@ public class ProfileActivity extends AppCompatActivity {
 
                 binding.btnDeleteAdd.setVisibility(View.GONE);
                 binding.btnMessageDeleteAdd.setVisibility(View.GONE);
+
+                database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID)).get().addOnSuccessListener(documentReference -> {
+                    binding.imageBackground.setImageBitmap(getBitmapFromEncodedString(documentReference.getString(Constants.KEY_IMAGE_BACKGROUND)));
+                    binding.introduceYourself.setText(documentReference.getString(Constants.KEY_INTRODUCE_YOURSEFT));
+
+                }).addOnFailureListener(exception -> {
+                    showToast(exception.getMessage());
+                });
+            } else {
+                database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).get().addOnSuccessListener(documentReference -> {
+                    binding.imageBackground.setImageBitmap(getBitmapFromEncodedString(documentReference.getString(Constants.KEY_IMAGE_BACKGROUND)));
+                    binding.introduceYourself.setText(documentReference.getString(Constants.KEY_INTRODUCE_YOURSEFT));
+                }).addOnFailureListener(exception -> {
+                    showToast(exception.getMessage());
+                });
             }
+        } else {
+            database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).get().addOnSuccessListener(documentReference -> {
+                binding.imageBackground.setImageBitmap(getBitmapFromEncodedString(documentReference.getString(Constants.KEY_IMAGE_BACKGROUND)));
+                binding.introduceYourself.setText(documentReference.getString(Constants.KEY_INTRODUCE_YOURSEFT));
+            }).addOnFailureListener(exception -> {
+                showToast(exception.getMessage());
+            });
         }
+
     }
 
     private void setStatusBarColor() {
