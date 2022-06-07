@@ -27,6 +27,7 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="support_text">#EAEAEA</color>
+    <color name="hoi_trang_text">#CCCCCC</color>
     <color name="input_background">#F4F4F4</color>
     <color name="icon_background">#F4F4F4</color>
     <color name="error">#B00020</color>

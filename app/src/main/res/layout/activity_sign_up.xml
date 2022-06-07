@@ -173,6 +173,9 @@
                 android:id="@+id/progressBar"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/color_main"
                 android:layout_gravity="center"
                 android:visibility="invisible"/>
         </FrameLayout>

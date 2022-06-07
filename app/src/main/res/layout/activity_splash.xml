@@ -10,7 +10,7 @@
         android:id="@+id/img_splash"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/_46sdp"
+        android:paddingBottom="@dimen/_50sdp"
         android:paddingRight="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

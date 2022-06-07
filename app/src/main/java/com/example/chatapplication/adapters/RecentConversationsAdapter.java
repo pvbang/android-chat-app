@@ -1,5 +1,7 @@
 package com.example.chatapplication.adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -29,11 +31,13 @@ import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -96,7 +100,6 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
                 if (value != null) {
                     if (value.getLong(Constants.KEY_AVAILABLILITY) != null) {
                         int availability = Objects.requireNonNull(value.getLong(Constants.KEY_AVAILABLILITY)).intValue();
-
                         if (availability == 0) {
                             binding.imageOnline.setVisibility(View.GONE);
                         } else {
@@ -107,18 +110,32 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
             });
 
             binding.getRoot().setOnClickListener(v -> {
-                User user = new User();
-                user.id = chatMessage.conversionId;
-                user.name = chatMessage.conversionName;
-                user.image = chatMessage.conversionImage;
-
                 if (chatMessage.conversations != null) {
                     updateConversion(chatMessage.conversations);
                 }
-
-                conversionListener.onConversionClicked(user);
+                database.collection(Constants.KEY_COLLECTION_USERS).document(chatMessage.conversionId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                setValueEmail(document.getString(Constants.KEY_EMAIL), chatMessage);
+                            } else {}
+                        } else {}
+                    }
+                });
             });
         }
+    }
+
+    private void setValueEmail(String email, ChatMessage chatMessage) {
+        User user = new User();
+        user.id = chatMessage.conversionId;
+        user.name = chatMessage.conversionName;
+        user.image = chatMessage.conversionImage;
+        user.email = email;
+
+        conversionListener.onConversionClicked(user);
     }
 
     private String getReadableDateTime(Date date) {

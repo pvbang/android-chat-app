@@ -1,5 +1,7 @@
 package com.example.chatapplication.activities;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +12,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,6 +34,7 @@ import com.example.chatapplication.network.ApiService;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -93,6 +97,7 @@ public class ChatActivity extends BaseActivity {
         String myID = preferenceManager.getString(Constants.KEY_USER_ID);
         String myName = preferenceManager.getString(Constants.KEY_NAME);
         String myImage = preferenceManager.getString(Constants.KEY_IMAGE);
+        String myEmail = preferenceManager.getString(Constants.KEY_EMAIL);
 
         database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task1 -> {
             if (task1.isSuccessful() && !task1.getResult().isEmpty()) {
@@ -125,6 +130,7 @@ public class ChatActivity extends BaseActivity {
                                     userFriend.put(Constants.KEY_USER_ID, user.id);
                                     userFriend.put(Constants.KEY_NAME, user.name);
                                     userFriend.put(Constants.KEY_IMAGE, user.image);
+                                    userFriend.put(Constants.KEY_EMAIL, user.email);
 
                                     database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).add(userFriend).addOnSuccessListener(documentReference -> {
 
@@ -136,6 +142,7 @@ public class ChatActivity extends BaseActivity {
                                     myUser.put(Constants.KEY_USER_ID, myID);
                                     myUser.put(Constants.KEY_NAME, myName);
                                     myUser.put(Constants.KEY_IMAGE, myImage);
+                                    myUser.put(Constants.KEY_EMAIL, myEmail);
 
                                     database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {
                                         showToast("Đã gửi lời mời kết bạn đến " +user.name);
@@ -424,12 +431,8 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void setListeners() {
-        binding.imageBack.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
-        });
+        binding.imageBack.setOnClickListener(v -> onBackPressed());
+
         binding.layoutSend.setOnClickListener(v -> {
             if (!binding.inputMessage.getText().toString().isEmpty()) {
                 sendMessage();

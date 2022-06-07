@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ActivityProfileBinding binding;
     private User user;
-    private String myID, myName, myImage;
+    private String myID, myName, myImage, myEmail;
     private FirebaseFirestore database;
     private PreferenceManager preferenceManager;
 
@@ -47,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         myID = getIntent().getStringExtra("myID");
         myName = getIntent().getStringExtra("myName");
         myImage = getIntent().getStringExtra("myImage");
+        myEmail = preferenceManager.getString(Constants.KEY_EMAIL);
 
         getFriendStatus();
 
@@ -118,6 +119,7 @@ public class ProfileActivity extends AppCompatActivity {
             userFriend.put(Constants.KEY_USER_ID, user.id);
             userFriend.put(Constants.KEY_NAME, user.name);
             userFriend.put(Constants.KEY_IMAGE, user.image);
+            userFriend.put(Constants.KEY_EMAIL, user.email);
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).add(userFriend).addOnSuccessListener(documentReference -> {
 
@@ -129,6 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
             myUser.put(Constants.KEY_USER_ID, myID);
             myUser.put(Constants.KEY_NAME, myName);
             myUser.put(Constants.KEY_IMAGE, myImage);
+            myUser.put(Constants.KEY_EMAIL, myEmail);
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {
                 showToast("Đã gửi lời mời kết bạn đến " +user.name);
@@ -157,6 +160,7 @@ public class ProfileActivity extends AppCompatActivity {
             userFriend.put(Constants.KEY_USER_ID, user.id);
             userFriend.put(Constants.KEY_NAME, user.name);
             userFriend.put(Constants.KEY_IMAGE, user.image);
+            userFriend.put(Constants.KEY_EMAIL, user.email);
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult() != null) {
@@ -169,7 +173,7 @@ public class ProfileActivity extends AppCompatActivity {
             database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, myID).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult() != null) {
                     for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                        hashMyUser(user.id, queryDocumentSnapshot.getString(Constants.KEY_NAME), queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
+                        hashMyUser(user.id, queryDocumentSnapshot.getString(Constants.KEY_NAME), queryDocumentSnapshot.getString(Constants.KEY_IMAGE), queryDocumentSnapshot.getString(Constants.KEY_EMAIL));
                         deleteWait(user.id, queryDocumentSnapshot.getId());
                     }
                 }
@@ -209,6 +213,7 @@ public class ProfileActivity extends AppCompatActivity {
             userFriend.put(Constants.KEY_USER_ID, user.id);
             userFriend.put(Constants.KEY_NAME, user.name);
             userFriend.put(Constants.KEY_IMAGE, user.image);
+            userFriend.put(Constants.KEY_EMAIL, user.email);
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult() != null) {
@@ -249,6 +254,7 @@ public class ProfileActivity extends AppCompatActivity {
             userFriend.put(Constants.KEY_USER_ID, user.id);
             userFriend.put(Constants.KEY_NAME, user.name);
             userFriend.put(Constants.KEY_IMAGE, user.image);
+            userFriend.put(Constants.KEY_EMAIL, user.email);
 
             database.collection(Constants.KEY_COLLECTION_USERS).document(myID).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult() != null) {
@@ -314,11 +320,12 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void hashMyUser(String id, String name, String imgage) {
+    private void hashMyUser(String id, String name, String imgag, String email) {
         HashMap<String, Object> myUser = new HashMap<>();
         myUser.put(Constants.KEY_USER_ID, myID);
         myUser.put(Constants.KEY_NAME, name);
-        myUser.put(Constants.KEY_IMAGE, imgage);
+        myUser.put(Constants.KEY_IMAGE, imgag);
+        myUser.put(Constants.KEY_EMAIL, email);
 
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS).document(id).collection(Constants.KEY_COLLECTION_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {

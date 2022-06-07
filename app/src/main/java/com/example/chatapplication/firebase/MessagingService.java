@@ -35,6 +35,8 @@ public class MessagingService extends FirebaseMessagingService {
         User user = new User();
         user.id = message.getData().get(Constants.KEY_USER_ID);
         user.name = message.getData().get(Constants.KEY_NAME);
+        user.email = message.getData().get(Constants.KEY_EMAIL);
+        user.image = message.getData().get(Constants.KEY_IMAGE);
         user.token = message.getData().get(Constants.KEY_FCM_TOKEN);
 
         // calling

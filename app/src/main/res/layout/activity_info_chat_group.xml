@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.InfoChatGroupActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBack"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/ic_back"
+        android:tint="@color/color_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageMore"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_6ssp"
+        android:padding="@dimen/_5sdp"
+        app:showAsAction="always"
+        android:src="@drawable/ic_more"
+        android:tint="@color/color_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageBackground2"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="100dp">
+    </androidx.cardview.widget.CardView>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile2"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@drawable/background_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_logo_round"
+        app:layout_constraintEnd_toEndOf="@id/imageBackground2"
+        app:layout_constraintTop_toTopOf="@id/imageBackground2"
+        app:riv_oval="true"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfileBackground"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_75sdp"
+        android:background="@drawable/background_image_white"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/imageBackground2"
+        app:layout_constraintBottom_toBottomOf="@id/imageBackground2"
+        app:riv_oval="true"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile1"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@drawable/background_image"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_logo"
+        app:layout_constraintStart_toStartOf="@id/imageProfileBackground"
+        app:layout_constraintEnd_toEndOf="@id/imageProfileBackground"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfileBackground"
+        app:layout_constraintTop_toTopOf="@id/imageProfileBackground"
+        app:riv_oval="true"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageBackground2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black_secondary"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        android:text="Tên nhóm"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallAudio"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_6sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_phone"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toStartOf="@+id/imageCallVideo"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageCallVideo"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_videocam"
+        android:tint="@color/color_main"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageAddMember"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/background_image"
+        android:src="@drawable/ic_add_user"
+        android:tint="@color/color_main"
+        app:layout_constraintStart_toEndOf="@id/imageCallVideo"
+        app:layout_constraintTop_toBottomOf="@id/name" />
+
+    <TextView
+        android:id="@+id/textCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageCallAudio"
+        app:layout_constraintStart_toStartOf="@id/imageCallAudio"
+        app:layout_constraintEnd_toEndOf="@id/imageCallAudio"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Gọi thoại"/>
+
+    <TextView
+        android:id="@+id/textVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageCallVideo"
+        app:layout_constraintStart_toStartOf="@id/imageCallVideo"
+        app:layout_constraintEnd_toEndOf="@id/imageCallVideo"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Gọi video"/>
+
+    <TextView
+        android:id="@+id/textProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintTop_toBottomOf="@id/imageAddMember"
+        app:layout_constraintStart_toStartOf="@id/imageAddMember"
+        app:layout_constraintEnd_toEndOf="@id/imageAddMember"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_10sdp"
+        android:text="Thêm thành viên"/>
+
+
+
+    <TextView
+        android:id="@+id/change_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đổi tên nhóm"
+        android:textColor="@color/black_secondary"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:drawableLeft="@drawable/ic_change"
+        android:drawablePadding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp"
+        android:drawableTint="@color/color_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCall"/>
+
+    <TextView
+        android:id="@+id/see_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xem thành viên nhóm"
+        android:textColor="@color/black_secondary"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:drawableLeft="@drawable/ic_groups"
+        android:drawablePadding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp"
+        android:drawableTint="@color/color_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/change_name"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

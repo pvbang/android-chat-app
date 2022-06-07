@@ -26,8 +26,24 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
+            android:name=".activities.GroupSearchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
             android:name=".activities.InfoChatActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".activities.InfoChatGroupActivity"
+            android:exported="false" />
+
         <activity
             android:name=".fragments.storyfrag.StoryPost"
             android:exported="false"
@@ -47,6 +63,12 @@
             android:name=".activities.ChatActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activities.ChatGroupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"

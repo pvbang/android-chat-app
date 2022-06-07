@@ -1,8 +1,11 @@
 package com.example.chatapplication.fragments.mainfrag;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,14 +15,19 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
+import com.example.chatapplication.activities.GroupSearchActivity;
 import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.activities.SearchActivity;
 import com.example.chatapplication.adapters.RecentConversationsAdapter;
@@ -31,9 +39,11 @@ import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -42,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class MainFragment extends Fragment implements ConversionListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -72,11 +83,11 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         binding.container.setColorSchemeColors(getResources().getColor(R.color.color_main));
         binding.container.setRefreshing(true);
 
-        init();
-        loadUserDetails();
-        getToken();
-        listenConversations();
-        setListener();
+//        init();
+//        loadUserDetails();
+//        getToken();
+//        listenConversations();
+//        setListener();
 //        getFriendStatus();
     }
 
@@ -109,9 +120,57 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         });
 
         binding.imageGroups.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity().getApplicationContext(), SearchActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity().getApplicationContext(), GroupSearchActivity.class);
+//            startActivity(intent);
+            showDialogCreateGroup();
         });
+    }
+
+    private void showDialogCreateGroup() {
+        Dialog dialog = new Dialog(binding.getRoot().getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_create_group);
+
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams w = window.getAttributes();
+        w.gravity = Gravity.CENTER;
+        window.setAttributes(w);
+
+        if (Gravity.BOTTOM == Gravity.CENTER) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+        Button no = dialog.findViewById(R.id.btn_no);
+        Button yes = dialog.findViewById(R.id.btn_yes);
+        EditText text = dialog.findViewById(R.id.text);
+
+        no.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        yes.setOnClickListener(v -> {
+            if (text.getText().toString().isEmpty()) {
+                showToast("Bạn chưa đặt tên cho nhóm chat!");
+            } else {
+                HashMap<String, Object> group = new HashMap<>();
+                group.put(Constants.KEY_GROUP_NAME, text.getText().toString());
+
+                database.collection(Constants.KEY_COLLECTION_GROUPS).add(group).addOnSuccessListener(documentReference -> {
+                    dialog.dismiss();
+
+                });
+            }
+        });
+
+        dialog.show();
     }
 
     private void showToast(String message) {
@@ -224,5 +283,15 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         loadUserDetails();
         getToken();
         listenConversations();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+        loadUserDetails();
+        getToken();
+        listenConversations();
+        setListener();
     }
 }

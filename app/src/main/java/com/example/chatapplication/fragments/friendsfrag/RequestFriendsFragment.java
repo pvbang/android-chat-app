@@ -83,19 +83,10 @@ public class RequestFriendsFragment extends Fragment implements UserListener, Sw
                     RequestAdapters requestAdapters = new RequestAdapters(usersList, this, currentUserId);
                     binding.usersRecyclerView.setAdapter(requestAdapters);
                     binding.usersRecyclerView.setVisibility(View.VISIBLE);
-                } else {
-                    showErrorMessage();
                 }
-            } else {
-                showErrorMessage();
             }
         });
 
-    }
-
-    private void showErrorMessage() {
-        binding.textErrorMessage.setText(String.format("%s", "Chưa có người dùng nào"));
-        binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
     @Override

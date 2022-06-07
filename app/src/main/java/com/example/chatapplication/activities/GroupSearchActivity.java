@@ -1,15 +1,5 @@
 package com.example.chatapplication.activities;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -17,16 +7,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Filter;
-import android.widget.Filterable;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.chatapplication.R;
-import com.example.chatapplication.adapters.SearchAdapters;
-import com.example.chatapplication.adapters.UserAdapters;
-import com.example.chatapplication.databinding.ActivityInfoChatBinding;
-import com.example.chatapplication.databinding.ActivitySearchBinding;
+import com.example.chatapplication.adapters.GroupSearchAdapters;
+import com.example.chatapplication.databinding.ActivityGroupSearchBinding;
 import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
@@ -37,23 +31,22 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
-public class SearchActivity extends AppCompatActivity implements UserListener, SwipeRefreshLayout.OnRefreshListener{
+public class GroupSearchActivity extends AppCompatActivity implements UserListener, SwipeRefreshLayout.OnRefreshListener{
 
-    private ActivitySearchBinding binding;
+    private ActivityGroupSearchBinding binding;
     PreferenceManager preferenceManager;
-    private SearchAdapters searchAdapters;
+    private GroupSearchAdapters searchAdapters;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        binding = ActivityGroupSearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-        getUsers();
+        getUsersGroup();
 
         setListener();
 
@@ -115,54 +108,6 @@ public class SearchActivity extends AppCompatActivity implements UserListener, S
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
     }
-
-    private void getUsers() {
-        binding.container.setRefreshing(true);
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_USERS).get().addOnCompleteListener(task -> {
-            binding.container.setRefreshing(false);
-            String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
-            if (task.isSuccessful() && task.getResult() != null) {
-                List<User> usersList = new ArrayList<>();
-
-                User userr = new User();
-                userr.name = "###########!!~~";
-                userr.email = "###########!!~~";
-                userr.image = "###########!!~~";
-                userr.token = "###########!!~~";
-                userr.id = "###########!!~~";
-                usersList.add(userr);
-
-                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                    if (currentUserId.equals(queryDocumentSnapshot.getId())) {
-                        continue;
-                    }
-                    User user = new User();
-                    user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
-                    user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-                    user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-                    user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                    user.id = queryDocumentSnapshot.getId();
-                    usersList.add(user);
-                }
-
-                if (usersList.size() > 0) {
-                    Collections.sort(usersList, (user, t1) -> user.getName().compareToIgnoreCase(t1.getName()));
-
-                    searchAdapters = new SearchAdapters(usersList, this);
-                    binding.searchRecyclerView.setAdapter(searchAdapters);
-                    binding.searchRecyclerView.setVisibility(View.VISIBLE);
-                } else {
-                    showErrorMessage();
-                }
-            } else {
-                showErrorMessage();
-            }
-        });
-
-    }
-
-
 
     private void getUsersGroup() {
         binding.container.setRefreshing(true);
@@ -234,7 +179,7 @@ public class SearchActivity extends AppCompatActivity implements UserListener, S
         if (friendsFinal.size() > 0) {
             Collections.sort(friendsFinal, (user, t1) -> user.getName().compareToIgnoreCase(t1.getName()));
 
-            searchAdapters = new SearchAdapters(friendsFinal, this);
+            searchAdapters = new GroupSearchAdapters(friendsFinal, this);
             binding.searchRecyclerView.setAdapter(searchAdapters);
             binding.searchRecyclerView.setVisibility(View.VISIBLE);
 
@@ -250,7 +195,7 @@ public class SearchActivity extends AppCompatActivity implements UserListener, S
 
     @Override
     public void onRefresh() {
-        getUsers();
+        getUsersGroup();
     }
 
     @Override

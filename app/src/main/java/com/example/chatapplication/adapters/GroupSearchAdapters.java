@@ -13,23 +13,21 @@ import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chatapplication.databinding.ActivityChatBinding;
-import com.example.chatapplication.databinding.ItemContainerUserBinding;
+import com.example.chatapplication.databinding.ItemContainerGroupSearchBinding;
 import com.example.chatapplication.databinding.ItemContainerUserSearchBinding;
 import com.example.chatapplication.listeners.UserListener;
 import com.example.chatapplication.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchViewHolder> implements Filterable {
+public class GroupSearchAdapters extends RecyclerView.Adapter<GroupSearchAdapters.SearchViewHolder> implements Filterable {
 
     private List<User> usersList;
     private List<User> usersListOld;
     private UserListener userListener;
 
-    public SearchAdapters(List<User> usersList, UserListener userListener) {
+    public GroupSearchAdapters(List<User> usersList, UserListener userListener) {
         this.usersList = usersList;
         this.usersListOld = usersList;
         this.userListener = userListener;
@@ -38,7 +36,7 @@ public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchVi
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemContainerUserSearchBinding itemContainerUserSearchBinding = ItemContainerUserSearchBinding.inflate(
+        ItemContainerGroupSearchBinding itemContainerUserSearchBinding = ItemContainerGroupSearchBinding.inflate(
             LayoutInflater.from(parent.getContext()), parent, false
         );
 
@@ -92,9 +90,9 @@ public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchVi
     }
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
-        ItemContainerUserSearchBinding binding;
+        ItemContainerGroupSearchBinding binding;
 
-        SearchViewHolder(ItemContainerUserSearchBinding itemContainerUserSearchBinding) {
+        SearchViewHolder(ItemContainerGroupSearchBinding itemContainerUserSearchBinding) {
             super(itemContainerUserSearchBinding.getRoot());
             binding = itemContainerUserSearchBinding;
         }
@@ -107,6 +105,8 @@ public class SearchAdapters extends RecyclerView.Adapter<SearchAdapters.SearchVi
             binding.textName.setText(user.name);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
+
+
         }
 
         void setText() {

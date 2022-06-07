@@ -1,8 +1,11 @@
 package com.example.chatapplication.fragments.userfrag;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Base64;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChangeInfoUserActivity;
 import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.activities.SignInActivity;
@@ -91,20 +99,69 @@ public class UserFragment extends Fragment {
     }
 
     private void signOut() {
-        showToast("Đăng xuất khỏi tài khoản...");
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
-                preferenceManager.getString(Constants.KEY_USER_ID)
-        );
+        Dialog dialog = new Dialog(binding.getRoot().getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_out_account);
 
-        HashMap<String, Object> updates = new HashMap<>();
-        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
-        documentReference.update(updates).addOnSuccessListener(unused -> {
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
 
-            preferenceManager.clear();
-            startActivity(new Intent(getActivity().getApplicationContext(), SignInActivity.class));
-            getActivity().finish();
-        }).addOnFailureListener(e -> showToast("Đăng xuất thất bại, hãy xóa dữ liệu ứng dụng và thử lại!"));
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams w = window.getAttributes();
+        w.gravity = Gravity.CENTER;
+        window.setAttributes(w);
+
+        if (Gravity.BOTTOM == Gravity.CENTER) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(false);
+        }
+
+        Button no = dialog.findViewById(R.id.btn_no);
+        Button yes = dialog.findViewById(R.id.btn_yes);
+
+        no.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        yes.setOnClickListener(v -> {
+            showToast("Đăng xuất khỏi tài khoản...");
+            FirebaseFirestore database = FirebaseFirestore.getInstance();
+            DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
+                    preferenceManager.getString(Constants.KEY_USER_ID)
+            );
+
+            HashMap<String, Object> updates = new HashMap<>();
+            updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+            documentReference.update(updates).addOnSuccessListener(unused -> {
+
+                preferenceManager.clear();
+                startActivity(new Intent(getActivity().getApplicationContext(), SignInActivity.class));
+                getActivity().finish();
+            }).addOnFailureListener(e -> showToast("Đăng xuất thất bại, hãy xóa dữ liệu ứng dụng và thử lại!"));
+
+        });
+
+        dialog.show();
+
+//        showToast("Đăng xuất khỏi tài khoản...");
+//        FirebaseFirestore database = FirebaseFirestore.getInstance();
+//        DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(
+//                preferenceManager.getString(Constants.KEY_USER_ID)
+//        );
+//
+//        HashMap<String, Object> updates = new HashMap<>();
+//        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+//        documentReference.update(updates).addOnSuccessListener(unused -> {
+//
+//            preferenceManager.clear();
+//            startActivity(new Intent(getActivity().getApplicationContext(), SignInActivity.class));
+//            getActivity().finish();
+//        }).addOnFailureListener(e -> showToast("Đăng xuất thất bại, hãy xóa dữ liệu ứng dụng và thử lại!"));
+//
     }
 
 }

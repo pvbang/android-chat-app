@@ -43,9 +43,12 @@
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_button_infinity.xml" value="0.1395" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_button_outside.xml" value="0.141" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_button_sign_transparent.xml" value="0.139" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_button_transparent_white.xml" value="0.123" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_icon_text.xml" value="0.123" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_image.xml" value="0.127" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_image_mainn.xml" value="0.1345" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_trans.xml" value="0.123" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/background_trans_radius.xml" value="0.115" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable-v24/ic_logo_background.xml" value="0.127" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/bacground_normal_wait_calling.xml" value="0.164" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/backgound_chat_input.xml" value="0.164" />
@@ -59,6 +62,7 @@
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_image.xml" value="0.164" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_image_chat.xml" value="0.127" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_image_main.xml" value="0.1345" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_image_white.xml" value="0.115" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_input.xml" value="0.127" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_input_no_radius.xml" value="0.123" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/background_received_message.xml" value="0.164" />
@@ -72,26 +76,33 @@
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/drawable/ic_user.xml" value="0.127" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_change_info_user.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_chat.xml" value="0.21" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_chat_group.xml" value="0.2" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_group_search.xml" value="0.16969185310257492" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_info_chat.xml" value="0.22" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_info_chat_group.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_main.xml" value="0.209375" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_profile.xml" value="0.25" />
-        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_search.xml" value="0.25" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_search.xml" value="0.2" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_story_post.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_wait_calling.xml" value="0.209375" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/activity_wait_calling_receiver.xml" value="0.209375" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/dialog_create_group.xml" value="0.22" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/dialog_out_account.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_first_friends.xml" value="0.192481884057971" />
-        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_friends.xml" value="0.33" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_friends.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_group_friends.xml" value="0.192481884057971" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_main.xml" value="0.33" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_request_friends.xml" value="0.15670289855072464" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_story.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_user.xml" value="0.22" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_group_search.xml" value="0.21" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_received_image.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_received_message.xml" value="0.209375" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_recent_conversion.xml" value="0.22" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_recent_group.xml" value="0.33" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_sent_image.xml" value="0.182518115942029" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_sent_message.xml" value="0.209375" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_user.xml" value="0.25" />
@@ -102,6 +113,7 @@
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/menu/menu_chat_info.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1345" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.1345" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.115" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/xml/searchable.xml" value="0.17572463768115942" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/bacground_normal_wait_calling.xml" value="0.1" />
         <entry key="..\:/TheBang/chat_app/app/src/main/res/drawable/backgound_chat_input.xml" value="0.1" />

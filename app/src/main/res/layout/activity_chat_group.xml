@@ -8,7 +8,7 @@
     android:animateLayoutChanges="true"
     android:background="@color/primary"
 
-    tools:context=".activities.ChatActivity">
+    tools:context=".activities.ChatGroupActivity">
 
     <View
         android:id="@+id/viewBackground"
@@ -87,7 +87,7 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginLeft="@dimen/_6sdp"
-        android:background="@drawable/background_image"
+        android:background="@color/color_main"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@id/imageBack"
         app:layout_constraintTop_toTopOf="@id/imageBack"
@@ -95,10 +95,44 @@
         app:riv_oval="true" />
 
     <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile2"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/background_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_logo_round"
+        app:layout_constraintEnd_toEndOf="@id/imageProfile"
+        app:layout_constraintTop_toTopOf="@id/imageProfile"
+        app:riv_oval="true"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfileBackground"
+        android:layout_width="@dimen/_23sdp"
+        android:layout_height="@dimen/_23sdp"
+        android:background="@drawable/background_image_main"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/imageProfile"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+        app:riv_oval="true"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile1"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@drawable/background_image"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_logo"
+        app:layout_constraintStart_toStartOf="@id/imageProfileBackground"
+        app:layout_constraintEnd_toEndOf="@id/imageProfileBackground"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfileBackground"
+        app:layout_constraintTop_toTopOf="@id/imageProfileBackground"
+        app:riv_oval="true"/>
+
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imageOnline"
         android:layout_width="@dimen/_9sdp"
         android:layout_height="@dimen/_9sdp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:padding="0.4dp"
         android:background="@drawable/background_image_main"
         android:src="@drawable/ic_active"
@@ -116,7 +150,7 @@
         android:textColor="@color/color_main_text"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
-        android:text="Tên người nhận"
+        android:text="Tên nhóm"
         android:layout_marginLeft="@dimen/_7sdp"
         app:layout_constraintWidth_max="@dimen/_110sdp"
         app:layout_constraintBottom_toTopOf="@id/textAvailablility"
@@ -128,7 +162,7 @@
         android:id="@+id/textAvailablility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:text="Đang hoạt động"
         android:textSize="@dimen/_9sdp"
         android:textColor="@color/white"
@@ -164,6 +198,7 @@
         android:id="@+id/progressBar"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:indeterminate="true"
         android:indeterminateTintMode="src_atop"
         android:indeterminateTint="@color/color_main"

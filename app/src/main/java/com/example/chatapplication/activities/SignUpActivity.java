@@ -2,6 +2,7 @@ package com.example.chatapplication.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -22,7 +23,11 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivitySignUpBinding;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -53,7 +58,18 @@ public class SignUpActivity extends AppCompatActivity {
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
         binding.buttonSignUp.setOnClickListener(v -> {
             if (isValidSignUpDetails()) {
-                signUp();
+                FirebaseFirestore database = FirebaseFirestore.getInstance();
+                database.collection(Constants.KEY_COLLECTION_USERS).whereEqualTo(Constants.KEY_EMAIL, binding.inputEmail.getText().toString()).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().isEmpty()) {
+                            signUp();
+                        } else {
+                            showToast("Email này đã được dùng cho một tài khoản khác");
+                        }
+                    } else {
+                        showToast("Ét ô ét!!! lỗi rồi...");
+                    }
+                });
             }
         });
         binding.layoutImage.setOnClickListener(v -> {
@@ -165,7 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
             showToast("Nhập email");
             return false;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
-            showToast("Thêm ảnh");
+            showToast("Hãy nhập email hợp lệ");
             return false;
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
             showToast("Nhập mật khẩu");

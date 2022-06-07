@@ -73,6 +73,7 @@ public class RequestAdapters extends RecyclerView.Adapter<RequestAdapters.UserVi
                 userFriend.put(Constants.KEY_USER_ID, user.id);
                 userFriend.put(Constants.KEY_NAME, user.name);
                 userFriend.put(Constants.KEY_IMAGE, user.image);
+                userFriend.put(Constants.KEY_EMAIL, user.email);
 
                 database.collection(Constants.KEY_COLLECTION_USERS).document(currentUserId).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
@@ -85,7 +86,7 @@ public class RequestAdapters extends RecyclerView.Adapter<RequestAdapters.UserVi
                 database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, currentUserId).get().addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                            hashMyUser(user.id, queryDocumentSnapshot.getString(Constants.KEY_NAME), queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
+                            hashMyUser(user.id, queryDocumentSnapshot.getString(Constants.KEY_NAME), queryDocumentSnapshot.getString(Constants.KEY_IMAGE), queryDocumentSnapshot.getString(Constants.KEY_EMAIL));
                             deleteWait(user.id, queryDocumentSnapshot.getId());
                         }
                     }
@@ -126,11 +127,12 @@ public class RequestAdapters extends RecyclerView.Adapter<RequestAdapters.UserVi
             });
         }
 
-        private void hashMyUser(String id, String name, String imgage) {
+        private void hashMyUser(String id, String name, String image, String email) {
             HashMap<String, Object> myUser = new HashMap<>();
             myUser.put(Constants.KEY_USER_ID, currentUserId);
             myUser.put(Constants.KEY_NAME, name);
-            myUser.put(Constants.KEY_IMAGE, imgage);
+            myUser.put(Constants.KEY_IMAGE, image);
+            myUser.put(Constants.KEY_EMAIL, email);
 
             FirebaseFirestore database = FirebaseFirestore.getInstance();
             database.collection(Constants.KEY_COLLECTION_USERS).document(id).collection(Constants.KEY_COLLECTION_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {

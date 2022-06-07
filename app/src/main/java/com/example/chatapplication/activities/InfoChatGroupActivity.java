@@ -1,50 +1,40 @@
 package com.example.chatapplication.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.core.content.ContextCompat;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupMenu;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.example.chatapplication.R;
 import com.example.chatapplication.databinding.ActivityInfoChatBinding;
+import com.example.chatapplication.databinding.ActivityInfoChatGroupBinding;
+import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-public class InfoChatActivity extends AppCompatActivity {
+public class InfoChatGroupActivity extends AppCompatActivity {
 
-    private ActivityInfoChatBinding binding;
-    private User user;
-    private String myID, myName, myImage;
+    private ActivityInfoChatGroupBinding binding;
+    private Group group;
     private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityInfoChatBinding.inflate(getLayoutInflater());
+        binding = ActivityInfoChatGroupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-        user = (User) getIntent().getSerializableExtra("user");
-        myID = getIntent().getStringExtra("myID");
-        myName = getIntent().getStringExtra("myName");
-        myImage = getIntent().getStringExtra("myImage");
+        group = (Group) getIntent().getSerializableExtra(Constants.KEY_GROUP);
 
         setListenner();
         setData();
@@ -63,31 +53,25 @@ public class InfoChatActivity extends AppCompatActivity {
         binding.imageMore.setOnClickListener(v -> { });
 
         binding.imageCallAudio.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
-            intent.putExtra("type", "audio");
-            intent.putExtra("user", user);
-            startActivity(intent);
+
         });
 
         binding.imageCallVideo.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), CallingActivity.class);
-            intent.putExtra("type", "video");
-            intent.putExtra("user", user);
-            startActivity(intent);
+
         });
 
-        binding.imageProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-            intent.putExtra("user", user);
-            intent.putExtra("you", "0");
-            intent.putExtra("myID", myID);
-            intent.putExtra("myName", myName);
-            intent.putExtra("myImage", myImage);
-            startActivity(intent);
+        binding.imageAddMember.setOnClickListener(v -> {
+//            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+//            intent.putExtra("user", user);
+//            intent.putExtra("you", "0");
+//            intent.putExtra("myID", myID);
+//            intent.putExtra("myName", myName);
+//            intent.putExtra("myImage", myImage);
+//            startActivity(intent);
         });
 
         binding.imageMore.setOnClickListener(view -> {
-            PopupMenu popupMenu = new PopupMenu(InfoChatActivity.this, view);
+            PopupMenu popupMenu = new PopupMenu(InfoChatGroupActivity.this, view);
             popupMenu.getMenuInflater().inflate(R.menu.menu_chat_info, popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 switch (menuItem.getItemId()) {
@@ -104,8 +88,8 @@ public class InfoChatActivity extends AppCompatActivity {
 
 
     private void setData() {
-        binding.image.setImageBitmap(getBitmapFromEncodedString(user.image));
-        binding.name.setText(user.name);
+        binding.imageProfile1.setImageBitmap(getBitmapFromEncodedString(group.image1));
+        binding.name.setText(group.name);
     }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
