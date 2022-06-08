@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
+import com.example.chatapplication.activities.ChatGroupActivity;
 import com.example.chatapplication.activities.GroupSearchActivity;
 import com.example.chatapplication.activities.ProfileActivity;
 import com.example.chatapplication.activities.SearchActivity;
@@ -34,6 +35,7 @@ import com.example.chatapplication.adapters.RecentConversationsAdapter;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.listeners.ConversionListener;
 import com.example.chatapplication.models.ChatMessage;
+import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -50,6 +52,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -88,7 +91,7 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
 //        getToken();
 //        listenConversations();
 //        setListener();
-//        getFriendStatus();
+
     }
 
     private void init() {
@@ -120,8 +123,6 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
         });
 
         binding.imageGroups.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity().getApplicationContext(), GroupSearchActivity.class);
-//            startActivity(intent);
             showDialogCreateGroup();
         });
     }
@@ -162,10 +163,28 @@ public class MainFragment extends Fragment implements ConversionListener, SwipeR
             } else {
                 HashMap<String, Object> group = new HashMap<>();
                 group.put(Constants.KEY_GROUP_NAME, text.getText().toString());
+                group.put(Constants.KEY_LAST_MESSAGE, preferenceManager.getString(Constants.KEY_NAME) + " vừa tạo một nhóm mới");
+                group.put(Constants.KEY_TIMESTAMP, new Date());
+                group.put(Constants.KEY_GROUP_ADMIN_ID, preferenceManager.getString(Constants.KEY_USER_ID));
 
                 database.collection(Constants.KEY_COLLECTION_GROUPS).add(group).addOnSuccessListener(documentReference -> {
-                    dialog.dismiss();
+                    HashMap<String, Object> myUser = new HashMap<>();
+                    myUser.put(Constants.KEY_USER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+                    myUser.put(Constants.KEY_NAME, preferenceManager.getString(Constants.KEY_NAME));
+                    myUser.put(Constants.KEY_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+                    myUser.put(Constants.KEY_EMAIL, preferenceManager.getString(Constants.KEY_EMAIL));
 
+                    database.collection(Constants.KEY_COLLECTION_GROUPS).document(documentReference.getId()).collection(Constants.KEY_COLLECTION_GROUP_MEMBERS).add(myUser).addOnSuccessListener(documentReference2 -> {
+                        dialog.dismiss();
+                        Group groupp = new Group();
+                        groupp.id = documentReference.getId();
+                        groupp.name = text.getText().toString();
+                        groupp.image1 = preferenceManager.getString(Constants.KEY_IMAGE);
+
+                        Intent intent = new Intent(getActivity().getApplicationContext(), ChatGroupActivity.class);
+                        intent.putExtra(Constants.KEY_GROUP, groupp);
+                        startActivity(intent);
+                    });
                 });
             }
         });

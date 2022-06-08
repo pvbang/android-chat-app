@@ -37,6 +37,7 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
     private ActivityGroupSearchBinding binding;
     PreferenceManager preferenceManager;
     private GroupSearchAdapters searchAdapters;
+    private String myID, myName, myImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
+        myID = preferenceManager.getString(Constants.KEY_USER_ID);
+        myName = preferenceManager.getString(Constants.KEY_NAME);
+        myImage = preferenceManager.getString(Constants.KEY_IMAGE);
 
         getUsersGroup();
 
@@ -200,8 +204,12 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
 
     @Override
     public void onUserClicked(User user) {
-        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
-        intent.putExtra(Constants.KEY_USER, user);
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        intent.putExtra("user", user);
+        intent.putExtra("you", "0");
+        intent.putExtra("myID", myID);
+        intent.putExtra("myName", myName);
+        intent.putExtra("myImage", myImage);
         startActivity(intent);
     }
 

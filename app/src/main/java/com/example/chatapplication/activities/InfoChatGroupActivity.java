@@ -61,13 +61,8 @@ public class InfoChatGroupActivity extends AppCompatActivity {
         });
 
         binding.imageAddMember.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-//            intent.putExtra("user", user);
-//            intent.putExtra("you", "0");
-//            intent.putExtra("myID", myID);
-//            intent.putExtra("myName", myName);
-//            intent.putExtra("myImage", myImage);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), GroupSearchActivity.class);
+            startActivity(intent);
         });
 
         binding.imageMore.setOnClickListener(view -> {

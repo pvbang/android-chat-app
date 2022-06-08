@@ -32,9 +32,12 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class GroupFriendsFragment extends Fragment implements GroupListener, SwipeRefreshLayout.OnRefreshListener{
 
@@ -67,7 +70,6 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
     }
 
     private void getGroups() {
-        binding.container.setRefreshing(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_GROUPS).get().addOnCompleteListener(task -> {
             binding.container.setRefreshing(false);
@@ -79,12 +81,16 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
                         continue;
                     }
                     Group group = new Group();
+                    group.id = queryDocumentSnapshot.getId();
                     group.name = queryDocumentSnapshot.getString(Constants.KEY_GROUP_NAME);
                     group.image1 = preferenceManager.getString(Constants.KEY_IMAGE);
+                    group.time = getReadableDateTime(queryDocumentSnapshot.getDate(Constants.KEY_TIMESTAMP));
+                    group.dateObject = queryDocumentSnapshot.getDate(Constants.KEY_TIMESTAMP);
+                    group.message = queryDocumentSnapshot.getString(Constants.KEY_LAST_MESSAGE);
                     groupsList.add(group);
                 }
                 if (groupsList.size() > 0) {
-                    Collections.sort(groupsList, (user, t1) -> user.getName().compareToIgnoreCase(t1.getName()));
+                    Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
 
                     GroupAdapters groupAdapters = new GroupAdapters(groupsList, this, currentUserId);
                     binding.groupsRecyclerView.setAdapter(groupAdapters);
@@ -93,6 +99,10 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
             }
         });
 
+    }
+
+    private String getReadableDateTime(Date date) {
+        return new SimpleDateFormat("HH:mm", Locale.getDefault()).format(date);
     }
 
     @Override
@@ -104,7 +114,13 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
 
     @Override
     public void onRefresh() {
+        binding.container.setRefreshing(true);
         getGroups();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getGroups();
+    }
 }

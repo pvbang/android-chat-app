@@ -101,17 +101,22 @@ public class GroupSearchAdapters extends RecyclerView.Adapter<GroupSearchAdapter
             binding.textName.setVisibility(View.VISIBLE);
             binding.imageProfile.setVisibility(View.VISIBLE);
             binding.textSuggested.setVisibility(View.GONE);
+            binding.btnAdd.setVisibility(View.VISIBLE);
 
             binding.textName.setText(user.name);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
+
+            binding.btnAdd.setOnClickListener(v -> {
+
+            });
+
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
-
-
         }
 
         void setText() {
             binding.textName.setVisibility(View.GONE);
             binding.imageProfile.setVisibility(View.GONE);
+            binding.btnAdd.setVisibility(View.GONE);
             binding.textSuggested.setVisibility(View.VISIBLE);
         }
     }

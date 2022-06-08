@@ -23,8 +23,11 @@ import com.example.chatapplication.utilities.Constants;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class GroupAdapters extends RecyclerView.Adapter<GroupAdapters.UserViewHolder>{
 
@@ -67,8 +70,10 @@ public class GroupAdapters extends RecyclerView.Adapter<GroupAdapters.UserViewHo
         }
 
         void setUserData(Group group, String currentUserId) {
-            binding.textName.setText(group.name);
+            binding.textName.setText("Nhóm: " +group.name);
             binding.imageProfile1.setImageBitmap(getGroupImage(group.image1));
+            binding.textRecentMessage.setText(group.message);
+            binding.textDateTime.setText(" · " +group.time);
 
 //            binding.btnAdd.setOnClickListener(v -> {
 //                FirebaseFirestore database = FirebaseFirestore.getInstance();

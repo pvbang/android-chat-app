@@ -38,7 +38,24 @@
         app:layout_constraintBottom_toBottomOf="@id/viewSupporter"
         app:layout_constraintTop_toTopOf="@id/viewSupporter"
         app:layout_constraintStart_toEndOf="@id/imageProfile"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toStartOf="@id/btn_add"/>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:visibility="visible"
+        android:drawableRight="@drawable/ic_person_add"
+        android:drawableTint="@color/color_main_text"
+        app:layout_constraintTop_toTopOf="@id/imageProfile"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/_10sdp"
+        android:textAllCaps="false"
+        android:background="@drawable/background_button"
+        android:text="Thêm"/>
 
     <TextView
         android:id="@+id/textSuggested"

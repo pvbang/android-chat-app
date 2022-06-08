@@ -95,6 +95,25 @@ public class ChatGroupActivity extends BaseActivity {
             intentInfoChatActivity();
         });
 
+        binding.textName.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageProfile.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageProfile1.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageProfileBackground.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageOnline.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.textAvailablility.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+
     }
 
     private void intentInfoChatActivity() {

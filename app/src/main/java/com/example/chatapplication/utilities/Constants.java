@@ -4,23 +4,22 @@ import java.util.HashMap;
 
 public class Constants {
     public static final String KEY_PREFERENCE_NAME = "chatAPPPreference";
+    public static final String KEY_IS_SIGN_IN = "isSignIn";
 
     public static final String KEY_COLLECTION_USERS = "users";
+    public static final String KEY_USER = "user";
     public static final String KEY_USER_ID = "userID";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_FCM_TOKEN = "fcmToken";
+    public static final String KEY_AVAILABLILITY = "availability";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_IMAGE_BACKGROUND = "imageBackground";
     public static final String KEY_NUMBER = "number";
     public static final String KEY_BIRTHDAY = "birthday";
     public static final String KEY_GENDER = "gender";
     public static final String KEY_INTRODUCE_YOURSEFT = "introduceYourself";
-
-    public static final String KEY_IS_SIGN_IN = "isSignIn";
-    public static final String KEY_FCM_TOKEN = "fcmToken";
-    public static final String KEY_USER = "user";
-    public static final String KEY_AVAILABLILITY = "availability";
 
     public static final String KEY_COLLECTION_CHAT = "chat";
     public static final String KEY_SENDER_ID = "senderId";
@@ -39,16 +38,18 @@ public class Constants {
 
     public static final String KEY_COLLECTION_GROUPS = "groups";
     public static final String KEY_GROUP = "group";
+    public static final String KEY_GROUP_ADMIN_ID = "adminID";
     public static final String KEY_GROUP_NAME = "groupName";
+    public static final String KEY_COLLECTION_GROUP_MEMBERS = "members";
+
+    public static final String KEY_COLLECTION_FRIENDS = "friends";
+    public static final String KEY_COLLECTION_WAIT_FRIENDS = "wait_friends";
+    public static final String KEY_COLLECTION_REQUEST_FRIENDS = "request_friends";
 
     public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
     public static final String REMOTE_MSG_DATA = "data";
     public static final String REMOTE_MSG_REGISTRATION_IDS = "registration_ids";
-
-    public static final String KEY_COLLECTION_FRIENDS = "friends";
-    public static final String KEY_COLLECTION_WAIT_FRIENDS = "wait_friends";
-    public static final String KEY_COLLECTION_REQUEST_FRIENDS = "request_friends";
 
     public static final String REMOTE_MSG_CALLING_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CALLING_CONTENT_TYPE = "Content-Type";

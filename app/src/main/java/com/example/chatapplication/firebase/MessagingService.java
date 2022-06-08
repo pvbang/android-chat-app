@@ -15,6 +15,7 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.activities.CallingActivity;
 import com.example.chatapplication.activities.CallingReceiverActivity;
 import com.example.chatapplication.activities.ChatActivity;
+import com.example.chatapplication.activities.SplashActivity;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -67,9 +68,7 @@ public class MessagingService extends FirebaseMessagingService {
         int notificationId = new Random().nextInt();
         String channelId = "chat_message";
 
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra(Constants.KEY_USER, user);
+        Intent intent = new Intent(this, SplashActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
         if (user.name != null && message.getData().get(Constants.KEY_MESSAGE) != null) {

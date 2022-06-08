@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+import android.window.SplashScreen;
 
 import com.example.chatapplication.databinding.ActivitySplashBinding;
 import com.example.chatapplication.utilities.Constants;
@@ -23,12 +24,16 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferenceManager = new PreferenceManager(getApplicationContext());
+
         new Handler().postDelayed(() -> {
             if (preferenceManager.getBoolean(Constants.KEY_IS_SIGN_IN)) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             } else {
                 startActivity(new Intent(getApplicationContext(), SignInActivity.class));
             }
+            finish();
         }, 1000);
+
     }
 }

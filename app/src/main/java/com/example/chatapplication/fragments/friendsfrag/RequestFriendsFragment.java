@@ -52,13 +52,12 @@ public class RequestFriendsFragment extends Fragment implements UserListener, Sw
 
         binding.container.setOnRefreshListener(this::onRefresh);
         binding.container.setColorSchemeColors(getResources().getColor(R.color.color_main));
-
+        binding.container.setRefreshing(true);
         getUsers();
 
     }
 
     private void getUsers() {
-        binding.container.setRefreshing(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID)).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).get().addOnCompleteListener(task -> {
             binding.container.setRefreshing(false);
@@ -98,7 +97,13 @@ public class RequestFriendsFragment extends Fragment implements UserListener, Sw
 
     @Override
     public void onRefresh() {
+        binding.container.setRefreshing(true);
         getUsers();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUsers();
+    }
 }

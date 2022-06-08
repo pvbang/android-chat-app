@@ -1,9 +1,19 @@
 package com.example.chatapplication.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Group implements Serializable {
-    public String name, image1, image2;
+    public String id, name, image1, image2, message, time;
+    public Date dateObject;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -27,5 +37,29 @@ public class Group implements Serializable {
 
     public void setImage2(String image2) {
         this.image2 = image2;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Date getDateObject() {
+        return dateObject;
+    }
+
+    public void setDateObject(Date dateObject) {
+        this.dateObject = dateObject;
     }
 }

@@ -56,13 +56,11 @@ public class FirstFriendsFragment extends Fragment implements UserListener, Swip
 
         binding.container.setOnRefreshListener(this::onRefresh);
         binding.container.setColorSchemeColors(getResources().getColor(R.color.color_main));
-
+        binding.container.setRefreshing(true);
         getUsers();
     }
 
     private void getUsers() {
-        binding.container.setRefreshing(true);
-
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_COLLECTION_USERS).get().addOnCompleteListener(task -> {
             binding.container.setRefreshing(false);
@@ -144,6 +142,13 @@ public class FirstFriendsFragment extends Fragment implements UserListener, Swip
 
     @Override
     public void onRefresh() {
+        binding.container.setRefreshing(true);
+        getUsers();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getUsers();
     }
 }
