@@ -24,13 +24,17 @@ import com.example.chatapplication.databinding.FragmentFriendsBinding;
 import com.example.chatapplication.databinding.FragmentGroupFriendsBinding;
 import com.example.chatapplication.listeners.GroupListener;
 import com.example.chatapplication.listeners.UserListener;
+import com.example.chatapplication.models.ChatGroupMessage;
 import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,7 +69,7 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
         binding.container.setColorSchemeColors(getResources().getColor(R.color.color_main));
         binding.container.setRefreshing(true);
 
-        getGroups();
+//        getGroups();
 
     }
 
@@ -89,16 +93,44 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
                     group.message = queryDocumentSnapshot.getString(Constants.KEY_LAST_MESSAGE);
                     groupsList.add(group);
                 }
-                if (groupsList.size() > 0) {
-                    Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
 
-                    GroupAdapters groupAdapters = new GroupAdapters(groupsList, this, currentUserId);
-                    binding.groupsRecyclerView.setAdapter(groupAdapters);
-                    binding.groupsRecyclerView.setVisibility(View.VISIBLE);
-                }
+                Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
+
+                getMyGroups(groupsList);
+//                if (groupsList.size() > 0) {
+//                    Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
+//
+//                    GroupAdapters groupAdapters = new GroupAdapters(groupsList, this, currentUserId);
+//                    binding.groupsRecyclerView.setAdapter(groupAdapters);
+//                    binding.groupsRecyclerView.setVisibility(View.VISIBLE);
+//                } else {
+//                    Toast.makeText(getContext(), "???", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
+    }
 
+    private void getMyGroups(List<Group> groupsList) {
+        String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        List<Group> myGroupsList = new ArrayList<>();
+
+        for (Group g : groupsList) {
+            database.collection(Constants.KEY_COLLECTION_GROUPS).document(g.id).collection(Constants.KEY_COLLECTION_GROUP_MEMBERS).whereEqualTo(Constants.KEY_USER_ID, currentUserId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        myGroupsList.add(g);
+                    }
+                    if (myGroupsList.size() > 0) {
+                        Collections.sort(myGroupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
+
+                        GroupAdapters groupAdapters = new GroupAdapters(myGroupsList, this, currentUserId);
+                        binding.groupsRecyclerView.setAdapter(groupAdapters);
+                        binding.groupsRecyclerView.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
     }
 
     private String getReadableDateTime(Date date) {

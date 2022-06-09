@@ -37,10 +37,12 @@ public class Constants {
     public static final String KEY_LAST_READ = "lastRead";
 
     public static final String KEY_COLLECTION_GROUPS = "groups";
+    public static final String KEY_GROUP_ID = "groupID";
     public static final String KEY_GROUP = "group";
     public static final String KEY_GROUP_ADMIN_ID = "adminID";
     public static final String KEY_GROUP_NAME = "groupName";
     public static final String KEY_COLLECTION_GROUP_MEMBERS = "members";
+    public static final String KEY_COLLECTION_GROUP_MESSAGES = "messages";
 
     public static final String KEY_COLLECTION_FRIENDS = "friends";
     public static final String KEY_COLLECTION_WAIT_FRIENDS = "wait_friends";

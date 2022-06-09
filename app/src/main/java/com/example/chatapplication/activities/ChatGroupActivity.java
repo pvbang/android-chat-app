@@ -21,9 +21,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.chatapplication.adapters.ChatAdapter;
+import com.example.chatapplication.adapters.ChatGroupAdapter;
 import com.example.chatapplication.adapters.GroupAdapters;
 import com.example.chatapplication.databinding.ActivityChatBinding;
 import com.example.chatapplication.databinding.ActivityChatGroupBinding;
+import com.example.chatapplication.models.ChatGroupMessage;
 import com.example.chatapplication.models.ChatMessage;
 import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
@@ -37,6 +39,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
@@ -66,6 +69,8 @@ public class ChatGroupActivity extends BaseActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private Group group;
+    private List<ChatGroupMessage> chatGroupMessage;
+    private ChatGroupAdapter chatGroupAdapter;
 
     private String encodedImage;
 
@@ -76,6 +81,9 @@ public class ChatGroupActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         init();
+        listenMessages();
+        chatGroupAdapter = new ChatGroupAdapter(chatGroupMessage, group, preferenceManager.getString(Constants.KEY_USER_ID));
+        binding.chatRecyclerView.setAdapter(chatGroupAdapter);
         setListeners();
         setData();
 
@@ -85,34 +93,13 @@ public class ChatGroupActivity extends BaseActivity {
         preferenceManager = new PreferenceManager(getApplicationContext());
         database = FirebaseFirestore.getInstance();
         group = (Group) getIntent().getSerializableExtra(Constants.KEY_GROUP);
+        chatGroupMessage = new ArrayList<>();
+
     }
 
     private void setData() {
         binding.textName.setText(group.name);
         binding.imageProfile1.setImageBitmap(getGroupImage(group.image1));
-
-        binding.imageInfo.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-
-        binding.textName.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-        binding.imageProfile.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-        binding.imageProfile1.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-        binding.imageProfileBackground.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-        binding.imageOnline.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
-        binding.textAvailablility.setOnClickListener(v -> {
-            intentInfoChatActivity();
-        });
 
     }
 
@@ -137,7 +124,7 @@ public class ChatGroupActivity extends BaseActivity {
 
         binding.layoutSend.setOnClickListener(v -> {
             if (!binding.inputMessage.getText().toString().isEmpty()) {
-
+                sendMessage();
             }
         });
 
@@ -147,28 +134,68 @@ public class ChatGroupActivity extends BaseActivity {
             pickImage.launch(intent);
         });
 
-        binding.imageCallAudio.setOnClickListener(v -> {
-
-        });
-        binding.imageCallVideo.setOnClickListener(v -> {
-
-        });
+        binding.imageCallAudio.setOnClickListener(v -> {});
+        binding.imageCallVideo.setOnClickListener(v -> {});
 
         binding.imageInfo.setOnClickListener(v -> {
-        });
-
-        binding.imageProfile.setOnClickListener(v -> {
+            intentInfoChatActivity();
         });
 
         binding.textName.setOnClickListener(v -> {
+            intentInfoChatActivity();
         });
-
+        binding.imageProfile.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageProfile1.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageProfileBackground.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
+        binding.imageOnline.setOnClickListener(v -> {
+            intentInfoChatActivity();
+        });
         binding.textAvailablility.setOnClickListener(v -> {
+            intentInfoChatActivity();
         });
 
         binding.imageVoice.setOnClickListener(v -> {
             speak(v);
         });
+
+    }
+
+    private void sendMessage() {
+        HashMap<String, Object> message = new HashMap<>();
+        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
+        message.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+        message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+        message.put(Constants.KEY_TIMESTAMP, new Date());
+
+        database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id).collection(Constants.KEY_COLLECTION_GROUP_MESSAGES).add(message);
+
+        DocumentReference documentReferenceee = database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id);
+        documentReferenceee.update(Constants.KEY_LAST_MESSAGE, preferenceManager.getString(Constants.KEY_NAME)+ ": " +binding.inputMessage.getText().toString());
+        documentReferenceee.update(Constants.KEY_TIMESTAMP, new Date());
+
+        binding.inputMessage.setText(null);
+    }
+
+    private void sendImageMessage() {
+        HashMap<String, Object> message = new HashMap<>();
+        message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_SENDER_NAME, preferenceManager.getString(Constants.KEY_NAME));
+        message.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
+        message.put(Constants.KEY_MESSAGE, encodedImage);
+        message.put(Constants.KEY_TIMESTAMP, new Date());
+
+        database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id).collection(Constants.KEY_COLLECTION_GROUP_MESSAGES).add(message);
+
+        DocumentReference documentReferenceee = database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id);
+        documentReferenceee.update(Constants.KEY_LAST_MESSAGE, preferenceManager.getString(Constants.KEY_NAME)+ " đã gửi một hình ảnh");
+        documentReferenceee.update(Constants.KEY_TIMESTAMP, new Date());
 
     }
 
@@ -201,9 +228,8 @@ public class ChatGroupActivity extends BaseActivity {
                             InputStream inputStream = getContentResolver().openInputStream(imageUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-//                            binding.textAddImage.setVisibility(View.GONE);
                             encodedImage = encodeImage(bitmap);
-
+                            sendImageMessage();
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -222,10 +248,44 @@ public class ChatGroupActivity extends BaseActivity {
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void listenMessages() {
+        database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id).collection(Constants.KEY_COLLECTION_GROUP_MESSAGES).addSnapshotListener(eventListener);
+    }
 
+    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
+        if (error != null) {
+            return;
+        } if (value != null) {
+            int count = chatGroupMessage.size();
+            for (DocumentChange documentChange : value.getDocumentChanges()) {
+                if (documentChange.getType() == DocumentChange.Type.ADDED) {
+                    ChatGroupMessage chatGroupMessage1 = new ChatGroupMessage();
+                    chatGroupMessage1.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                    chatGroupMessage1.senderImage = documentChange.getDocument().getString(Constants.KEY_SENDER_IMAGE);
+                    chatGroupMessage1.senderName = documentChange.getDocument().getString(Constants.KEY_SENDER_NAME);
+                    chatGroupMessage1.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
+                    chatGroupMessage1.dataTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
+                    chatGroupMessage1.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                    chatGroupMessage1.encodedImage = encodedImage;
+
+                    chatGroupMessage.add(chatGroupMessage1);
+                }
+            }
+            Collections.sort(chatGroupMessage, (obj1, obj2) -> obj1.dateObject.compareTo(obj2.dateObject));
+
+            if (count == 0) {
+                chatGroupAdapter.notifyDataSetChanged();
+            } else {
+                chatGroupAdapter.notifyItemRangeInserted(chatGroupMessage.size(), chatGroupMessage.size());
+                binding.chatRecyclerView.smoothScrollToPosition(chatGroupMessage.size() - 1);
+            }
+            binding.chatRecyclerView.setVisibility(View.VISIBLE);
+        }
+        binding.progressBar.setVisibility(View.GONE);
+    };
+
+    private String getReadableDateTime(Date date) {
+        return new SimpleDateFormat("HH:mm · dd/MM/yyyy", Locale.getDefault()).format(date);
     }
 
 }

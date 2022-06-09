@@ -6,11 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:id="@+id/textNotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phan Văn Bằng vừa được thêm vào nhóm"
         android:gravity="center"
         android:textColor="@color/secondary_text"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

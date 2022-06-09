@@ -100,6 +100,8 @@
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_story.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_group_message_notification.xml" value="0.25" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_group_received_image.xml" value="0.5" />
+        <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_group_received_message.xml" value="0.5" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_group_search.xml" value="0.25" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_received_image.xml" value="0.22" />
         <entry key="..\:/TheBang/android-project/chat_app_android/app/src/main/res/layout/item_container_received_message.xml" value="0.209375" />

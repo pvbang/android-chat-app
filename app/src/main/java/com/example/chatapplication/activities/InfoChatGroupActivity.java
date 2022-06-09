@@ -62,6 +62,7 @@ public class InfoChatGroupActivity extends AppCompatActivity {
 
         binding.imageAddMember.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), GroupSearchActivity.class);
+            intent.putExtra(Constants.KEY_GROUP, (Group) group);
             startActivity(intent);
         });
 
@@ -84,7 +85,7 @@ public class InfoChatGroupActivity extends AppCompatActivity {
 
     private void setData() {
         binding.imageProfile1.setImageBitmap(getBitmapFromEncodedString(group.image1));
-        binding.name.setText(group.name);
+        binding.name.setText("Nhóm: " +group.name);
     }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {

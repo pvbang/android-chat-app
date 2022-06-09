@@ -22,6 +22,7 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.adapters.GroupSearchAdapters;
 import com.example.chatapplication.databinding.ActivityGroupSearchBinding;
 import com.example.chatapplication.listeners.UserListener;
+import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -38,6 +39,7 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
     PreferenceManager preferenceManager;
     private GroupSearchAdapters searchAdapters;
     private String myID, myName, myImage;
+    private Group group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
         myID = preferenceManager.getString(Constants.KEY_USER_ID);
         myName = preferenceManager.getString(Constants.KEY_NAME);
         myImage = preferenceManager.getString(Constants.KEY_IMAGE);
+
+        group = (Group) getIntent().getSerializableExtra(Constants.KEY_GROUP);
 
         getUsersGroup();
 
@@ -183,7 +187,7 @@ public class GroupSearchActivity extends AppCompatActivity implements UserListen
         if (friendsFinal.size() > 0) {
             Collections.sort(friendsFinal, (user, t1) -> user.getName().compareToIgnoreCase(t1.getName()));
 
-            searchAdapters = new GroupSearchAdapters(friendsFinal, this);
+            searchAdapters = new GroupSearchAdapters(friendsFinal, this, group);
             binding.searchRecyclerView.setAdapter(searchAdapters);
             binding.searchRecyclerView.setVisibility(View.VISIBLE);
 
