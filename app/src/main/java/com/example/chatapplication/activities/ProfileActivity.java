@@ -14,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.chatapplication.R;
+import com.example.chatapplication.adapters.StoryPostAdapters;
 import com.example.chatapplication.databinding.ActivityProfileBinding;
+import com.example.chatapplication.models.PostStory;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -357,6 +360,8 @@ public class ProfileActivity extends AppCompatActivity {
                 binding.btnDeleteAdd.setVisibility(View.GONE);
                 binding.btnMessageDeleteAdd.setVisibility(View.GONE);
 
+                binding.sup.setVisibility(View.GONE);
+
                 database.collection(Constants.KEY_COLLECTION_USERS).document(preferenceManager.getString(Constants.KEY_USER_ID)).get().addOnSuccessListener(documentReference -> {
                     binding.imageBackground.setImageBitmap(getBitmapFromEncodedString(documentReference.getString(Constants.KEY_IMAGE_BACKGROUND)));
                     binding.introduceYourself.setText(documentReference.getString(Constants.KEY_INTRODUCE_YOURSEFT));
@@ -364,6 +369,8 @@ public class ProfileActivity extends AppCompatActivity {
                 }).addOnFailureListener(exception -> {
                     showToast(exception.getMessage());
                 });
+
+                getPosts(preferenceManager.getString(Constants.KEY_USER_ID));
             } else {
                 database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).get().addOnSuccessListener(documentReference -> {
                     binding.imageBackground.setImageBitmap(getBitmapFromEncodedString(documentReference.getString(Constants.KEY_IMAGE_BACKGROUND)));
@@ -371,6 +378,8 @@ public class ProfileActivity extends AppCompatActivity {
                 }).addOnFailureListener(exception -> {
                     showToast(exception.getMessage());
                 });
+
+                getPosts(user.id);
             }
         } else {
             database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).get().addOnSuccessListener(documentReference -> {
@@ -379,6 +388,8 @@ public class ProfileActivity extends AppCompatActivity {
             }).addOnFailureListener(exception -> {
                 showToast(exception.getMessage());
             });
+
+            getPosts(user.id);
         }
 
     }
@@ -397,6 +408,41 @@ public class ProfileActivity extends AppCompatActivity {
             return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         } else {
             return null;
+        }
+    }
+
+
+
+    private void getPosts(String id) {
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_POSTS).whereEqualTo(Constants.KEY_POST_ID_AUTHOR, id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                List<PostStory> postStoryList = new ArrayList<>();
+                for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                    PostStory postStory = new PostStory();
+                    postStory.idAuthor = queryDocumentSnapshot.getString(Constants.KEY_POST_ID_AUTHOR);
+                    postStory.nameAuthor = queryDocumentSnapshot.getString(Constants.KEY_POST_NAME_AUTHOR);
+                    postStory.imageAuthor = queryDocumentSnapshot.getString(Constants.KEY_POST_IMAGE_AUTHOR);
+                    postStory.emailAuthor = queryDocumentSnapshot.getString(Constants.KEY_POST_EMAIL_AUTHOR);
+                    postStory.text = queryDocumentSnapshot.getString(Constants.KEY_POST_TEXT);
+                    postStory.image = queryDocumentSnapshot.getString(Constants.KEY_POST_IMAGE);
+                    postStory.dateObject = queryDocumentSnapshot.getDate(Constants.KEY_POST_TIMESTAMP);
+
+                    postStoryList.add(postStory);
+                }
+                setAdapterFriends(postStoryList);
+            }
+        });
+
+    }
+
+    private void setAdapterFriends(List<PostStory> postStoryList) {
+        if (postStoryList.size() > 0) {
+            Collections.sort(postStoryList, (user, t1) -> t1.dateObject.compareTo(user.dateObject));
+
+            StoryPostAdapters storyPostAdapters = new StoryPostAdapters(postStoryList);
+            binding.storyRecyclerView.setAdapter(storyPostAdapters);
+            binding.storyRecyclerView.setVisibility(View.VISIBLE);
         }
     }
 }

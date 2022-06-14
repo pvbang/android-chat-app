@@ -6,102 +6,299 @@
     android:layout_height="match_parent"
     tools:context=".activities.ProfileActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageBackground1"
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="0dp">
-
-        <ImageView
-            android:id="@+id/imageBackground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/background_profile"
-            android:scaleType="centerCrop"/>
-
-    </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/suport"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageBackground1" />
+        android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageBackground99"
-        android:layout_width="@dimen/_137sdp"
-        android:layout_height="@dimen/_137sdp"
-        android:layout_margin="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/suport"
-        app:layout_constraintBottom_toBottomOf="@id/suport"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="100dp">
-
-        <ImageView
-            android:id="@+id/image99"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageBackground1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_image_mainn"
-            android:scaleType="centerCrop"/>
+            android:layout_height="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="0dp">
 
-    </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/imageBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/background_profile"
+                android:scaleType="centerCrop"/>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/imageBackground2"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_130sdp"
-        android:layout_margin="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/suport"
-        app:layout_constraintBottom_toBottomOf="@id/suport"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="100dp">
+        </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/image"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/suport"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_image_mainn"
-            android:src="@drawable/no_image_profile"
-            android:scaleType="centerCrop"/>
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageBackground1" />
 
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageBackground99"
+            android:layout_width="@dimen/_137sdp"
+            android:layout_height="@dimen/_137sdp"
+            android:layout_margin="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/suport"
+            app:layout_constraintBottom_toBottomOf="@id/suport"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="100dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_7sdp"
-        app:layout_constraintTop_toBottomOf="@id/imageBackground2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/black_secondary"
-        android:textSize="@dimen/_16sdp"
-        android:textStyle="bold"
-        android:text="Đấng Sáng Tạo"/>
+            <ImageView
+                android:id="@+id/image99"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_image_mainn"
+                android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/introduceYourself"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:gravity="center"
-        android:layout_marginStart="@dimen/_45sdp"
-        android:layout_marginEnd="@dimen/_45sdp"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/secondary_text"
-        android:textSize="@dimen/_12sdp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageBackground2"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_margin="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/suport"
+            app:layout_constraintBottom_toBottomOf="@id/suport"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_image_mainn"
+                android:src="@drawable/no_image_profile"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            app:layout_constraintTop_toBottomOf="@id/imageBackground2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black_secondary"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            android:text="Đấng Sáng Tạo"/>
+
+        <TextView
+            android:id="@+id/introduceYourself"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_45sdp"
+            android:layout_marginEnd="@dimen/_45sdp"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/_12sdp"/>
+
+
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_message"
+            android:textSize="@dimen/_9sdp"
+            android:background="@drawable/background_button"
+            android:text="Kết bạn"/>
+
+
+        <Button
+            android:id="@+id/btn_message"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_add"
+            android:textSize="@dimen/_9sdp"
+            android:background="@drawable/background_button"
+            android:text="Nhắn tin"/>
+
+
+
+
+        <Button
+            android:id="@+id/btn_message_delete_add"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_add"
+            android:textSize="@dimen/_9sdp"
+            android:background="@drawable/background_button"
+            android:text="Nhắn tin"/>
+
+        <Button
+            android:id="@+id/btn_delete_add"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_message_delete_add"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/color_main"
+            android:background="@drawable/background_button_sign_transparent"
+            android:text="Hủy kết bạn"/>
+
+
+
+        <Button
+            android:id="@+id/btn_message_delete_request"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_request"
+            android:textSize="@dimen/_9sdp"
+            android:background="@drawable/background_button"
+            android:text="Nhắn tin"/>
+
+        <Button
+            android:id="@+id/btn_delete_request"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_message_delete_request"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/color_main"
+            android:background="@drawable/background_button_sign_transparent"
+            android:text="Hủy lời mời"/>
+
+
+
+
+
+        <Button
+            android:id="@+id/btn_message_accept_request"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_30sdp"
+            android:paddingEnd="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_accept_request"
+            android:textSize="@dimen/_9sdp"
+            android:background="@drawable/background_button"
+            android:text="Nhắn tin"/>
+
+        <Button
+            android:id="@+id/btn_accept_request"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_33sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_message_accept_request"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/color_main"
+            android:background="@drawable/background_button_sign_transparent"
+            android:text="Chấp nhận lời mời"/>
+
+
+        <TextView
+            android:id="@+id/sup"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/introduceYourself"/>
+
+
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/background_content_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sup">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/storyRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingTop="@dimen/_3sdp"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@color/input_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sup"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageBack"
@@ -125,146 +322,5 @@
         android:background="@drawable/background_statusbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_30sdp"
-        android:paddingEnd="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_30sdp"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_message"
-        android:textSize="@dimen/_9sdp"
-        android:background="@drawable/background_button"
-        android:text="Kết bạn"/>
-
-
-    <Button
-        android:id="@+id/btn_message"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_30sdp"
-        android:paddingEnd="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_add"
-        android:textSize="@dimen/_9sdp"
-        android:background="@drawable/background_button"
-        android:text="Nhắn tin"/>
-
-
-
-
-    <Button
-        android:id="@+id/btn_message_delete_add"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_30sdp"
-        android:paddingEnd="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_delete_add"
-        android:textSize="@dimen/_9sdp"
-        android:background="@drawable/background_button"
-        android:text="Nhắn tin"/>
-
-    <Button
-        android:id="@+id/btn_delete_add"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_24sdp"
-        android:paddingEnd="@dimen/_24sdp"
-        android:layout_marginEnd="@dimen/_30sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_message_delete_add"
-        android:textSize="@dimen/_9sdp"
-        android:textColor="@color/color_main"
-        android:background="@drawable/background_button_sign_transparent"
-        android:text="Hủy kết bạn"/>
-
-
-
-    <Button
-        android:id="@+id/btn_message_delete_request"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_30sdp"
-        android:paddingEnd="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_delete_request"
-        android:textSize="@dimen/_9sdp"
-        android:background="@drawable/background_button"
-        android:text="Nhắn tin"/>
-
-    <Button
-        android:id="@+id/btn_delete_request"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_24sdp"
-        android:paddingEnd="@dimen/_24sdp"
-        android:layout_marginEnd="@dimen/_30sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_message_delete_request"
-        android:textSize="@dimen/_9sdp"
-        android:textColor="@color/color_main"
-        android:background="@drawable/background_button_sign_transparent"
-        android:text="Hủy lời mời"/>
-
-
-
-
-
-    <Button
-        android:id="@+id/btn_message_accept_request"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_30sdp"
-        android:paddingEnd="@dimen/_30sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_accept_request"
-        android:textSize="@dimen/_9sdp"
-        android:background="@drawable/background_button"
-        android:text="Nhắn tin"/>
-
-    <Button
-        android:id="@+id/btn_accept_request"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_33sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:paddingStart="@dimen/_24sdp"
-        android:paddingEnd="@dimen/_24sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/introduceYourself"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_message_accept_request"
-        android:textSize="@dimen/_9sdp"
-        android:textColor="@color/color_main"
-        android:background="@drawable/background_button_sign_transparent"
-        android:text="Chấp nhận lời mời"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

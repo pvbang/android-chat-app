@@ -19,27 +19,28 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageSearch"
+        app:layout_constraintBottom_toBottomOf="@+id/imageAddStory"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imageSearch"/>
+        app:layout_constraintTop_toTopOf="@id/imageAddStory"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageSearch"
+        android:id="@+id/imageAddStory"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginEnd="6dp"
         android:padding="@dimen/_6sdp"
-        android:src="@drawable/ic_search"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_icon"
+        android:src="@drawable/ic_change"
         android:tint="@color/color_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_9sdp"
-
         android:background="@drawable/background_content_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv">
@@ -48,19 +49,26 @@
             android:id="@+id/storyRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_10ssp"/>
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/_3sdp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            app:tint="@color/white"
-            android:backgroundTint="@color/color_main"
-            android:src="@drawable/ic_add"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </FrameLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        app:tint="@color/white"
+        android:backgroundTint="@color/color_main"
+        android:src="@drawable/ic_add"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

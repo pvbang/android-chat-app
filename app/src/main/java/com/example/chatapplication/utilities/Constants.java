@@ -50,6 +50,15 @@ public class Constants {
     public static final String KEY_COLLECTION_WAIT_FRIENDS = "wait_friends";
     public static final String KEY_COLLECTION_REQUEST_FRIENDS = "request_friends";
 
+    public static final String KEY_COLLECTION_POSTS = "posts";
+    public static final String KEY_POST_ID_AUTHOR = "idAuthor";
+    public static final String KEY_POST_NAME_AUTHOR = "nameAuthor";
+    public static final String KEY_POST_IMAGE_AUTHOR = "imageAuthor";
+    public static final String KEY_POST_EMAIL_AUTHOR = "emailAuthor";
+    public static final String KEY_POST_TIMESTAMP = "postTimestamp";
+    public static final String KEY_POST_TEXT = "postText";
+    public static final String KEY_POST_IMAGE = "postImage";
+
     public static final String REMOTE_MSG_AUTHORIZATION = "Authorization";
     public static final String REMOTE_MSG_CONTENT_TYPE = "Content-Type";
     public static final String REMOTE_MSG_DATA = "data";
