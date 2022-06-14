@@ -38,6 +38,8 @@ public class Constants {
 
     public static final String KEY_COLLECTION_GROUPS = "groups";
     public static final String KEY_GROUP_ID = "groupID";
+    public static final String KEY_GROUP_IMAGE_1 = "groupImage1";
+    public static final String KEY_GROUP_IMAGE_2 = "groupImage2";
     public static final String KEY_GROUP = "group";
     public static final String KEY_GROUP_ADMIN_ID = "adminID";
     public static final String KEY_GROUP_NAME = "groupName";

@@ -137,6 +137,7 @@ public class GroupSearchAdapters extends RecyclerView.Adapter<GroupSearchAdapter
 
                     DocumentReference documentReferenceee = database.collection(Constants.KEY_COLLECTION_GROUPS).document(group.id);
                     documentReferenceee.update(Constants.KEY_LAST_MESSAGE, user.name+ " vừa được thêm vào nhóm");
+                    documentReferenceee.update(Constants.KEY_GROUP_IMAGE_2, user.image);
                     documentReferenceee.update(Constants.KEY_TIMESTAMP, new Date());
 
                     HashMap<String, Object> message = new HashMap<>();

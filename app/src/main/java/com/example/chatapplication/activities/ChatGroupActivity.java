@@ -100,6 +100,7 @@ public class ChatGroupActivity extends BaseActivity {
     private void setData() {
         binding.textName.setText(group.name);
         binding.imageProfile1.setImageBitmap(getGroupImage(group.image1));
+        binding.imageProfile2.setImageBitmap(getGroupImage(group.image2));
 
     }
 

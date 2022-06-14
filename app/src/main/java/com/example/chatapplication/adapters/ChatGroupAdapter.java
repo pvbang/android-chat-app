@@ -102,7 +102,6 @@ public class ChatGroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return VIEW_TYPE_RECEIVED;
             }
         }
-
     }
 
     static class SentMessageViewHolder extends RecyclerView.ViewHolder {

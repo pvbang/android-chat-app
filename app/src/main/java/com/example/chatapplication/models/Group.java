@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Group implements Serializable {
-    public String id, name, image1, image2, message, time, count;
+    public String id, name, image1, image2, message, time;
     public Date dateObject;
 
     public String getId() {

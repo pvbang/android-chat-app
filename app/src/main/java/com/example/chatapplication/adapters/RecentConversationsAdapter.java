@@ -22,9 +22,12 @@ import com.example.chatapplication.R;
 import com.example.chatapplication.activities.ChatActivity;
 import com.example.chatapplication.databinding.FragmentMainBinding;
 import com.example.chatapplication.databinding.ItemContainerRecentConversionBinding;
+import com.example.chatapplication.databinding.ItemContainerRecentGroupBinding;
 import com.example.chatapplication.fragments.mainfrag.MainFragment;
 import com.example.chatapplication.listeners.ConversionListener;
+import com.example.chatapplication.listeners.GroupListener;
 import com.example.chatapplication.models.ChatMessage;
+import com.example.chatapplication.models.Group;
 import com.example.chatapplication.models.User;
 import com.example.chatapplication.utilities.Constants;
 import com.example.chatapplication.utilities.PreferenceManager;
@@ -44,33 +47,59 @@ import java.util.Locale;
 import java.util.Objects;
 
 
-public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversionViewHolder>{
+public class RecentConversationsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private final List<ChatMessage> chatMessages;
     private final ConversionListener conversionListener;
     private FirebaseFirestore database;
+    private final List<Group> groupsList;
+    private final GroupListener groupListener;
 
-    public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
+    public static final int VIEW_TYPE_CONVERSIONS = 1;
+    public static final int VIEW_TYPE_GROUPS = 2;
+
+    public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener, List<Group> groupsList, GroupListener groupListener) {
         this.chatMessages = chatMessages;
         this.conversionListener = conversionListener;
+        this.groupsList = groupsList;
+        this.groupListener = groupListener;
     }
 
     @NonNull
     @Override
-    public ConversionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ConversionViewHolder(
-                ItemContainerRecentConversionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
-        );
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_CONVERSIONS) {
+            return new ConversionViewHolder(
+                    ItemContainerRecentConversionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
+            );
+        } else {
+            return new UserViewHolder(
+                    ItemContainerRecentGroupBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
+            );
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ConversionViewHolder holder, int position) {
-        holder.setData(chatMessages.get(position));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if(getItemViewType(position) == VIEW_TYPE_CONVERSIONS) {
+            ((RecentConversationsAdapter.ConversionViewHolder) holder).setData(chatMessages.get(position));
+        } else {
+            ((RecentConversationsAdapter.UserViewHolder) holder).setUserData(groupsList.get(position - chatMessages.size()));
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position <= chatMessages.size()-1) {
+            return VIEW_TYPE_CONVERSIONS;
+        } else {
+            return VIEW_TYPE_GROUPS;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return chatMessages.size();
+        return groupsList.size() + chatMessages.size();
     }
 
     class ConversionViewHolder extends RecyclerView.ViewHolder {
@@ -150,6 +179,32 @@ public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConve
     private void updateConversion(String conversionId) {
         DocumentReference documentReference = database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId);
         documentReference.update(Constants.KEY_LAST_READ, "1");
+    }
+
+
+
+    class UserViewHolder extends RecyclerView.ViewHolder {
+        ItemContainerRecentGroupBinding binding;
+
+        UserViewHolder(ItemContainerRecentGroupBinding itemContainerUserBinding) {
+            super(itemContainerUserBinding.getRoot());
+            binding = itemContainerUserBinding;
+        }
+
+        void setUserData(Group group) {
+            binding.textName.setText("Nhóm: " +group.name);
+            binding.imageProfile1.setImageBitmap(getGroupImage(group.image1));
+            binding.imageProfile2.setImageBitmap(getGroupImage(group.image2));
+            binding.textRecentMessage.setText(group.message);
+            binding.textDateTime.setText(" · " +group.time);
+
+            binding.getRoot().setOnClickListener(v -> groupListener.onGroupClicked(group));
+        }
+    }
+
+    private Bitmap getGroupImage(String encodedImage) {
+        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 
 }

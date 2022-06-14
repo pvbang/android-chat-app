@@ -33,12 +33,10 @@ public class GroupAdapters extends RecyclerView.Adapter<GroupAdapters.UserViewHo
 
     private final List<Group> groupsList;
     private final GroupListener groupListener;
-    private String currentUserId;
 
-    public GroupAdapters(List<Group> usersList, GroupListener groupListener, String currentUserId) {
-        this.groupsList = usersList;
+    public GroupAdapters(List<Group> groupsList, GroupListener groupListener) {
+        this.groupsList = groupsList;
         this.groupListener = groupListener;
-        this.currentUserId = currentUserId;
     }
 
     @NonNull
@@ -53,7 +51,7 @@ public class GroupAdapters extends RecyclerView.Adapter<GroupAdapters.UserViewHo
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        holder.setUserData(groupsList.get(position), currentUserId);
+        holder.setUserData(groupsList.get(position));
     }
 
     @Override
@@ -69,88 +67,15 @@ public class GroupAdapters extends RecyclerView.Adapter<GroupAdapters.UserViewHo
             binding = itemContainerUserBinding;
         }
 
-        void setUserData(Group group, String currentUserId) {
+        void setUserData(Group group) {
             binding.textName.setText("Nhóm: " +group.name);
             binding.imageProfile1.setImageBitmap(getGroupImage(group.image1));
+            binding.imageProfile2.setImageBitmap(getGroupImage(group.image2));
             binding.textRecentMessage.setText(group.message);
             binding.textDateTime.setText(" · " +group.time);
 
-//            binding.btnAdd.setOnClickListener(v -> {
-//                FirebaseFirestore database = FirebaseFirestore.getInstance();
-//
-//                HashMap<String, Object> userFriend = new HashMap<>();
-//                userFriend.put(Constants.KEY_USER_ID, user.id);
-//                userFriend.put(Constants.KEY_NAME, user.name);
-//                userFriend.put(Constants.KEY_IMAGE, user.image);
-//                userFriend.put(Constants.KEY_EMAIL, user.email);
-//
-//                database.collection(Constants.KEY_COLLECTION_USERS).document(currentUserId).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, user.id).get().addOnCompleteListener(task -> {
-//                    if (task.isSuccessful() && task.getResult() != null) {
-//                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-//                            deleteRequest(queryDocumentSnapshot.getId());
-//                        }
-//                    }
-//                });
-//
-//                database.collection(Constants.KEY_COLLECTION_USERS).document(user.id).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).whereEqualTo(Constants.KEY_USER_ID, currentUserId).get().addOnCompleteListener(task -> {
-//                    if (task.isSuccessful() && task.getResult() != null) {
-//                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-//                            hashMyUser(user.id, queryDocumentSnapshot.getString(Constants.KEY_NAME), queryDocumentSnapshot.getString(Constants.KEY_IMAGE), queryDocumentSnapshot.getString(Constants.KEY_EMAIL));
-//                            deleteWait(user.id, queryDocumentSnapshot.getId());
-//                        }
-//                    }
-//                });
-//
-////
-//                database.collection(Constants.KEY_COLLECTION_USERS).document(currentUserId).collection(Constants.KEY_COLLECTION_FRIENDS).add(userFriend).addOnSuccessListener(documentReference -> {
-//                    showToast("Bạn vừa có thêm một người bạn mới ^^");
-//                }).addOnFailureListener(exception -> {
-//                    showToast(exception.getMessage());
-//                });
-//
-//                binding.getRoot().setVisibility(View.GONE);
-//            });
-
             binding.getRoot().setOnClickListener(v -> groupListener.onGroupClicked(group));
-
-
         }
-
-        private void showToast(String message) {
-            Toast.makeText(binding.getRoot().getContext(), message, Toast.LENGTH_SHORT).show();
-        }
-
-        private void deleteRequest(String string) {
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-            database.collection(Constants.KEY_COLLECTION_USERS).document(currentUserId).collection(Constants.KEY_COLLECTION_REQUEST_FRIENDS).document(string).delete().addOnSuccessListener(documentReference -> {
-            }).addOnFailureListener(exception -> {
-                showToast(exception.getMessage());
-            });
-        }
-
-        private void deleteWait(String id, String string) {
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-            database.collection(Constants.KEY_COLLECTION_USERS).document(id).collection(Constants.KEY_COLLECTION_WAIT_FRIENDS).document(string).delete().addOnSuccessListener(documentReference -> {
-            }).addOnFailureListener(exception -> {
-                showToast(exception.getMessage());
-            });
-        }
-
-        private void hashMyUser(String id, String name, String image, String email) {
-            HashMap<String, Object> myUser = new HashMap<>();
-            myUser.put(Constants.KEY_USER_ID, currentUserId);
-            myUser.put(Constants.KEY_NAME, name);
-            myUser.put(Constants.KEY_IMAGE, image);
-            myUser.put(Constants.KEY_EMAIL, email);
-
-            FirebaseFirestore database = FirebaseFirestore.getInstance();
-            database.collection(Constants.KEY_COLLECTION_USERS).document(id).collection(Constants.KEY_COLLECTION_FRIENDS).add(myUser).addOnSuccessListener(documentReference -> {
-            }).addOnFailureListener(exception -> {
-                showToast(exception.getMessage());
-            });
-
-        }
-
     }
 
     private Bitmap getGroupImage(String encodedImage) {

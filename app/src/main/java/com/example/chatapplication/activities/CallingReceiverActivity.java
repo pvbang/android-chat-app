@@ -52,7 +52,7 @@ public class CallingReceiverActivity extends AppCompatActivity {
         callingType = getIntent().getStringExtra(Constants.REMOTE_MSG_CALLING_MEETING_TYPE);
 
         binding.nameUser.setText(getIntent().getStringExtra(Constants.KEY_NAME));
-        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(getIntent().getStringExtra(Constants.KEY_IMAGE)));
+//        binding.avatarUser.setImageBitmap(getBitmapFromEncodedString(getIntent().getStringExtra(Constants.KEY_IMAGE)));
 
         if (callingType.equals("audio")) {
             binding.imageAccepted.setImageResource(R.drawable.ic_phone);

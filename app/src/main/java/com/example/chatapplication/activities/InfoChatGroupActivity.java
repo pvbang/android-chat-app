@@ -85,6 +85,7 @@ public class InfoChatGroupActivity extends AppCompatActivity {
 
     private void setData() {
         binding.imageProfile1.setImageBitmap(getBitmapFromEncodedString(group.image1));
+        binding.imageProfile2.setImageBitmap(getBitmapFromEncodedString(group.image2));
         binding.name.setText("Nhóm: " +group.name);
     }
 

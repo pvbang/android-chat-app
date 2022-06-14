@@ -87,7 +87,8 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
                     Group group = new Group();
                     group.id = queryDocumentSnapshot.getId();
                     group.name = queryDocumentSnapshot.getString(Constants.KEY_GROUP_NAME);
-                    group.image1 = preferenceManager.getString(Constants.KEY_IMAGE);
+                    group.image1 = queryDocumentSnapshot.getString(Constants.KEY_GROUP_IMAGE_1);
+                    group.image2 = queryDocumentSnapshot.getString(Constants.KEY_GROUP_IMAGE_2);
                     group.time = getReadableDateTime(queryDocumentSnapshot.getDate(Constants.KEY_TIMESTAMP));
                     group.dateObject = queryDocumentSnapshot.getDate(Constants.KEY_TIMESTAMP);
                     group.message = queryDocumentSnapshot.getString(Constants.KEY_LAST_MESSAGE);
@@ -97,15 +98,6 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
                 Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
 
                 getMyGroups(groupsList);
-//                if (groupsList.size() > 0) {
-//                    Collections.sort(groupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
-//
-//                    GroupAdapters groupAdapters = new GroupAdapters(groupsList, this, currentUserId);
-//                    binding.groupsRecyclerView.setAdapter(groupAdapters);
-//                    binding.groupsRecyclerView.setVisibility(View.VISIBLE);
-//                } else {
-//                    Toast.makeText(getContext(), "???", Toast.LENGTH_SHORT).show();
-//                }
             }
         });
     }
@@ -124,7 +116,7 @@ public class GroupFriendsFragment extends Fragment implements GroupListener, Swi
                     if (myGroupsList.size() > 0) {
                         Collections.sort(myGroupsList, (user, t1) -> t1.getDateObject().compareTo(user.getDateObject()));
 
-                        GroupAdapters groupAdapters = new GroupAdapters(myGroupsList, this, currentUserId);
+                        GroupAdapters groupAdapters = new GroupAdapters(myGroupsList, this);
                         binding.groupsRecyclerView.setAdapter(groupAdapters);
                         binding.groupsRecyclerView.setVisibility(View.VISIBLE);
                     }
