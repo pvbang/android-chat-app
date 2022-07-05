@@ -1,9 +1,8 @@
-# chat application android
+## Chat Application Android
 
-## Đồ án cơ sở 3
+### Đồ án cơ sở 3
 
 ## Dev: Phan Văn Bằng - Trần Nguyễn Vĩnh Uy
-## 2022
-
-### Start: 19/3/2022
-### End: in progress
+###### Facebook: fb.com/it0902
+###### Github: github.com/ilyouu
+###### Email: pvbang23092002@gmail.com
