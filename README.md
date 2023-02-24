@@ -14,5 +14,5 @@ https://www.youtube.com/watch?v=WvJBXWiSkTU&list=PLam6bY5NszYNR54PiY_NN7hGS858xi
 
 ## Dev: Phan Văn Bằng - Trần Nguyễn Vĩnh Uy
 ###### Facebook: fb.com/it0902
-###### Github: github.com/ilyouu
+###### Github: github.com/pvbang
 ###### Email: pvbang23092002@gmail.com
