@@ -84,7 +84,7 @@ public class Constants {
     public static HashMap<String, String> getRemoteMsgHeaders() {
         if (remoteMegHeaders == null) {
             remoteMegHeaders = new HashMap<>();
-            remoteMegHeaders.put(REMOTE_MSG_AUTHORIZATION, "key=AAAAP4n8JBM:APA91bG21wIt0nsMcvZ0okc85qENTmRcleRxy8SyNUUm1fjEdFTSnFkHIANXU27eaYWL70ImiMCSJ5Po0h1kNzsj96_MoGpjZ7iGOwdsHIU0Gq9E_Gq3d5DslKvUUukdssp8pziWfQSJ");
+            remoteMegHeaders.put(REMOTE_MSG_AUTHORIZATION, "key=AAAAMpS8i5A:APA91bHLzPJwh7sM8jRWT-CVkRpT_IQhAF3cOSfLRyKy4dngLG4OG05rzmzYP12554Eoec78fLV8sIXP_mSeuKqgHKq4c8d7vGzciHz2A2g2cAyUmqXY4dNoSHBl9l02hOcmKextOGXQ");
             remoteMegHeaders.put(REMOTE_MSG_CONTENT_TYPE, "application/json");
         }
         return remoteMegHeaders;
@@ -92,7 +92,7 @@ public class Constants {
 
     public static HashMap<String, String> getRemoteCallingHeaders() {
         HashMap<String, String> remoteCallingHeaders = new HashMap<>();
-        remoteCallingHeaders.put(Constants.REMOTE_MSG_CALLING_AUTHORIZATION, "key=AAAAP4n8JBM:APA91bGuuEY9MrBM7Eum7jf-565QEPWEW0qwvyXK8MZaZMEermp8C_7CjGbyMFF0OKAdMKySVJRZO6EfxsVTH6cyLy9w2CwZToET2SmTkECJUZ6dSBq2hT6Ll_iqPpcq0qG4GNx9VK5T");
+        remoteCallingHeaders.put(Constants.REMOTE_MSG_CALLING_AUTHORIZATION, "key=AAAAMpS8i5A:APA91bHhu2tOhXSd5XMpb9dvuaO5QWVNh8C_0yShU7CD5DEFK2yBoHqW5uXFQNGqRY4rvwAvNEYcrrRp5WXNfQUN6A2qUF07X6TAiX8P7lDoU2x6wgXcu45qkU0VoMi0cN_d3TJ8h2gI");
         remoteCallingHeaders.put(Constants.REMOTE_MSG_CALLING_CONTENT_TYPE, "application/json");
 
         return remoteCallingHeaders;
